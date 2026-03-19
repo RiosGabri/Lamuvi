@@ -11,4 +11,4 @@ def cadastrar(request):
         else:
             messages.error(request, "Erro: Verifique os dados inseridos.")
     
-    return render(request, 'cadastro.html')
+    return render(request, 'Lamuvi/1_login.html')
