@@ -14,8 +14,8 @@ window.onload = function () {
     let container = document.getElementById("listaAvaliacoes");
 
     let html = "";//Cria o html p/ mostrar avaliações, depois joga no container
-    for (let id in avaliacoes) {
-        let filme = Lista_filmes.find(f => f.id == id);
+    for (let id in avaliacoes) {//Calma, ainda não implementei as avaliações
+        let filme = Lista_filmes.find(f => f.id == id); //Vai buscar pelo id e busca os dados do filme 
         if (filme) {
             html += `
                 <div>
@@ -31,9 +31,9 @@ window.onload = function () {
     if (html === "") {
         html = "<p>Nenhum filme avaliado ainda.</p>";
     }
-    container.innerHTML = html;
+    container.innerHTML = html; 
 }
 window.sair = function () {
-    localStorage.removeItem("Loginok"); //sai da conta
+    localStorage.removeItem("Loginok"); //sai da conta, preciso 
     window.location.href = "login.html";
 }
