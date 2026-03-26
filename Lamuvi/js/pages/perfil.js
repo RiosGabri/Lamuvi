@@ -34,6 +34,6 @@ window.onload = function () {
     container.innerHTML = html; 
 }
 window.sair = function () {
-    localStorage.removeItem("Loginok"); //sai da conta, preciso 
+    localStorage.removeItem("Loginok"); //sai da conta
     window.location.href = "login.html";
 }
