@@ -2,7 +2,7 @@
 import { Lista_filmes } from "../data/lista.js"; //Importei a lista de filmes
 
 window.onload = function () {
-    let id = localStorage.getItem("film"); //Recupera o ID que já salvei no render.js
+    let id = localStorage.getItem("Oescolhidoehvc"); //Recupera o ID que já salvei no render.js
     let filme = Lista_filmes.find(f => f.id == id);
 
     if (filme) {

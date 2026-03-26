@@ -22,6 +22,6 @@ export function renderFilmes(lista) {
     //vi isso na internet, espero que funcione
 }
 window.abrirFilme = function (id) {
-    localStorage.setItem("Oescolhodehvc", id); //Abre o filme
+    localStorage.setItem("Oescolhidoehvc", id); //Abre o filme
     window.location.href = "pagina_filme.html"; //Redirecionei para a página
 };

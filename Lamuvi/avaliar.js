@@ -4,7 +4,7 @@ window.salvarAvaliacao = function () {
         window.location.href = "login.html";
         return;
     }
-    let filme_id = document.getElementById("filme_id").value;
+    let filme_id = document.getElementById("Oescolhidoehvc").value;
     let nota = document.getElementById("nota").value;
     let comentario = document.getElementById("comentario").value;
 
