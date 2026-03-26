@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de login</title>
 </head>
 <body>
-    
+    <div class="login-box">
+        <h1>Login</h1>
+        <input type="text" id="usuario_nome" placeholder="Usuário">
+        <input type="password" id="senha_conta" placeholder="Senha">
+        
+        <button onclick="entrar()">Entrar</button>
+        
+        <p id="erro" style="color: red;"></p>
+        
+        <p>Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+    </div>
+
+    <script src="js/pages/login.js"></script>
 </body>
 </html>
