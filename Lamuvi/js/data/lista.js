@@ -7,7 +7,7 @@ export const Lista_filmes = [
         genero: "Ficção Científica",
         diretor: "Christopher Nolan",
         sinopse: "...",
-        ano_lancamento: "2014" // Removido o 'ç' e 'ã'
+        ano_lancamento: "2014" 
     },
     {
         id: 2,
@@ -57,8 +57,8 @@ export const Lista_filmes = [
     {
         id: 7,
         nome: "A viagem de Chihiro",
-        imagem: "assets/imagens/Viagem_de_Chihiro.jpg", // Adicionado .jpg
-        genero: "Animação", // Adicionado gênero faltante
+        imagem: "assets/imagens/Viagem_de_Chihiro.jpg", 
+        genero: "Animação", 
         diretor: "Hayao Miyazaki",
         sinopse: "...",
         ano_lancamento: "2001"
@@ -66,7 +66,7 @@ export const Lista_filmes = [
     {
         id: 8,
         nome: "O diabo veste Prada",
-        imagem: "assets/imagens/O_diabo_veste_prada.jpg", // Adicionado .jpg
+        imagem: "assets/imagens/O_diabo_veste_prada.jpg",
         genero: "Comédia",
         diretor: "David Frankel",
         sinopse: "...",
