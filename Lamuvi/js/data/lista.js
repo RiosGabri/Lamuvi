@@ -1,4 +1,4 @@
-//lista de filmes
+// lista.js
 export const Lista_filmes = [
     {
         id: 1,
@@ -7,7 +7,7 @@ export const Lista_filmes = [
         genero: "Ficção Científica",
         diretor: "Christopher Nolan",
         sinopse: "...",
-        ano_lançamento: "2014"
+        ano_lancamento: "2014" // Removido o 'ç' e 'ã'
     },
     {
         id: 2,
@@ -16,7 +16,7 @@ export const Lista_filmes = [
         genero: "Animação",
         diretor: "Justin K. Thompson, Kemp Powers & Joaquim Dos Santos",
         sinopse: "...",
-        ano_lançamento: "2023"
+        ano_lancamento: "2023"
     },
     {
         id: 3,
@@ -25,7 +25,7 @@ export const Lista_filmes = [
         genero: "Musical",
         diretor: "Robert Wise",
         sinopse: "...",
-        ano_lançamento: "1965"
+        ano_lancamento: "1965"
     },
     {
         id: 4,
@@ -34,7 +34,7 @@ export const Lista_filmes = [
         genero: "Suspense",
         diretor: "David Lynch",
         sinopse: "...",
-        ano_lançamento: "2000"
+        ano_lancamento: "2000"
     },
     {
         id: 5,
@@ -43,7 +43,7 @@ export const Lista_filmes = [
         genero: "Musical",
         diretor: "Damien Chazelle",
         sinopse: "...",
-        ano_lançamento: "2016"
+        ano_lancamento: "2016"
     },
     {
         id: 6,
@@ -52,24 +52,25 @@ export const Lista_filmes = [
         genero: "Slasher",
         diretor: "Wes Craven",
         sinopse: "...",
-        ano_lançamento: "1996"
+        ano_lancamento: "1996"
     },
     {
         id: 7,
         nome: "A viagem de Chihiro",
-        imagem: "assets/imagens/Viagem_de_Chihiro",
+        imagem: "assets/imagens/Viagem_de_Chihiro.jpg", // Adicionado .jpg
+        genero: "Animação", // Adicionado gênero faltante
         diretor: "Hayao Miyazaki",
         sinopse: "...",
-        ano_lançamento: "2001"
+        ano_lancamento: "2001"
     },
     {
         id: 8,
         nome: "O diabo veste Prada",
-        imagem: "assets/imagens/O_diabo_veste_prada",
+        imagem: "assets/imagens/O_diabo_veste_prada.jpg", // Adicionado .jpg
         genero: "Comédia",
         diretor: "David Frankel",
         sinopse: "...",
-        ano_lançamento: "2006"
+        ano_lancamento: "2006"
     },
     {
         id: 9,
@@ -78,7 +79,7 @@ export const Lista_filmes = [
         genero: "Drama",
         diretor: "Kleber Mendonça Filho",
         sinopse: "...",
-        ano_lançamento: "2025"
+        ano_lancamento: "2025"
     },
     {
         id: 10,
@@ -87,6 +88,6 @@ export const Lista_filmes = [
         genero: "Crime",
         diretor: "Francis Ford Coppola",
         sinopse: "...",
-        ano_lançamento: "1972"
+        ano_lancamento: "1972"
     }
 ];
