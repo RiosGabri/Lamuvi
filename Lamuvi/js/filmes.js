@@ -1,5 +1,5 @@
-import { Lista_filmes } from "./lista"; 
-import { renderFilmes } from "./render";
+//import { Lista_filmes } from "./lista.js"; 
+//import { renderFilmes } from "./render.js";
 
 window.onload = function () { 
     let usuario = localStorage.getItem("Loginok");

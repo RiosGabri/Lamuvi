@@ -1,4 +1,4 @@
-export const Lista_filmes = [
+let Lista_filmes = [
     {
         id: 1,
         nome: "Interestelar",
