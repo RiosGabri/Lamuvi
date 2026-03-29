@@ -1,8 +1,6 @@
-//Exibição dos filmes da tela
-// render.js
 export function renderFilmes(lista) {
     const container = document.getElementById("lista");
-    if (!container) return; // Segurança caso o elemento não exista na página
+    if (!container) return; 
     let html = "";
     lista.forEach(f => {
         html += `
@@ -17,7 +15,6 @@ export function renderFilmes(lista) {
     container.innerHTML = html;
 }
 window.abrirFilme = function (id) {
-    //Estou removendo os comentário & padronizando a chave
     localStorage.setItem("Oescolhidoehvc", id); 
     window.location.href = "pagina_filme.html";
 };

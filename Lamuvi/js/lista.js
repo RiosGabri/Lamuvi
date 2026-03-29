@@ -1,4 +1,3 @@
-// lista.js
 export const Lista_filmes = [
     {
         id: 1,

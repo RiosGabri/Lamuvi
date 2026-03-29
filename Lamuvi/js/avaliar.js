@@ -1,11 +1,9 @@
-// avaliar.js
 window.salvaAvaliacao = function () {
     let usuario_nome = localStorage.getItem("Loginok");
     if (!usuario_nome) {
         window.location.href = "login.html";
         return;
     }
-    //Corrigi p/ bater com o render 
     let filme_id = localStorage.getItem("Oescolhidoehvc"); 
     let nota = document.getElementById("nota").value;
     let comentario = document.getElementById("comentario").value;
@@ -14,9 +12,7 @@ window.salvaAvaliacao = function () {
         alert("Por favor, preencha a nota e o comentário corretamente!");
         return;
     }
-
     let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-    // Salva a avaliação pelo ID e não apaga a avaliação dos outros
     avaliacoes[filme_id] = {
         nota: nota,
         comentario: comentario,
@@ -29,4 +25,3 @@ window.salvaAvaliacao = function () {
     alert("Sua opinião foi salva com sucesso!");
     window.location.href = "perfil.html";
 };
-//espero que funcione

@@ -1,8 +1,8 @@
 //Lógica para a tela de cada filme
-import { Lista_filmes } from "../data/lista.js"; //Importei a lista de filmes
+import { Lista_filmes } from "./lista.js"; 
 
 window.onload = function () {
-    let id = localStorage.getItem("Oescolhidoehvc"); //Recupera o ID que já salvei no render.js
+    let id = localStorage.getItem("Oescolhidoehvc"); 
     let filme = Lista_filmes.find(f => f.id == id);
 
     if (filme) {
@@ -14,7 +14,6 @@ window.onload = function () {
         document.getElementById("sinopse").innerText = filme.sinopse;
     }
 }
-//Isso vai para a tela de avaliação
 window.irParaAvaliar = function () {
     window.location.href = "avaliar.html";
 };

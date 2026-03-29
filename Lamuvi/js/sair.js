@@ -1,4 +1,3 @@
-// Função universal de Logout
 window.sair = function() {
     localStorage.removeItem("Loginok"); 
     alert("Saindo da sua conta...");
