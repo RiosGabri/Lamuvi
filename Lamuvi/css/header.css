@@ -15,12 +15,16 @@
 }
 
 .main-header .logo {
-  font-size: 26px;
-  font-weight: bold;
-  color: #ffffff;
   text-decoration: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
+.main-header .logo img {
+  height: 40px;
+  width: auto;
+}
+
 
 .main-header .nav-direita {
   display: flex;
@@ -98,3 +102,4 @@
     width: 100%;
   }
 }
+
