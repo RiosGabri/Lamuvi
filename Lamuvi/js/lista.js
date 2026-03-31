@@ -3,7 +3,7 @@ let Lista_filmes = [
         id: 1,
         nome: "Interestelar",
         imagem: "/imagens/Interestellar.jpg",
-        genero: "Ficção Científica",
+        genero: "Drama",
         diretor: "Christopher Nolan",
         sinopse: "...",
         ano_lancamento: "2014" 
@@ -12,7 +12,7 @@ let Lista_filmes = [
         id: 2,
         nome: "Homem Aranha: Através do Aranhaverso",
         imagem: "/imagens/homem_aranha.jpg",
-        genero: "Animação",
+        genero: "Ação",
         diretor: "Justin K. Thompson, Kemp Powers & Joaquim Dos Santos",
         sinopse: "...",
         ano_lancamento: "2023"
@@ -21,7 +21,7 @@ let Lista_filmes = [
         id: 3,
         nome: "A Noviça Rebelde",
         imagem: "/imagens/A_novica_rebelde.jpg",
-        genero: "Musical",
+        genero: "Comédia",
         diretor: "Robert Wise",
         sinopse: "...",
         ano_lancamento: "1965"
@@ -39,7 +39,7 @@ let Lista_filmes = [
         id: 5,
         nome: "La La Land",
         imagem: "/imagens/La_La_Land.jpg",
-        genero: "Musical",
+        genero: "Drama",
         diretor: "Damien Chazelle",
         sinopse: "...",
         ano_lancamento: "2016"
@@ -48,7 +48,7 @@ let Lista_filmes = [
         id: 6,
         nome: "Pânico",
         imagem: "/imagens/Panico.jpg",
-        genero: "Slasher",
+        genero: "Suspense",
         diretor: "Wes Craven",
         sinopse: "...",
         ano_lancamento: "1996"
@@ -84,7 +84,7 @@ let Lista_filmes = [
         id: 10,
         nome: "O Poderoso Chefão",
         imagem: "/imagens/O_poderoso_chefao.jpg",
-        genero: "Crime",
+        genero: "Drama",
         diretor: "Francis Ford Coppola",
         sinopse: "...",
         ano_lancamento: "1972"
@@ -106,5 +106,50 @@ let Lista_filmes = [
         diretor: "Joachim Trier",
         sinopse: "...",
         ano_lancamento: "2025"
+    },
+    {
+        id: 13,
+        nome: "Odisseia",
+        imagem: "/imagens/Odisseia.jpg",
+        genero: "Ação",
+        diretor: "Christopher Nolan",
+        sinopse: "...",
+        ano_lancamento: "2026"
+    },
+    {
+        id: 14,
+        nome: "Sociedade dos Poetas Mortos",
+        imagem: "/imagens/Sociedade.jpg",
+        genero: "Drama",
+        diretor: "Peter Weir",
+        sinopse: "...",
+        ano_lancamento: "1989"
+    },
+    {
+        id: 15,
+        nome: "Titanic",
+        imagem: "/imagens/Titanic.jpg",
+        genero: "Drama",
+        diretor: "James Cameron",
+        sinopse: "...",
+        ano_lancamento: "1997"
+    },
+    {
+        id: 16,
+        nome: "De Volta para o Futuro",
+        imagem: "/imagens/De_volta.jpg",
+        genero: "Ação",
+        diretor: "Robert Zemeckis",
+        sinopse: "...",
+        ano_lancamento: "1985"
+    },
+    {
+        id: 17,
+        nome: "Toy Story 2",
+        imagem: "/imagens/Toy_story.jpg",
+        genero: "Animação",
+        diretor: "John Lasseter",
+        sinopse: "...",
+        ano_lancamento: "1999"
     }
 ];
