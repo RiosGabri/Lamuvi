@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqui faz a página individual de um filme</title>
+    <title>Detalhe do filme</title>
+    <style>
+        body { background-color: #111; color: white; font-family: sans-serif; margin: 0; }
+        .container { display: flex; padding: 40px; gap: 40px; }
+        #img { width: 300px; border-radius: 10px; }
+        .info { max-width: 600px; }
+        h1 { color: #e50914; }
+        .btn-avaliar { background: gold; color: black; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; margin-top: 20px; }
+    </style>
 </head>
 <body>
     <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
@@ -11,8 +19,22 @@
     <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">
         Sair
     </button>
+    </nav>
 
+    <div class="container">
+        <img id="img" src="" alt="Poster">
+        <div class="info">
+            <h1 id="nome"></h1>
+            <p><strong>Gênero:</strong> <span id="genero"></span></p>
+            <p><strong>Diretor:</strong> <span id="diretor"></span></p>
+            <p><strong>Ano:</strong> <span id="ano"></span></p>
+            <p id="sinopse"></p>
+        
+            <button class="btn-avaliar" onclick="irParaAvaliar()">Avaliar Filme</button>
+        </div>
+    </div>
+    <script src="js/lista.js"></script>
+    <script src="js/pagina_filme.js"></script>
     <script src="js/sair.js"></script>
-</nav>
 </body>
 </html>

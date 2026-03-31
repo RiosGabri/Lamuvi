@@ -1,5 +1,5 @@
 //Lógica para a tela de cada filme
-import { Lista_filmes } from "./lista.js"; 
+//import { Lista_filmes } from "./lista.js"; 
 
 window.onload = function () {
     let id = localStorage.getItem("Oescolhidoehvc"); 
@@ -16,4 +16,7 @@ window.onload = function () {
 }
 window.irParaAvaliar = function () {
     window.location.href = "avaliar.html";
+};
+window.voltar = function() {
+    window.history.back();
 };
