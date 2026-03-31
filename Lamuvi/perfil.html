@@ -3,16 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazer a página de perfil do usuário</title>
+    <title>Usuário</title>
+    <style>
+        body { background-color: #111; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
+        .card-avaliacao { background: #222; margin-top: 15px; padding: 15px; border-radius: 8px; display: flex; gap: 20px; align-items: center; }
+        .info-filme { text-align: center; width: 100px; }
+        .conteudo-voto { flex: 1; }
+        .btn-excluir { background: #555; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+    </style>
 </head>
 <body>
     <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
-    <span>Lamuvi</span>
-    <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">
-        Sair
-    </button>
+        <span>Lamuvi</span>
+        <a href="filmes.html" style="color: white; text-decoration: none;">Voltar ao Catálogo</a>
+        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">Sair</button>
+    </nav>
 
     <script src="js/sair.js"></script>
 </nav>
+
+    <h1>Perfil de <span id="usuario-nome">Usuário</span></h1>
+
+    <section>
+        <h3>Minhas Avaliações</h3>
+        <div id="minhas-avaliacoes">
+            </div>
+    </section>
+    <script src="js/lista.js"></script>
+    <script src="js/perfil.js"></script>
+    <script src="js/sair.js"></script>
 </body>
 </html>

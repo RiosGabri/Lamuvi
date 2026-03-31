@@ -1,11 +1,15 @@
-import { Lista_filmes } from './lista.js';
+//import { Lista_filmes } from './lista.js';
 
 window.onload = function() {
-    exibirPerfil();
-    exibirMinhasAvaliacoes();
+    const usuarioLogado = localStorage.getItem("Loginok");
+    if(!usuarioLogado){
+        window.location.href = "login.html";
+        return;
+    }
+    exibirPerfil(usuarioLogado);
+    exibirMinhasAvaliacoes(usuarioLogado);
 };
-function exibirPerfil() {
-    const nomeUsuario = localStorage.getItem("Loginok");
+function exibirPerfil(nomeUsuario) {
     const elementoNome = document.getElementById("usuario-nome");
     
     if (elementoNome && nomeUsuario) {
@@ -14,7 +18,6 @@ function exibirPerfil() {
 }
 function exibirMinhasAvaliacoes() {
     const container = document.getElementById("minhas-avaliacoes");
-    const usuarioLogado = localStorage.getItem("Loginok");
     const todasAvaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
 
     if (!container) return;
@@ -39,7 +42,7 @@ function exibirMinhasAvaliacoes() {
                             <p>"${avaliacao.comentario}"</p>
                             <small>Postado em: ${avaliacao.data || 'Recém postado'}</small>
                         </div>
-                        <button onclick="removerAvaliacao(${filmeId})">Excluir</button>
+                        <button class="btn-excluir" onclick="removerAvaliacao(${filmeId})">Excluir</button>
                     </div>
                 `;
             }

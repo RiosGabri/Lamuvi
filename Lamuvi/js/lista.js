@@ -97,5 +97,14 @@ let Lista_filmes = [
         diretor: "Denis Villeneuve",
         sinopse: "...",
         ano_lancamento: "2021"
+    },
+    {
+        id: 12,
+        nome: "Valor Sentimental",
+        imagem: "/imagem/Valor_sentimental.jpg",
+        genero: "Drama",
+        diretor: "Joachim Trier",
+        sinopse: "...",
+        ano_lancamento: "2025"
     }
 ];
