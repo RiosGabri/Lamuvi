@@ -1,0 +1,11 @@
+.card-filme {
+  transition: transform 0.3s ease;
+}
+
+.card-filme:hover {
+  transform: scale(1.08);
+}
+
+.card-filme img {
+  display: block;
+}
