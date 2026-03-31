@@ -1,74 +1,100 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0a192f;
-    padding: 15px 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0a192f;
+  padding: 15px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-family: sans-serif;
 }
 
 .main-header .logo {
-    font-size: 26px;
-    font-weight: bold;
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .main-header .nav-direita {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .main-header .busca-container {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 5px 15px;
 }
 
 .main-header .busca-input {
-    border: none;
-    outline: none;
-    padding: 5px;
-    width: 250px;
-    color: #333;
-    background: transparent;
+  border: none;
+  outline: none;
+  padding: 5px;
+  width: 250px;
+  color: #333;
+  background: transparent;
 }
 
 .main-header .nav-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: color 0.3s ease;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
 .main-header .nav-link:hover {
-    color: #64ffda;
+  color: #64ffda;
 }
 
 .main-header .btn-sair {
-    background-color: transparent;
-    color: #ff4d4d;
-    border: 1px solid #ff4d4d;
-    padding: 6px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+  background-color: transparent;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  padding: 6px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .main-header .btn-sair:hover {
-    background-color: #ff4d4d;
-    color: #ffffff;
+  background-color: #ff4d4d;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .main-header .nav-direita {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .main-header .busca-container {
+    width: 100%;
+  }
+
+  .main-header .busca-input {
+    width: 100%;
+  }
+
+  .main-header .btn-sair {
+    width: 100%;
+  }
 }
