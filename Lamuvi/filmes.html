@@ -6,18 +6,22 @@
     <title>Catálogo</title>
     <style>
        body { background-color: #111; font-family: sans-serif; color: white; }
-        /* Esconder a barra de scroll feia nas fileiras */
         div::-webkit-scrollbar { display: none; } 
     </style>
 </head>
 <body>
 
-    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
-        <span>Lamuvi</span>
-        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">
+    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white; align-items: center;">
+    <span style="cursor:pointer" onclick="window.location.href='filmes.html'">Lamuvi</span>
+    <div style="display: flex; gap: 10px;">
+        <button onclick="irParaPerfil()" style="cursor: pointer; background: #444; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+             Meu Perfil
+        </button>
+        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
             Sair
         </button>
-    </nav>
+    </div>
+</nav>
 
 
 

@@ -14,12 +14,18 @@
     </style>
 </head>
 <body>
-    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
-    <span>Lamuvi</span>
-    <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">
-        Sair
-    </button>
-    </nav>
+    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white; align-items: center;">
+    <span style="cursor:pointer" onclick="window.location.href='filmes.html'">Lamuvi</span>
+    <div style="display: flex; gap: 10px;">
+        <button onclick="window.history.back()" style="cursor: pointer; margin-bottom: 20px;">← Voltar</button>
+        <button onclick="irParaPerfil()" style="cursor: pointer; background: #444; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+             Meu Perfil
+        </button>
+        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+            Sair
+        </button>
+    </div>
+</nav>
 
     <div class="container">
         <img id="img" src="" alt="Poster">
@@ -30,7 +36,9 @@
             <p><strong>Ano:</strong> <span id="ano"></span></p>
             <p id="sinopse"></p>
         
-            <button class="btn-avaliar" onclick="irParaAvaliar()">Avaliar Filme</button>
+            <!--button class="btn-avaliar" onclick="irParaAvaliar()">Avaliar Filme</button-->
+            <div id="minha-avaliacao-container" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
+            </div>
         </div>
     </div>
     <script src="js/lista.js"></script>

@@ -1,5 +1,4 @@
 //import { Lista_filmes } from './lista.js';
-
 window.onload = function() {
     const usuarioLogado = localStorage.getItem("Loginok");
     if(!usuarioLogado){
@@ -18,6 +17,7 @@ function exibirPerfil(nomeUsuario) {
 }
 function exibirMinhasAvaliacoes() {
     const container = document.getElementById("minhas-avaliacoes");
+    const usuarioLogado = localStorage.getItem("Loginok"); //
     const todasAvaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
 
     if (!container) return;
@@ -60,5 +60,12 @@ window.removerAvaliacao = function(id) {
         delete avaliacoes[id]; 
         localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
         exibirMinhasAvaliacoes();
+    }
+};
+window.voltarPagina = function() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "filmes.html";
     }
 };

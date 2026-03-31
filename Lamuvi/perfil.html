@@ -6,20 +6,27 @@
     <title>Usuário</title>
     <style>
         body { background-color: #111; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
-        .card-avaliacao { background: #222; margin-top: 15px; padding: 15px; border-radius: 8px; display: flex; gap: 20px; align-items: center; }
-        .info-filme { text-align: center; width: 100px; }
+        .card-avaliacao { background: #222; 
+            margin-bottom: 15px; 
+            padding: 15px; 
+            border-radius: 8px; 
+            display: flex; 
+            gap: 20px; 
+            align-items: center; 
+            border-left: 5px solid gold; }
+        .info-filme img { width: 80px; border-radius: 5px; }
         .conteudo-voto { flex: 1; }
-        .btn-excluir { background: #555; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .btn-excluir { background: #e50914; color: white; border: none; padding: 8px; cursor: pointer; border-radius: 4px; }
     </style>
 </head>
 <body>
     <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
         <span>Lamuvi</span>
-        <a href="filmes.html" style="color: white; text-decoration: none;">Voltar ao Catálogo</a>
+        <a href="filmes.html" style="color: white; text-decoration: none;">Tela Principal</a>
+        <button onclick="window.history.back()" style="cursor: pointer; margin-bottom: 20px;">← Voltar</button>
         <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">Sair</button>
     </nav>
 
-    <script src="js/sair.js"></script>
 </nav>
 
     <h1>Perfil de <span id="usuario-nome">Usuário</span></h1>

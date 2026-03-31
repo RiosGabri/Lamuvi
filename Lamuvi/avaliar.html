@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamuvi - Avaliação</title>
+    <style>
+        body { background-color: #111; color: white; font-family: sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container-avaliacao { background: #222; padding: 30px; border-radius: 15px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: #888; font-size: 1rem; margin-bottom: 5px; text-align: center; text-transform: uppercase; }
+        h2 { color: gold; font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; text-align: center; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #ccc; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #444; background: #333; color: white; box-sizing: border-box; }
+        textarea { height: 120px; resize: none; }
+        .botoes { display: flex; flex-direction: column; gap: 10px; }
+        button { background: gold; color: black; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 5px; font-size: 1rem; }
+        .btn-cancelar { background: transparent; color: #888; text-decoration: none; text-align: center; font-size: 0.9rem; border: 1px solid #444; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container-avaliacao">
+        <h1>Avaliar o filme:</h1>
+        <h2 id="nome-filme-avaliado">Carregando...</h2>
+        
+        <label for="nota">Nota (0 a 10):</label>
+        <input type="number" id="nota" min="0" max="10">
+
+        <label for="comentario">O que achou do filme?</label>
+        <textarea id="comentario" maxlength="200" placeholder="Escreva sua avaliação sobre o longa"></textarea>
+        <p id="contador" style="font-size: 12px; color: #888; text-align: right; margin-top: -15px;">0 / 200</p>
+
+        <div class="botoes">
+            <button onclick="salvaAvaliacao()">Enviar Avaliação</button>
+            <a href="#" class="btn-cancelar" onclick="voltarPagina()">Cancelar</a>
+        </div>
+    </div>
+
+    <script src="js/lista.js"></script>
+    <script src="js/avaliar.js"></script>
+</body>
+</html>

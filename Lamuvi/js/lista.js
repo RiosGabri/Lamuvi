@@ -101,7 +101,7 @@ let Lista_filmes = [
     {
         id: 12,
         nome: "Valor Sentimental",
-        imagem: "/imagem/Valor_sentimental.jpg",
+        imagem: "/imagens/Valor_sentimental.jpg",
         genero: "Drama",
         diretor: "Joachim Trier",
         sinopse: "...",

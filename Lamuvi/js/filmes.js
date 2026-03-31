@@ -9,3 +9,6 @@ window.onload = function () {
     }
     renderFilmes(Lista_filmes);
 }
+window.irParaPerfil = function() {
+    window.location.href = "perfil.html";
+};
