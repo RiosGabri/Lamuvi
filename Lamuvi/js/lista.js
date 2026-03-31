@@ -146,7 +146,7 @@ let Lista_filmes = [
     {
         id: 17,
         nome: "Toy Story 2",
-        imagem: "../imagens/Toy_story.jpg",
+        imagem: "../imagens/toy_story2.jpg",
         genero: "Animação",
         diretor: "John Lasseter",
         sinopse: "...",
