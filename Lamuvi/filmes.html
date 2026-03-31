@@ -1,40 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
-    <style>
-       body { background-color: #111; font-family: sans-serif; color: white; }
-        div::-webkit-scrollbar { display: none; } 
-    </style>
-    <link rel="stylesheet" href="css/header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo</title>
+  <style>
+    body {
+      background-color: #111;
+      font-family: sans-serif;
+      color: white;
+      margin: 0;
+    }
+
+    div::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Ajuste do Título e Lista no Mobile */
+    .titulo-catalogo {
+      padding: 20px;
+    }
+
+    #lista-filmes {
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .titulo-catalogo {
+        padding: 10px 15px;
+        font-size: 24px;
+        text-align: center;
+      }
+
+      #lista-filmes {
+        padding: 10px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
 
-    <header class="main-header">
+  <header class="main-header">
     <a href="filmes.html" class="logo">Lamuvi</a>
     <div class="nav-direita">
-        <div class="busca-container">
-            <input type="text" class="busca-input" placeholder="Buscar filmes...">
-        </div>
-        <a href="filmes.html" class="nav-link">Catálogo</a>
-        <a href="perfil.html" class="nav-link">Meu Perfil</a>
-        <button onclick="sair()" class="btn-sair">Sair</button>
+      <div class="busca-container">
+        <input type="text" class="busca-input" placeholder="Buscar filmes...">
+      </div>
+      <a href="filmes.html" class="nav-link">Catálogo</a>
+      <a href="perfil.html" class="nav-link">Meu Perfil</a>
+      <button onclick="sair()" class="btn-sair">Sair</button>
     </div>
-</header>
+  </header>
 
 
 
-    <h1 style="color: white; padding: 20px;">Lista de Filmes</h1>
+  <h1 style="color: white; padding: 20px;">Lista de Filmes</h1>
 
-    <div id="lista-filmes" style="padding: 20px;"></div>
+  <div id="lista-filmes" style="padding: 20px;"></div>
 
-    <script src="js/lista.js"></script>
-    <script src="js/render.js"></script>
-    <script src="js/filmes.js"></script>
-    <!--<script type="module" src="js/filmes.js"></script -->
-    <script src="js/sair.js"></script>
-    <script src="js/busca.js"></script>
+  <script src="js/lista.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/filmes.js"></script>
+  <!--<script type="module" src="js/filmes.js"></script -->
+  <script src="js/sair.js"></script>
+  <script src="js/busca.js"></script>
 </body>
+
 </html>

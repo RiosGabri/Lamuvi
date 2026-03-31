@@ -1,49 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhe do filme</title>
-    <style>
-        body { background-color: #111; color: white; font-family: sans-serif; margin: 0; }
-        .container { display: flex; padding: 40px; gap: 40px; }
-        #img { width: 300px; border-radius: 10px; }
-        .info { max-width: 600px; }
-        h1 { color: #e50914; }
-        .btn-avaliar { background: gold; color: black; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; margin-top: 20px; }
-    </style>
-    <link rel="stylesheet" href="css/header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhe do filme</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      padding: 40px;
+      gap: 40px;
+    }
+
+    #img {
+      width: 300px;
+      border-radius: 10px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .info {
+      max-width: 600px;
+    }
+
+    h1 {
+      color: #e50914;
+    }
+
+    .btn-avaliar {
+      background: gold;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .info {
+        text-align: center;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
-    <header class="main-header">
+  <header class="main-header">
     <a href="filmes.html" class="logo">Lamuvi</a>
     <div class="nav-direita">
-        <div class="busca-container">
-            <input type="text" class="busca-input" placeholder="Buscar filmes...">
-        </div>
-        <a href="filmes.html" class="nav-link">Catálogo</a>
-        <a href="perfil.html" class="nav-link">Meu Perfil</a>
-        <button onclick="sair()" class="btn-sair">Sair</button>
+      <div class="busca-container">
+        <input type="text" class="busca-input" placeholder="Buscar filmes...">
+      </div>
+      <a href="filmes.html" class="nav-link">Catálogo</a>
+      <a href="perfil.html" class="nav-link">Meu Perfil</a>
+      <button onclick="sair()" class="btn-sair">Sair</button>
     </div>
-</header>
+  </header>
 
-    <div class="container">
-        <img id="img" src="" alt="Poster">
-        <div class="info">
-            <h1 id="nome"></h1>
-            <p><strong>Gênero:</strong> <span id="genero"></span></p>
-            <p><strong>Diretor:</strong> <span id="diretor"></span></p>
-            <p><strong>Ano:</strong> <span id="ano"></span></p>
-            <p id="sinopse"></p>
-        
-            <!--button class="btn-avaliar" onclick="irParaAvaliar()">Avaliar Filme</button-->
-            <div id="minha-avaliacao-container" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
-            </div>
-        </div>
+  <div class="container">
+    <img id="img" src="" alt="Poster">
+    <div class="info">
+      <h1 id="nome"></h1>
+      <p><strong>Gênero:</strong> <span id="genero"></span></p>
+      <p><strong>Diretor:</strong> <span id="diretor"></span></p>
+      <p><strong>Ano:</strong> <span id="ano"></span></p>
+      <p id="sinopse"></p>
+
+      <!--button class="btn-avaliar" onclick="irParaAvaliar()">Avaliar Filme</button-->
+      <div id="minha-avaliacao-container" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
+      </div>
     </div>
-    <script src="js/lista.js"></script>
-    <script src="js/pagina_filme.js"></script>
-    <script src="js/sair.js"></script>
-    <script src="js/busca.js"></script>
+  </div>
+  <script src="js/lista.js"></script>
+  <script src="js/pagina_filme.js"></script>
+  <script src="js/sair.js"></script>
+  <script src="js/busca.js"></script>
 </body>
+
 </html>
