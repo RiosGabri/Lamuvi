@@ -2,7 +2,7 @@ let Lista_filmes = [
     {
         id: 1,
         nome: "Interestelar",
-        imagem: "/imagens/Interestellar.jpg",
+        imagem: "../imagens/Interestellar.jpg",
         genero: "Drama",
         diretor: "Christopher Nolan",
         sinopse: "...",
@@ -11,7 +11,7 @@ let Lista_filmes = [
     {
         id: 2,
         nome: "Homem Aranha: Através do Aranhaverso",
-        imagem: "/imagens/homem_aranha.jpg",
+        imagem: "../imagens/homem_aranha.jpg",
         genero: "Ação",
         diretor: "Justin K. Thompson, Kemp Powers & Joaquim Dos Santos",
         sinopse: "...",
@@ -20,7 +20,7 @@ let Lista_filmes = [
     {
         id: 3,
         nome: "A Noviça Rebelde",
-        imagem: "/imagens/A_novica_rebelde.jpg",
+        imagem: "../imagens/A_novica_rebelde.jpg",
         genero: "Comédia",
         diretor: "Robert Wise",
         sinopse: "...",
@@ -29,7 +29,7 @@ let Lista_filmes = [
     {
         id: 4,
         nome: "Mulholland Drive",
-        imagem: "/imagens/Mulholland_filme.jpg",
+        imagem: "../imagens/Mulholland_filme.jpg",
         genero: "Suspense",
         diretor: "David Lynch",
         sinopse: "...",
@@ -38,7 +38,7 @@ let Lista_filmes = [
     {
         id: 5,
         nome: "La La Land",
-        imagem: "/imagens/La_La_Land.jpg",
+        imagem: "../imagens/La_La_Land.jpg",
         genero: "Drama",
         diretor: "Damien Chazelle",
         sinopse: "...",
@@ -47,7 +47,7 @@ let Lista_filmes = [
     {
         id: 6,
         nome: "Pânico",
-        imagem: "/imagens/Panico.jpg",
+        imagem: "../imagens/Panico.jpg",
         genero: "Suspense",
         diretor: "Wes Craven",
         sinopse: "...",
@@ -56,7 +56,7 @@ let Lista_filmes = [
     {
         id: 7,
         nome: "A viagem de Chihiro",
-        imagem: "/imagens/Viagem_de_Chihiro.jpg", 
+        imagem: "../imagens/Viagem_de_Chihiro.jpg", 
         genero: "Animação", 
         diretor: "Hayao Miyazaki",
         sinopse: "...",
@@ -65,7 +65,7 @@ let Lista_filmes = [
     {
         id: 8,
         nome: "O diabo veste Prada",
-        imagem: "/imagens/O_diabo_veste_prada.jpg",
+        imagem: "../imagens/O_diabo_veste_prada.jpg",
         genero: "Comédia",
         diretor: "David Frankel",
         sinopse: "...",
@@ -74,7 +74,7 @@ let Lista_filmes = [
     {
         id: 9,
         nome: "O Agente Secreto",
-        imagem: "/imagens/O_Agente_Secreto.jpg",
+        imagem: "../imagens/O_Agente_Secreto.jpg",
         genero: "Drama",
         diretor: "Kleber Mendonça Filho",
         sinopse: "...",
@@ -83,7 +83,7 @@ let Lista_filmes = [
     {
         id: 10,
         nome: "O Poderoso Chefão",
-        imagem: "/imagens/O_poderoso_chefao.jpg",
+        imagem: "../imagens/O_poderoso_chefao.jpg",
         genero: "Drama",
         diretor: "Francis Ford Coppola",
         sinopse: "...",
@@ -92,7 +92,7 @@ let Lista_filmes = [
     {
         id: 11,
         nome: "Duna",
-        imagem: "/imagens/Duna.jpg",
+        imagem: "../imagens/Duna.jpg",
         genero: "Drama",
         diretor: "Denis Villeneuve",
         sinopse: "...",
@@ -101,7 +101,7 @@ let Lista_filmes = [
     {
         id: 12,
         nome: "Valor Sentimental",
-        imagem: "/imagens/Valor_sentimental.jpg",
+        imagem: "../imagens/Valor_sentimental.jpg",
         genero: "Drama",
         diretor: "Joachim Trier",
         sinopse: "...",
@@ -110,7 +110,7 @@ let Lista_filmes = [
     {
         id: 13,
         nome: "Odisseia",
-        imagem: "/imagens/Odisseia.jpg",
+        imagem: "../imagens/Odisseia.jpg",
         genero: "Ação",
         diretor: "Christopher Nolan",
         sinopse: "...",
@@ -119,7 +119,7 @@ let Lista_filmes = [
     {
         id: 14,
         nome: "Sociedade dos Poetas Mortos",
-        imagem: "/imagens/Sociedade.jpg",
+        imagem: "../imagens/Sociedade.jpg",
         genero: "Drama",
         diretor: "Peter Weir",
         sinopse: "...",
@@ -128,7 +128,7 @@ let Lista_filmes = [
     {
         id: 15,
         nome: "Titanic",
-        imagem: "/imagens/Titanic.jpg",
+        imagem: "../imagens/Titanic.jpg",
         genero: "Drama",
         diretor: "James Cameron",
         sinopse: "...",
@@ -137,7 +137,7 @@ let Lista_filmes = [
     {
         id: 16,
         nome: "De Volta para o Futuro",
-        imagem: "/imagens/De_volta.jpg",
+        imagem: "../imagens/De_volta.jpg",
         genero: "Ação",
         diretor: "Robert Zemeckis",
         sinopse: "...",
@@ -146,7 +146,7 @@ let Lista_filmes = [
     {
         id: 17,
         nome: "Toy Story 2",
-        imagem: "/imagens/Toy_story.jpg",
+        imagem: "../imagens/Toy_story.jpg",
         genero: "Animação",
         diretor: "John Lasseter",
         sinopse: "...",
