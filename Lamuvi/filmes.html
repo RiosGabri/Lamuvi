@@ -8,20 +8,21 @@
        body { background-color: #111; font-family: sans-serif; color: white; }
         div::-webkit-scrollbar { display: none; } 
     </style>
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
 
-    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white; align-items: center;">
-    <span style="cursor:pointer" onclick="window.location.href='filmes.html'">Lamuvi</span>
-    <div style="display: flex; gap: 10px;">
-        <button onclick="irParaPerfil()" style="cursor: pointer; background: #444; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
-             Meu Perfil
-        </button>
-        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
-            Sair
-        </button>
+    <header class="main-header">
+    <a href="filmes.html" class="logo">Lamuvi</a>
+    <div class="nav-direita">
+        <div class="busca-container">
+            <input type="text" class="busca-input" placeholder="Buscar filmes...">
+        </div>
+        <a href="filmes.html" class="nav-link">Catálogo</a>
+        <a href="perfil.html" class="nav-link">Meu Perfil</a>
+        <button onclick="sair()" class="btn-sair">Sair</button>
     </div>
-</nav>
+</header>
 
 
 

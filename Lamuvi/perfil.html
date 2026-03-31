@@ -18,16 +18,20 @@
         .conteudo-voto { flex: 1; }
         .btn-excluir { background: #e50914; color: white; border: none; padding: 8px; cursor: pointer; border-radius: 4px; }
     </style>
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
-    <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
-        <span>Lamuvi</span>
-        <a href="filmes.html" style="color: white; text-decoration: none;">Tela Principal</a>
-        <button onclick="window.history.back()" style="cursor: pointer; margin-bottom: 20px;">← Voltar</button>
-        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">Sair</button>
-    </nav>
-
-</nav>
+    <header class="main-header">
+    <a href="filmes.html" class="logo">Lamuvi</a>
+    <div class="nav-direita">
+        <div class="busca-container">
+            <input type="text" class="busca-input" placeholder="Buscar filmes...">
+        </div>
+        <a href="filmes.html" class="nav-link">Catálogo</a>
+        <a href="perfil.html" class="nav-link">Meu Perfil</a>
+        <button onclick="sair()" class="btn-sair">Sair</button>
+    </div>
+</header>
 
     <h1>Perfil de <span id="usuario-nome">Usuário</span></h1>
 

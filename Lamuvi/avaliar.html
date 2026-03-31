@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lamuvi - Avaliação</title>
     <style>
-        body { background-color: #111; color: white; font-family: sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        body { background-color: #111; color: white; font-family: sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        .container-wrapper { display: flex; justify-content: center; align-items: center; flex: 1; }
         .container-avaliacao { background: #222; padding: 30px; border-radius: 15px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         h1 { color: #888; font-size: 1rem; margin-bottom: 5px; text-align: center; text-transform: uppercase; }
         h2 { color: gold; font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; text-align: center; }
@@ -16,8 +17,22 @@
         button { background: gold; color: black; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 5px; font-size: 1rem; }
         .btn-cancelar { background: transparent; color: #888; text-decoration: none; text-align: center; font-size: 0.9rem; border: 1px solid #444; padding: 10px; border-radius: 5px; }
     </style>
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
+    <header class="main-header">
+    <a href="filmes.html" class="logo">Lamuvi</a>
+    <div class="nav-direita">
+        <div class="busca-container">
+            <input type="text" class="busca-input" placeholder="Buscar filmes...">
+        </div>
+        <a href="filmes.html" class="nav-link">Catálogo</a>
+        <a href="perfil.html" class="nav-link">Meu Perfil</a>
+        <button onclick="sair()" class="btn-sair">Sair</button>
+    </div>
+</header>
+
+    <div class="container-wrapper">
     <div class="container-avaliacao">
         <h1>Avaliar o filme:</h1>
         <h2 id="nome-filme-avaliado">Carregando...</h2>
@@ -33,6 +48,7 @@
             <button onclick="salvaAvaliacao()">Enviar Avaliação</button>
             <a href="#" class="btn-cancelar" onclick="voltarPagina()">Cancelar</a>
         </div>
+    </div>
     </div>
 
     <script src="js/lista.js"></script>
