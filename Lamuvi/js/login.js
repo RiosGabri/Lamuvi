@@ -23,4 +23,4 @@ window.entrar = function () {
 //    console.log("vai redirecionar"); 
 
 //    window.location.href = "filmes.html";
-};
+//};

@@ -2,7 +2,7 @@ let Lista_filmes = [
     {
         id: 1,
         nome: "Interestelar",
-        imagem: "assets/imagens/Interestelar.jpg",
+        imagem: "/imagens/Interestellar.jpg",
         genero: "Ficção Científica",
         diretor: "Christopher Nolan",
         sinopse: "...",
@@ -11,7 +11,7 @@ let Lista_filmes = [
     {
         id: 2,
         nome: "Homem Aranha: Através do Aranhaverso",
-        imagem: "assets/imagens/Homem_aranha.jpg",
+        imagem: "/imagens/homem_aranha.jpg",
         genero: "Animação",
         diretor: "Justin K. Thompson, Kemp Powers & Joaquim Dos Santos",
         sinopse: "...",
@@ -20,7 +20,7 @@ let Lista_filmes = [
     {
         id: 3,
         nome: "A Noviça Rebelde",
-        imagem: "assets/imagens/A_noviça_rebelde.jpg",
+        imagem: "/imagens/A_novica_rebelde.jpg",
         genero: "Musical",
         diretor: "Robert Wise",
         sinopse: "...",
@@ -29,7 +29,7 @@ let Lista_filmes = [
     {
         id: 4,
         nome: "Mulholland Drive",
-        imagem: "assets/imagens/Mulholland_filme.jpg",
+        imagem: "/imagens/Mulholland_filme.jpg",
         genero: "Suspense",
         diretor: "David Lynch",
         sinopse: "...",
@@ -38,7 +38,7 @@ let Lista_filmes = [
     {
         id: 5,
         nome: "La La Land",
-        imagem: "assets/imagens/La_La_Land.jpg",
+        imagem: "/imagens/La_La_Land.jpg",
         genero: "Musical",
         diretor: "Damien Chazelle",
         sinopse: "...",
@@ -47,7 +47,7 @@ let Lista_filmes = [
     {
         id: 6,
         nome: "Pânico",
-        imagem: "assets/imagens/Panico.jpg",
+        imagem: "/imagens/Panico.jpg",
         genero: "Slasher",
         diretor: "Wes Craven",
         sinopse: "...",
@@ -56,7 +56,7 @@ let Lista_filmes = [
     {
         id: 7,
         nome: "A viagem de Chihiro",
-        imagem: "assets/imagens/Viagem_de_Chihiro.jpg", 
+        imagem: "/imagens/Viagem_de_Chihiro.jpg", 
         genero: "Animação", 
         diretor: "Hayao Miyazaki",
         sinopse: "...",
@@ -65,7 +65,7 @@ let Lista_filmes = [
     {
         id: 8,
         nome: "O diabo veste Prada",
-        imagem: "assets/imagens/O_diabo_veste_prada.jpg",
+        imagem: "/imagens/O_diabo_veste_prada.jpg",
         genero: "Comédia",
         diretor: "David Frankel",
         sinopse: "...",
@@ -74,7 +74,7 @@ let Lista_filmes = [
     {
         id: 9,
         nome: "O Agente Secreto",
-        imagem: "assets/imagens/O_agente_secreto.jpg",
+        imagem: "/imagens/O_Agente_Secreto.jpg",
         genero: "Drama",
         diretor: "Kleber Mendonça Filho",
         sinopse: "...",
@@ -83,7 +83,7 @@ let Lista_filmes = [
     {
         id: 10,
         nome: "O Poderoso Chefão",
-        imagem: "assets/imagens/O_poderoso_chefao.jpg",
+        imagem: "/imagens/O_poderoso_chefao.jpg",
         genero: "Crime",
         diretor: "Francis Ford Coppola",
         sinopse: "...",

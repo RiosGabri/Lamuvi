@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqui tu faz a lista de filmes</title>
-    
-</nav>
+    <title>Catálogo</title>
+    <style>
+       body { background-color: #111; font-family: sans-serif; color: white; }
+        /* Esconder a barra de scroll feia nas fileiras */
+        div::-webkit-scrollbar { display: none; } 
+    </style>
 </head>
 <body>
 
     <nav style="display: flex; justify-content: space-between; padding: 10px; background: #222; color: white;">
-    <span>Lamuvi</span>
-    <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">
-        Sair
-    </button>
+        <span>Lamuvi</span>
+        <button onclick="sair()" style="cursor: pointer; background: red; color: white; border: none; padding: 5px 10px;">
+            Sair
+        </button>
+    </nav>
 
 
-    <h1>Lista de Filmes</h1>
 
-    <div id="lista-filmes"style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+    <h1 style="color: white; padding: 20px;">Lista de Filmes</h1>
+
+    <div id="lista-filmes" style="padding: 20px;"></div>
 
     <script src="js/lista.js"></script>
     <script src="js/render.js"></script>
