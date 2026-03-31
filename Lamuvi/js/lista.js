@@ -88,5 +88,14 @@ let Lista_filmes = [
         diretor: "Francis Ford Coppola",
         sinopse: "...",
         ano_lancamento: "1972"
+    },
+    {
+        id: 11,
+        nome: "Duna",
+        imagem: "/imagens/Duna.jpg",
+        genero: "Drama",
+        diretor: "Denis Villeneuve",
+        sinopse: "...",
+        ano_lancamento: "2021"
     }
 ];
