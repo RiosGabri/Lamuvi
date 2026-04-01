@@ -75,7 +75,7 @@ let Lista_filmes = [
         id: 9,
         nome: "O Agente Secreto",
         imagem: "../imagens/O_Agente_Secreto.jpg",
-        genero: "Drama",
+        genero: "Suspense",
         diretor: "Kleber Mendonça Filho",
         sinopse: "...",
         ano_lancamento: "2025"
@@ -151,5 +151,59 @@ let Lista_filmes = [
         diretor: "John Lasseter",
         sinopse: "...",
         ano_lancamento: "1999"
+    },
+    {
+        id: 18,
+        nome: "Um Lugar Silencioso",
+        imagem: "../imagens/Lugar_Silencioso.jpg",
+        genero: "Suspense",
+        diretor: "John Krasinski",
+        sinopse: "...",
+        ano_lancamento: "2018"
+    },
+    {
+        id: 19,
+        nome: "Bacurau",
+        imagem: "../imagens/Bacurau.jpeg",
+        genero: "Suspense",
+        diretor: "Kleber Mendonça Filho",
+        sinopse: "...",
+        ano_lancamento: "2019"
+    },
+    {
+        id: 20,
+        nome: "O Iluminado",
+        imagem: "../imagens/Iluminado.png",
+        genero: "Suspense",
+        diretor: "Stanley Kubrick",
+        sinopse: "...",
+        ano_lancamento: "1980"
+    },
+    {
+        id: 21,
+        nome: "Anatomia de uma Queda",
+        imagem: "../imagens/Queda.png",
+        genero: "Suspense",
+        diretor: "Céline Sciamma",
+        sinopse: "...",
+        ano_lancamento: "2022"
+    },
+    {
+        id: 22,
+        nome: "Garota Exemplar",
+        imagem: "../imagens/Exemplar.jpg",
+        genero: "Suspense",
+        diretor: "David Fincher",
+        sinopse: "...",
+        ano_lancamento: "2014"
+    },
+    {
+        id: 23,
+        nome: "Eu sei o que Vocês Fizeram no Verão Passado",
+        imagem: "../imagens/Eu_sei.jpg",
+        genero: "Suspense",
+        diretor: "Jim Gillespie",
+        sinopse: "...",
+        ano_lancamento: "1997"
     }
 ];
