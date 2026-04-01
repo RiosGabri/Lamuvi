@@ -269,5 +269,23 @@ let Lista_filmes = [
         diretor: "Lee Unkrich & Adrian Molina",
         sinopse: "...",
         ano_lancamento: "2017"
+    },
+    {
+        id: 31,
+        nome: "Hamnet",
+        imagem: "../imagens/Hamnet.jpg",
+        genero: "Drama",
+        diretor: "Chloé Zhao",
+        sinopse: "...",
+        ano_lancamento: "2025"
+    },
+    {
+        id: 32,
+        nome: "Forrest Gump: O Contador de Histórias",
+        imagem: "../imagens/Forrest.jpg",
+        genero: "Drama",
+        diretor: "Robert Zemeckis",
+        sinopse: "...",
+        ano_lancamento: "1994"
     }
 ];
