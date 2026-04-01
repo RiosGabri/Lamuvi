@@ -38,7 +38,7 @@ function exibirMinhaAvaliacao(filmeId) {
   }
 }
 
-window.deletarAvaliacao = function(id) {
+window.deletarMinhaAvaliacao = function(id) {
   confirmarAcao("Tem certeza que deseja excluir sua avaliação?", function(confirmado) {
     if (confirmado) {
       let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
