@@ -52,25 +52,26 @@ window.salvaAvaliacao = function() {
   setTimeout(() => {
     window.location.href = "perfil.html";
   }, 2000);
+};
 
-  window.voltarPagina = function() {
-    if (document.referrer !== "") {
-      window.history.back();
-    } else {
-      window.location.href = "filmes.html";
-    }
-  };
+window.voltarPagina = function() {
+  if (document.referrer !== "") {
+    window.history.back();
+  } else {
+    window.location.href = "filmes.html";
+  }
+};
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const txt = document.getElementById("comentario");
-    const count = document.getElementById("contador");
+document.addEventListener("DOMContentLoaded", function() {
+  const txt = document.getElementById("comentario");
+  const count = document.getElementById("contador");
 
-    if (txt && count) {
-      txt.addEventListener("input", function() {
-        count.innerText = `${txt.value.length} / 200`;
+  if (txt && count) {
+    txt.addEventListener("input", function() {
+      count.innerText = `${txt.value.length} / 200`;
 
-        // Muda a cor se chegar perto do limite
-        count.style.color = txt.value.length >= 190 ? "red" : "#888";
-      });
-    }
-  });
+      // Muda a cor se chegar perto do limite
+      count.style.color = txt.value.length >= 190 ? "red" : "#888";
+    });
+  }
+});
