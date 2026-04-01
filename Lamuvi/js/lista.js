@@ -342,4 +342,67 @@ let Lista_filmes = [
         sinopse: "...",
         ano_lancamento: "1988"
     },
+    {
+        id: 39,
+        nome: "O Auto da Compadecida",
+        imagem: "../imagens/Auto.jpg",
+        genero: "Comédia",
+        diretor: "Guel Arraes",
+        sinopse: "...",
+        ano_lancamento: "2000"
+    },
+    {
+        id: 40,
+        nome: "Esqueceram de Mim",
+        imagem: "../imagens/Esqueceram.jpg",
+        genero: "Comédia",
+        diretor: "Chris Columbus",
+        sinopse: "...",
+        ano_lancamento: "1990"
+    },
+    {
+        id: 41,
+        nome: "Mamma Mia! O Filme",
+        imagem: "../imagens/Mamma_Mia.jpg",
+        genero: "Comédia",
+        diretor: "Phyllida Lloyd",
+        sinopse: "...",
+        ano_lancamento: "2008"
+    },
+    {
+        id: 42,
+        nome: "Um Senhor Estagiário",
+        imagem: "../imagens/Estagiario.jpg",
+        genero: "Comédia",
+        diretor: "Nancy Meyers",
+        sinopse: "...",
+        ano_lancamento: "2015"
+    },
+    {
+        id: 43,
+        nome: "Simplesmente Amor",
+        imagem: "../imagens/Simplimente.jpg",
+        genero: "Comédia",
+        diretor: "Richard Curtis",
+        sinopse: "...",
+        ano_lancamento: "2003"
+    },
+    {
+        id: 44,
+        nome: "O Amor Não Tira Férias",
+        imagem: "../imagens/Ferias.jpg",
+        genero: "Comédia",
+        diretor: "Nancy Meyers",
+        sinopse: "...",
+        ano_lancamento: "2006"
+    },
+    {
+        id: 45,
+        nome: "Scooby Doo",
+        imagem: "../imagens/Scooby_Doo.png",
+        genero: "Comédia",
+        diretor: "James Gunn",
+        sinopse: "...",
+        ano_lancamento: "2002"
+    }
 ];
