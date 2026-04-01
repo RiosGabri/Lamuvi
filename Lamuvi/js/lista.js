@@ -287,5 +287,59 @@ let Lista_filmes = [
         diretor: "Robert Zemeckis",
         sinopse: "...",
         ano_lancamento: "1994"
-    }
+    },
+    {
+        id: 33,
+        nome: "Senhor dos Anéis: A Sociedade do Anel",
+        imagem: "../imagens/Senhor.jpg",
+        genero: "Ação",
+        diretor: "Peter Jackson",
+        sinopse: "...",
+        ano_lancamento: "2001"
+    },
+    {
+        id: 34,
+        nome: "Avatar: Fogo e Cinzas",
+        imagem: "../imagens/Avatar3.jpg",
+        genero: "Ação",
+        diretor: "James Cameron",
+        sinopse: "...",
+        ano_lancamento: "2025"
+    },
+    {
+        id: 35,
+        nome: "Gladiador",
+        imagem: "../imagens/Gladiador.jpg",
+        genero: "Ação",
+        diretor: "Ridley Scott",
+        sinopse: "...",
+        ano_lancamento: "2000"
+    },
+    {
+        id: 36,
+        nome: "Uma Batalha Após a Outra",
+        imagem: "../imagens/Batalha.jpg",
+        genero: "Ação",
+        diretor: "Paul Thomas Anderson", 
+        sinopse: "...",
+        ano_lancamento: "2025"
+    },
+    {
+        id: 37,
+        nome: "Trem-Bala",
+        imagem: "../imagens/Trem_Bala.jpg",
+        genero: "Ação",
+        diretor: "David Leitch",
+        sinopse: "...",
+        ano_lancamento: "2022"
+    },
+    {
+        id: 38,
+        nome: "Akira",
+        imagem: "../imagens/Akira.jpg",
+        genero: "Ação",
+        diretor: "Katsuhiro Otomo",
+        sinopse: "...",
+        ano_lancamento: "1988"
+    },
 ];
