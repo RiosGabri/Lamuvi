@@ -205,5 +205,69 @@ let Lista_filmes = [
         diretor: "Jim Gillespie",
         sinopse: "...",
         ano_lancamento: "1997"
+    },
+    {
+        id: 24,
+        nome: "Shrek",
+        imagem: "../imagens/Shrek.jpg",
+        genero: "Animação",
+        diretor: "Andrew Adamson & Vicky Jenson",
+        sinopse: "...",
+        ano_lancamento: "2001"
+    },
+    {
+        id: 25,
+        nome: "O Lorax: Em Busca da Trúfula Perdida",
+        imagem: "../imagens/Lorax-poster.jpg",
+        genero: "Animação",
+        diretor: "Chris Renaud & Kyle Balda",
+        sinopse: "...",
+        ano_lancamento: "2012"
+    },
+    {
+        id: 26,
+        nome: "Super Mario Bros: O Filme",
+        imagem: "../imagens/Super_Mario.jpg",
+        genero: "Animação",
+        diretor: "Carpenter",
+        sinopse: "...",
+        ano_lancamento: "2023"
+    },
+    {
+        id: 27,
+        nome: "O Castelo Animado",
+        imagem: "../imagens/Castelo.jpg",
+        genero: "Animação",
+        diretor: "Hayao Miyazaki",
+        sinopse: "...",
+        ano_lancamento: "2004"
+
+    },
+    {
+        id: 28,
+        nome: "Up: Altas Aventuras",
+        imagem: "../imagens/Up.jpg",
+        genero: "Animação",
+        diretor: "Pete Docter & Bob Peterson",
+        sinopse: "...",
+        ano_lancamento: "2009"
+    },
+    {
+        id: 29,
+        nome: "Wall-E",
+        imagem: "../imagens/Wall.jpg",
+        genero: "Animação",
+        diretor: "Andrew Stanton",
+        sinopse: "...",
+        ano_lancamento: "2008"
+    },
+    {
+        id: 30,
+        nome: "Viva: A Vida é uma Festa",
+        imagem: "../imagens/Viva.png",
+        genero: "Animação",
+        diretor: "Lee Unkrich & Adrian Molina",
+        sinopse: "...",
+        ano_lancamento: "2017"
     }
 ];
