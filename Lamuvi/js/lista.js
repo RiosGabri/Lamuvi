@@ -205,5 +205,204 @@ let Lista_filmes = [
         diretor: "Jim Gillespie",
         sinopse: "...",
         ano_lancamento: "1997"
+    },
+    {
+        id: 24,
+        nome: "Shrek",
+        imagem: "../imagens/Shrek.jpg",
+        genero: "Animação",
+        diretor: "Andrew Adamson & Vicky Jenson",
+        sinopse: "...",
+        ano_lancamento: "2001"
+    },
+    {
+        id: 25,
+        nome: "O Lorax: Em Busca da Trúfula Perdida",
+        imagem: "../imagens/Lorax-poster.jpg",
+        genero: "Animação",
+        diretor: "Chris Renaud & Kyle Balda",
+        sinopse: "...",
+        ano_lancamento: "2012"
+    },
+    {
+        id: 26,
+        nome: "Super Mario Bros: O Filme",
+        imagem: "../imagens/Super_Mario.jpg",
+        genero: "Animação",
+        diretor: "Carpenter",
+        sinopse: "...",
+        ano_lancamento: "2023"
+    },
+    {
+        id: 27,
+        nome: "O Castelo Animado",
+        imagem: "../imagens/Castelo.jpg",
+        genero: "Animação",
+        diretor: "Hayao Miyazaki",
+        sinopse: "...",
+        ano_lancamento: "2004"
+
+    },
+    {
+        id: 28,
+        nome: "Up: Altas Aventuras",
+        imagem: "../imagens/Up.jpg",
+        genero: "Animação",
+        diretor: "Pete Docter & Bob Peterson",
+        sinopse: "...",
+        ano_lancamento: "2009"
+    },
+    {
+        id: 29,
+        nome: "Wall-E",
+        imagem: "../imagens/Wall.jpg",
+        genero: "Animação",
+        diretor: "Andrew Stanton",
+        sinopse: "...",
+        ano_lancamento: "2008"
+    },
+    {
+        id: 30,
+        nome: "Viva: A Vida é uma Festa",
+        imagem: "../imagens/Viva.png",
+        genero: "Animação",
+        diretor: "Lee Unkrich & Adrian Molina",
+        sinopse: "...",
+        ano_lancamento: "2017"
+    },
+    {
+        id: 31,
+        nome: "Hamnet",
+        imagem: "../imagens/Hamnet.jpg",
+        genero: "Drama",
+        diretor: "Chloé Zhao",
+        sinopse: "...",
+        ano_lancamento: "2025"
+    },
+    {
+        id: 32,
+        nome: "Forrest Gump: O Contador de Histórias",
+        imagem: "../imagens/Forrest.jpg",
+        genero: "Drama",
+        diretor: "Robert Zemeckis",
+        sinopse: "...",
+        ano_lancamento: "1994"
+    },
+    {
+        id: 33,
+        nome: "Senhor dos Anéis: A Sociedade do Anel",
+        imagem: "../imagens/Senhor.jpg",
+        genero: "Ação",
+        diretor: "Peter Jackson",
+        sinopse: "...",
+        ano_lancamento: "2001"
+    },
+    {
+        id: 34,
+        nome: "Avatar: Fogo e Cinzas",
+        imagem: "../imagens/Avatar3.jpg",
+        genero: "Ação",
+        diretor: "James Cameron",
+        sinopse: "...",
+        ano_lancamento: "2025"
+    },
+    {
+        id: 35,
+        nome: "Gladiador",
+        imagem: "../imagens/Gladiador.jpg",
+        genero: "Ação",
+        diretor: "Ridley Scott",
+        sinopse: "...",
+        ano_lancamento: "2000"
+    },
+    {
+        id: 36,
+        nome: "Uma Batalha Após a Outra",
+        imagem: "../imagens/Batalha.jpg",
+        genero: "Ação",
+        diretor: "Paul Thomas Anderson", 
+        sinopse: "...",
+        ano_lancamento: "2025"
+    },
+    {
+        id: 37,
+        nome: "Trem-Bala",
+        imagem: "../imagens/Trem_Bala.jpg",
+        genero: "Ação",
+        diretor: "David Leitch",
+        sinopse: "...",
+        ano_lancamento: "2022"
+    },
+    {
+        id: 38,
+        nome: "Akira",
+        imagem: "../imagens/Akira.jpg",
+        genero: "Ação",
+        diretor: "Katsuhiro Otomo",
+        sinopse: "...",
+        ano_lancamento: "1988"
+    },
+    {
+        id: 39,
+        nome: "O Auto da Compadecida",
+        imagem: "../imagens/Auto.jpg",
+        genero: "Comédia",
+        diretor: "Guel Arraes",
+        sinopse: "...",
+        ano_lancamento: "2000"
+    },
+    {
+        id: 40,
+        nome: "Esqueceram de Mim",
+        imagem: "../imagens/Esqueceram.jpg",
+        genero: "Comédia",
+        diretor: "Chris Columbus",
+        sinopse: "...",
+        ano_lancamento: "1990"
+    },
+    {
+        id: 41,
+        nome: "Mamma Mia! O Filme",
+        imagem: "../imagens/Mamma_Mia.jpg",
+        genero: "Comédia",
+        diretor: "Phyllida Lloyd",
+        sinopse: "...",
+        ano_lancamento: "2008"
+    },
+    {
+        id: 42,
+        nome: "Um Senhor Estagiário",
+        imagem: "../imagens/Estagiario.jpg",
+        genero: "Comédia",
+        diretor: "Nancy Meyers",
+        sinopse: "...",
+        ano_lancamento: "2015"
+    },
+    {
+        id: 43,
+        nome: "Simplesmente Amor",
+        imagem: "../imagens/Simplimente.jpg",
+        genero: "Comédia",
+        diretor: "Richard Curtis",
+        sinopse: "...",
+        ano_lancamento: "2003"
+    },
+    {
+        id: 44,
+        nome: "O Amor Não Tira Férias",
+        imagem: "../imagens/Ferias.jpg",
+        genero: "Comédia",
+        diretor: "Nancy Meyers",
+        sinopse: "...",
+        ano_lancamento: "2006"
+    },
+    {
+        id: 45,
+        nome: "Scooby Doo",
+        imagem: "../imagens/Scooby_Doo.png",
+        genero: "Comédia",
+        diretor: "James Gunn",
+        sinopse: "...",
+        ano_lancamento: "2002"
     }
 ];
