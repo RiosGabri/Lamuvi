@@ -47,7 +47,7 @@ function exibirMinhasAvaliacoes() {
                             <p>"${avaliacao.comentario}"</p>
                             <small>Postado em: ${avaliacao.data || 'Recém postado'}</small>
                         </div>
-                        <button class="btn-excluir" onclick="removerAvaliacao(${filmeId})">Excluir</button>
+                        <button class="btn-excluir" onclick="removerAvaliacao('${filmeId}')">Excluir</button>
                     </div>
                 `;
       }

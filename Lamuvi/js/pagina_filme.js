@@ -1,27 +1,27 @@
 //Lógica para a tela de cada filme
 //import { Lista_filmes } from "./lista.js"; 
-window.onload = function () {
-    let id = localStorage.getItem("Oescolhidoehvc"); 
-    let filme = Lista_filmes.find(f => f.id == id);
+window.onload = function() {
+  let id = localStorage.getItem("Oescolhidoehvc");
+  let filme = Lista_filmes.find(f => f.id == id);
 
-    if (filme) {
-        document.getElementById("nome").innerText = filme.nome; 
-        document.getElementById("img").src = filme.imagem;
-        document.getElementById("genero").innerText = filme.genero;
-        document.getElementById("diretor").innerText = filme.diretor;
-        document.getElementById("ano").innerText = filme.ano_lancamento;
-        document.getElementById("sinopse").innerText = filme.sinopse;
+  if (filme) {
+    document.getElementById("nome").innerText = filme.nome;
+    document.getElementById("img").src = filme.imagem;
+    document.getElementById("genero").innerText = filme.genero;
+    document.getElementById("diretor").innerText = filme.diretor;
+    document.getElementById("ano").innerText = filme.ano_lancamento;
+    document.getElementById("sinopse").innerText = filme.sinopse;
 
-        exibirMinhaAvaliacao(id);
-    }
+    exibirMinhaAvaliacao(id);
+  }
 }
 function exibirMinhaAvaliacao(filmeId) {
-    const container = document.getElementById("minha-avaliacao-container");
-    const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-    const minhaAvaliacao = avaliacoes[filmeId];
+  const container = document.getElementById("minha-avaliacao-container");
+  const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+  const minhaAvaliacao = avaliacoes[filmeId];
 
-    if (minhaAvaliacao) {
-        container.innerHTML = `
+  if (minhaAvaliacao) {
+    container.innerHTML = `
             <div style="background: #222; padding: 20px; border-radius: 10px;">
                 <h3 style="color: gold; margin-top: 0;">Minha Avaliação</h3>
                 <p><strong>Nota:</strong> ${minhaAvaliacao.nota}/10</p>
@@ -33,25 +33,25 @@ function exibirMinhaAvaliacao(filmeId) {
                 </div>
             </div>
         `;
-    } else {
-        container.innerHTML = `<button class="btn-avaliar" onclick="irParaAvaliar()">Adicionar Avaliação</button>`;
-    }
+  } else {
+    container.innerHTML = `<button class="btn-avaliar" onclick="irParaAvaliar()">Adicionar Avaliação</button>`;
+  }
 }
 
-window.deletarAvaliacao = function(id) {
-    if (confirm("Tem certeza que deseja excluir sua avaliação?")) {
-        let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-        delete avaliacoes[id];
-        localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-        window.location.reload(); // Recarrega para sumir com a avaliação
-    }
+window.deletarMinhaAvaliacao = function(id) {
+  if (confirm("Tem certeza que deseja excluir sua avaliação?")) {
+    let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+    delete avaliacoes[id];
+    localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+    window.location.reload(); // Recarrega para sumir com a avaliação
+  }
 };
-window.irParaAvaliar = function () {
-    window.location.href = "avaliar.html";
+window.irParaAvaliar = function() {
+  window.location.href = "avaliar.html";
 };
 window.voltar = function() {
-    window.history.back();
+  window.history.back();
 };
 window.irParaPerfil = function() {
-    window.location.href = "perfil.html";
+  window.location.href = "perfil.html";
 };
