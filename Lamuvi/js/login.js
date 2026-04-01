@@ -6,11 +6,14 @@ window.entrar = function() {
   if ((usuario_nome === "admin" && senha_conta === "123") ||
     (extra && usuario_nome === extra.nome && senha_conta === extra.senha)) {
     localStorage.setItem("Loginok", usuario_nome);
-    window.location.href = "filmes.html";
+    mostrarNotificacao("Login realizado com sucesso!", "sucesso");
+    setTimeout(() => {
+      window.location.href = "filmes.html";
+    }, 1500);
   } else {
-    document.getElementById("erro").innerText = "Usuário e/ou senha incorreto(s)!";
+    mostrarNotificacao("Usuário e/ou senha incorreto(s)!", "erro");
   }
-}
+};
 
 //window.entrar = function () {
 //    console.log("clicou no botão"); 
