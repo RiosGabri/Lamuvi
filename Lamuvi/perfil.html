@@ -1,80 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usuário</title>
-  <style>
-    body {
-      background-color: #111;
-      color: white;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .card-avaliacao {
-      background: #222;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 8px;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      border-left: 5px solid gold;
-    }
-
-    .info-filme {
-      text-align: center;
-    }
-
-    .info-filme img {
-      width: 80px;
-      border-radius: 5px;
-    }
-
-    .conteudo-voto {
-      flex: 1;
-    }
-
-    .btn-excluir {
-      background: #e50914;
-      color: white;
-      border: none;
-      padding: 8px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-
-      .card-avaliacao {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-
-      .info-filme {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-
-      .btn-excluir {
-        width: 100%;
-      }
-    }
-  </style>
+  <title>Meu Perfil - Lamuvi</title>
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/perfil.css">
 </head>
 
 <body>
   <header class="main-header">
-    <a href="filmes.html" class="logo">Lamuvi</a>
+    <a href="filmes.html" class="logo">
+      <img src="../imagens/logo.png" alt="Logo Lamuvi">
+    </a>
     <div class="nav-direita">
       <div class="busca-container">
         <input type="text" class="busca-input" placeholder="Buscar filmes...">
@@ -85,13 +24,49 @@
     </div>
   </header>
 
-  <h1>Perfil de <span id="usuario-nome">Usuário</span></h1>
+  <main class="container-perfil">
+    <section class="secao-info-usuario">
+      <div class="avatar-usuario">
+        <img src="../imagens/usuario.png" alt="Avatar do usuário" id="avatar-img">
+      </div>
+      <div class="dados-usuario">
+        <h1>Perfil de <span id="usuario-nome">Usuário</span></h1>
+        <p class="email-usuario" id="usuario-email">usuario@email.com</p>
+        <div class="estatisticas">
+          <div class="stat-item">
+            <span class="stat-numero" id="total-avaliacoes">0</span>
+            <span class="stat-label">Avaliações</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-numero" id="media-notas">0.0</span>
+            <span class="stat-label">Média</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h3>Minhas Avaliações</h3>
-    <div id="minhas-avaliacoes">
-    </div>
-  </section>
+    <section class="secao-avaliacoes">
+      <div class="header-avaliacoes">
+        <h2>Minhas Avaliações</h2>
+        <select id="filtro-avaliacoes" class="filtro-select">
+          <option value="todas">Todas</option>
+          <option value="recentes">Mais Recentes</option>
+          <option value="antigas">Mais Antigas</option>
+          <option value="maior-nota">Maior Nota</option>
+          <option value="menor-nota">Menor Nota</option>
+        </select>
+      </div>
+
+      <div id="minhas-avaliacoes" class="lista-avaliacoes">
+      </div>
+
+      <div id="sem-avaliacoes" class="mensagem-vazia" style="display: none;">
+        <p>Você ainda não fez nenhuma avaliação.</p>
+        <a href="filmes.html" class="btn-catalogo">Explorar Catálogo</a>
+      </div>
+    </section>
+  </main>
+
   <script src="js/lista.js"></script>
   <script src="js/perfil.js"></script>
   <script src="js/sair.js"></script>
