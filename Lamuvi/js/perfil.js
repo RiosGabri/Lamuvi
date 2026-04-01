@@ -72,12 +72,15 @@ function exibirMinhasAvaliacoes() {
   container.innerHTML = html;
 }
 window.removerAvaliacao = function(id) {
-  if (confirm("Deseja realmente apagar sua opinião?")) {
-    let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-    delete avaliacoes[id];
-    localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-    exibirMinhasAvaliacoes();
-  }
+  confirmarAcao("Deseja realmente apagar sua avaliação?", function(confirmado) {
+    if (confirmado) {
+      let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+      delete avaliacoes[id];
+      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+      mostrarNotificacao("Avaliação excluída!", "sucesso");
+      exibirMinhasAvaliacoes();
+    }
+  });
 };
 window.voltarPagina = function() {
   if (document.referrer !== "") {
