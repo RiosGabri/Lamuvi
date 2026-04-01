@@ -38,14 +38,20 @@ function exibirMinhaAvaliacao(filmeId) {
   }
 }
 
-window.deletarMinhaAvaliacao = function(id) {
-  if (confirm("Tem certeza que deseja excluir sua avaliação?")) {
-    let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-    delete avaliacoes[id];
-    localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-    window.location.reload(); // Recarrega para sumir com a avaliação
-  }
+window.deletarAvaliacao = function(id) {
+  confirmarAcao("Tem certeza que deseja excluir sua avaliação?", function(confirmado) {
+    if (confirmado) {
+      let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+      delete avaliacoes[id];
+      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+      mostrarNotificacao("Avaliação excluída!", "sucesso");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
+  });
 };
+
 window.irParaAvaliar = function() {
   window.location.href = "avaliar.html";
 };
