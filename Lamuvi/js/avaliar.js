@@ -2,7 +2,7 @@ window.onload = function() {
   // 1. Verifica se o usuário está logado
   let usuario_nome = localStorage.getItem("Loginok");
   if (!usuario_nome) {
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
     return;
   }
 

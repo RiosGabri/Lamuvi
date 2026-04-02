@@ -2,7 +2,7 @@
 window.onload = function() {
   const usuarioLogado = localStorage.getItem("Loginok");
   if (!usuarioLogado) {
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
     return;
   }
   exibirPerfil(usuarioLogado);

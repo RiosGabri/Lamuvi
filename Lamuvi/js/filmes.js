@@ -4,7 +4,7 @@
 window.onload = function () { 
     let usuario = localStorage.getItem("Loginok");
     if (!usuario) {
-        window.location.href = "login.html"; 
+        window.location.href = "../index.html"; 
         return;
     }
     

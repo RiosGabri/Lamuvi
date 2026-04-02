@@ -23,6 +23,6 @@ window.cadastrar = function() {
   localStorage.setItem("usuario_cadastrado", JSON.stringify(dadosUsuario));
   mostrarNotificacao("Conta criada com sucesso!", "sucesso");
   setTimeout(() => {
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
   }, 2000);
 };
