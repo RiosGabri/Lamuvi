@@ -1,7 +1,6 @@
 window.entrar = function() {
   let usuario_nome = document.getElementById("usuario_nome").value;
   let senha_conta = document.getElementById("senha_conta").value;
-  let extra = JSON.parse(localStorage.getItem("usuario_cadastrado"));
 
   fetch('/api/login', {
     method: 'POST',
