@@ -8,7 +8,7 @@ window.entrar = function() {
     localStorage.setItem("Loginok", usuario_nome);
     mostrarNotificacao("Login realizado com sucesso!", "sucesso");
     setTimeout(() => {
-      window.location.href = "filmes.html";
+      window.location.href = "Lamuvi/filmes.html";
     }, 1500);
   } else {
     mostrarNotificacao("Usuário e/ou senha incorreto(s)!", "erro");
