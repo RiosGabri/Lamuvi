@@ -5,7 +5,7 @@ let Lista_filmes = [
         imagem: "../imagens/Interestellar.jpg",
         genero: "Drama",
         diretor: "Christopher Nolan",
-        sinopse: "Um pai vai comprar cigarro no espaço e acaba chorando atrás de uma estante.",
+        sinopse: "Um grupo de exploradores viaja através de um buraco negro para garantir a sobrevivência da humanidade.",
         ano_lancamento: "2014" 
     },
     {
@@ -14,7 +14,7 @@ let Lista_filmes = [
         imagem: "../imagens/homem_aranha.jpg",
         genero: "Ação",
         diretor: "Justin K. Thompson, Kemp Powers & Joaquim Dos Santos",
-        sinopse: "Um festival de cores que te deixa com astigmatismo e dor de cabeça enquanto 500 aranhas tentam bater num adolescente.",
+        sinopse: "Miles Morales viaja pelo multiverso e encontra uma equipe de elite de Pessoas-Aranha.",
         ano_lancamento: "2023"
     },
     {
@@ -23,7 +23,7 @@ let Lista_filmes = [
         imagem: "../imagens/A_novica_rebelde.jpg",
         genero: "Comédia",
         diretor: "Robert Wise",
-        sinopse: "Uma freira que não aguenta o silêncio invade a casa de um viúvo rico e obriga as crianças a virarem um coral de igreja.",
+        sinopse: "Uma jovem noviça se torna governanta dos sete filhos de um capitão viúvo na Áustria.",
         ano_lancamento: "1965"
     },
     {
@@ -32,7 +32,7 @@ let Lista_filmes = [
         imagem: "../imagens/Mulholland_filme.jpg",
         genero: "Suspense",
         diretor: "David Lynch",
-        sinopse: "Eu não entendi, você não entendeu, ninguém entendeu. Mas sabe que tem uma loira e uma morena com amnésia, um detetive e um diretor de cinema.",
+        sinopse: "Uma mulher amnésica e uma aspirante a atriz buscam respostas em uma Hollywood surrealista.",
         ano_lancamento: "2000"
     },
     {
@@ -41,7 +41,7 @@ let Lista_filmes = [
         imagem: "../imagens/La_La_Land.jpg",
         genero: "Drama",
         diretor: "Damien Chazelle",
-        sinopse: "Dois chatos dançam no asfalto e terminam o namoro porque o ego de artista deles não cabe na mesma casa.",
+        sinopse: "Um pianista de jazz e uma atriz iniciante tentam conciliar suas ambições com o amor.",
         ano_lancamento: "2016"
     },
     {
@@ -50,7 +50,7 @@ let Lista_filmes = [
         imagem: "../imagens/Panico.jpg",
         genero: "Suspense",
         diretor: "Wes Craven",
-        sinopse: "Um cara com máscara de fantasma prova que atender uma ligação telefônica é sempre um erro, na próxima manda um zap.",
+        sinopse: "Um grupo de adolescentes é perseguido por um assassino mascarado fã de filmes de terror.",
         ano_lancamento: "1996"
     },
     {
@@ -59,7 +59,7 @@ let Lista_filmes = [
         imagem: "../imagens/Viagem_de_Chihiro.jpg", 
         genero: "Animação", 
         diretor: "Hayao Miyazaki",
-        sinopse: "Menina vira empregada de uma velha cabeçuda num SPA de monstros porque os pais dela são uns esfomeados.",
+        sinopse: "Uma menina entra em um mundo mágico e deve salvar seus pais que foram transformados em porcos.",
         ano_lancamento: "2001"
     },
     {
@@ -68,7 +68,7 @@ let Lista_filmes = [
         imagem: "../imagens/O_diabo_veste_prada.jpg",
         genero: "Comédia",
         diretor: "David Frankel",
-        sinopse: "Uma chefe carrasca e um namorado insuportável disputam para ver quem destrói mais a saúde mental da protagonista. E sim, o namorado é pior.",
+        sinopse: "Uma jovem jornalista consegue um emprego na revista de moda mais influente de Nova York.",
         ano_lancamento: "2006"
     },
     {
@@ -77,7 +77,7 @@ let Lista_filmes = [
         imagem: "../imagens/O_Agente_Secreto.jpg",
         genero: "Suspense",
         diretor: "Kleber Mendonça Filho",
-        sinopse: "Espionagem brasileira: se não tiver café e burocracia, eu nem assisto.",
+        sinopse: "Um professor universitário é confundido com um espião em meio a tensões políticas.",
         ano_lancamento: "2025"
     },
     {
@@ -86,7 +86,7 @@ let Lista_filmes = [
         imagem: "../imagens/O_poderoso_chefao.jpg",
         genero: "Drama",
         diretor: "Francis Ford Coppola",
-        sinopse: "Uma reunião de família que poderia ter sido resolvida com terapia, mas escolheram o crime.",
+        sinopse: "O patriarca de uma dinastia do crime organizado transfere o controle para seu filho relutante.",
         ano_lancamento: "1972"
     },
     {
@@ -95,7 +95,7 @@ let Lista_filmes = [
         imagem: "../imagens/Duna.jpg",
         genero: "Drama",
         diretor: "Denis Villeneuve",
-        sinopse: "Timothée Chalamet passa o filme inteiro tentando tirar areia do sapato em slow motion e brigando por temperos especiais.",
+        sinopse: "O herdeiro de uma família nobre deve proteger o recurso mais valioso da galáxia em um planeta deserto.",
         ano_lancamento: "2021"
     },
     {
@@ -104,7 +104,7 @@ let Lista_filmes = [
         imagem: "../imagens/Valor_sentimental.jpg",
         genero: "Drama",
         diretor: "Joachim Trier",
-        sinopse: "Gente rica e europeia sofrendo por problemas que seriam resolvidos com uma CLT e um boleto atrasado.",
+        sinopse: "Uma crônica sobre relacionamentos contemporâneos e as escolhas que definem nossa trajetória.",
         ano_lancamento: "2025"
     },
     {
@@ -113,7 +113,7 @@ let Lista_filmes = [
         imagem: "../imagens/Odisseia.jpg",
         genero: "Ação",
         diretor: "Christopher Nolan",
-        sinopse: "Ninguém sabe a história ainda, mas já sei que vou colocar a trilha sonora em loop.",
+        sinopse: "Uma exploração visual e narrativa sobre os limites do tempo e da percepção humana.",
         ano_lancamento: "2026"
     },
     {
@@ -122,7 +122,7 @@ let Lista_filmes = [
         imagem: "../imagens/Sociedade.jpg",
         genero: "Drama",
         diretor: "Peter Weir",
-        sinopse: "Um professor ensina herdeiros a subirem em mesas e lerem poesia, e o RH não gosta nada disso.",
+        sinopse: "Um professor de literatura inspira seus alunos a buscarem suas próprias vozes através da poesia.",
         ano_lancamento: "1989"
     },
     {
@@ -131,7 +131,7 @@ let Lista_filmes = [
         imagem: "../imagens/Titanic.jpg",
         genero: "Drama",
         diretor: "James Cameron",
-        sinopse: "Cabia os dois na porta, mas a Rose queria o seguro de vida sozinha.",
+        sinopse: "Dois jovens de classes sociais diferentes se apaixonam a bordo do luxuoso e trágico navio.",
         ano_lancamento: "1997"
     },
     {
@@ -140,7 +140,7 @@ let Lista_filmes = [
         imagem: "../imagens/De_volta.jpg",
         genero: "Ação",
         diretor: "Robert Zemeckis",
-        sinopse: "Garoto viaja no tempo e precisa evitar que a própria mãe dê em cima dele.",
+        sinopse: "Um jovem é enviado acidentalmente para 1955 e precisa garantir que seus pais se conheçam.",
         ano_lancamento: "1985"
     },
     {
@@ -149,7 +149,7 @@ let Lista_filmes = [
         imagem: "../imagens/toy_story2.jpg",
         genero: "Animação",
         diretor: "John Lasseter",
-        sinopse: "Bonecos com crise de abandono descobrem que crianças crescem e brinquedos viram lixo ou item de museu.",
+        sinopse: "Woody é roubado por um colecionador e seus amigos partem em uma missão de resgate.",
         ano_lancamento: "1999"
     },
     {
@@ -158,7 +158,7 @@ let Lista_filmes = [
         imagem: "../imagens/Lugar_Silencioso.jpg",
         genero: "Suspense",
         diretor: "John Krasinski",
-        sinopse: "Se você pisar num LEGO ou tiver uma crise de espirro, um alienígena te janta. O pesadelo de qualquer pessoa com rinite.",
+        sinopse: "Uma família precisa viver em silêncio absoluto para evitar criaturas que caçam pelo som.",
         ano_lancamento: "2018"
     },
     {
@@ -167,7 +167,7 @@ let Lista_filmes = [
         imagem: "../imagens/Bacurau.jpeg",
         genero: "Suspense",
         diretor: "Kleber Mendonça Filho",
-        sinopse: "Gringos tentam brincar de tiro ao alvo no Nordeste e descobrem o jeitinho brasileiro",
+        sinopse: "Uma pequena comunidade no sertão brasileiro desaparece do mapa e precisa se defender de estrangeiros.",
         ano_lancamento: "2019"
     },
     {
@@ -176,7 +176,7 @@ let Lista_filmes = [
         imagem: "../imagens/Iluminado.png",
         genero: "Suspense",
         diretor: "Stanley Kubrick",
-        sinopse: "Um hotel isolado, um escritor com bloqueio criativo e um machado. O que poderia dar errado? Aparentemente, tudo.",
+        sinopse: "Um escritor se torna zelador de um hotel isolado e começa a sofrer influências sobrenaturais.",
         ano_lancamento: "1980"
     },
     {
@@ -185,7 +185,7 @@ let Lista_filmes = [
         imagem: "../imagens/Queda.png",
         genero: "Suspense",
         diretor: "Céline Sciamma",
-        sinopse: "Caiu ou jogaram? O cachorro é o único que sabe, mas não fala.",
+        sinopse: "Uma mulher é julgada pela morte do marido enquanto a relação do casal é dissecada pelo tribunal.",
         ano_lancamento: "2022"
     },
     {
@@ -194,7 +194,7 @@ let Lista_filmes = [
         imagem: "../imagens/Exemplar.jpg",
         genero: "Suspense",
         diretor: "David Fincher",
-        sinopse: "As vezes é melhor nem casar sabe? Mas se casar, é melhor não ser tão exemplar assim.",
+        sinopse: "O desaparecimento de uma mulher gera um circo midiático e coloca seu marido sob suspeita.",
         ano_lancamento: "2014"
     },
     {
@@ -203,7 +203,7 @@ let Lista_filmes = [
         imagem: "../imagens/Eu_sei.jpg",
         genero: "Suspense",
         diretor: "Jim Gillespie",
-        sinopse: "Um grupo de burros atropela um cara e depois fica chocado quando o morto vingativo aparece mandando cartinhas de cobraça.",
+        sinopse: "Amigos são perseguidos por um assassino um ano após encobrirem um acidente fatal.",
         ano_lancamento: "1997"
     },
     {
@@ -212,7 +212,7 @@ let Lista_filmes = [
         imagem: "../imagens/Shrek.jpg",
         genero: "Animação",
         diretor: "Andrew Adamson & Vicky Jenson",
-        sinopse: "Um ogro quer ser deixado em paz, mas é forçado a virar herói por um anão com complexo de superioridade.",
+        sinopse: "Um ogro solitário embarca em uma jornada para resgatar uma princesa e recuperar seu pântano.",
         ano_lancamento: "2001"
     },
     {
@@ -221,7 +221,7 @@ let Lista_filmes = [
         imagem: "../imagens/Lorax-poster.jpg",
         genero: "Animação",
         diretor: "Chris Renaud & Kyle Balda",
-        sinopse: "Um bicho laranja e peludo faz palestras ecológicas enquanto o mundo vende ar engarrafado.",
+        sinopse: "Um menino busca uma árvore verdadeira para impressionar sua amada e conhece o guardião da floresta.",
         ano_lancamento: "2012"
     },
     {
@@ -230,7 +230,7 @@ let Lista_filmes = [
         imagem: "../imagens/Super_Mario.jpg",
         genero: "Animação",
         diretor: "Carpenter",
-        sinopse: "Encanador entra num cano e descobre que cogumelos dão superpoderes.",
+        sinopse: "Dois encanadores do Brooklyn são transportados para um mundo mágico repleto de perigos.",
         ano_lancamento: "2023"
     },
     {
@@ -239,7 +239,7 @@ let Lista_filmes = [
         imagem: "../imagens/Castelo.jpg",
         genero: "Animação",
         diretor: "Hayao Miyazaki",
-        sinopse: "Uma jovem amaldiçoada vira faxineira de um mago vaidoso que mora num amontoado de lixo voador.",
+        sinopse: "Uma jovem amaldiçoada busca ajuda em um misterioso castelo andante pertencente a um mago.",
         ano_lancamento: "2004"
 
     },
@@ -249,7 +249,7 @@ let Lista_filmes = [
         imagem: "../imagens/Up.jpg",
         genero: "Animação",
         diretor: "Pete Docter & Bob Peterson",
-        sinopse: "Um velho sequestra um escoteiro e foge da prefeitura usando bexigas de hélio.",
+        sinopse: "Um idoso viaja para a América do Sul em uma casa flutuante sustentada por balões.",
         ano_lancamento: "2009"
     },
     {
@@ -258,7 +258,7 @@ let Lista_filmes = [
         imagem: "../imagens/Wall.jpg",
         genero: "Animação",
         diretor: "Andrew Stanton",
-        sinopse: "Uma fanfic de um robô samsung lixo que se apaixonou pela robô Apple e salva a humanidade preguiçosa.",
+        sinopse: "Um pequeno robô deixado para limpar a Terra encontra uma nova esperança para a humanidade.",
         ano_lancamento: "2008"
     },
     {
@@ -267,7 +267,7 @@ let Lista_filmes = [
         imagem: "../imagens/Viva.png",
         genero: "Animação",
         diretor: "Lee Unkrich & Adrian Molina",
-        sinopse: "Menino foge de casa para conversar com esqueletos porque a família dele odeia música.",
+        sinopse: "Um jovem aspirante a músico entra na Terra dos Mortos para descobrir sua história familiar.",
         ano_lancamento: "2017"
     },
     {
@@ -276,7 +276,7 @@ let Lista_filmes = [
         imagem: "../imagens/Hamnet.jpg",
         genero: "Drama",
         diretor: "Chloé Zhao",
-        sinopse: "Horas de choro enqnato você assiste a criança do Shakespeare morrer e o pai dele escrever uma peça sobre isso.",
+        sinopse: "O retrato da vida e do luto de Agnes Shakespeare após a morte precoce de seu único filho.",
         ano_lancamento: "2025"
     },
     {
@@ -285,7 +285,7 @@ let Lista_filmes = [
         imagem: "../imagens/Forrest.jpg",
         genero: "Drama",
         diretor: "Robert Zemeckis",
-        sinopse: "As vezes é melhor esquecer o amor da sua vida e correr atrás de um tênis do que ficar sofrendo por ele. E sim, o tênis é mais importante.",
+        sinopse: "Um homem testemunha e influencia vários eventos históricos dos Estados Unidos.",
         ano_lancamento: "1994"
     },
     {
@@ -294,7 +294,7 @@ let Lista_filmes = [
         imagem: "../imagens/Senhor.jpg",
         genero: "Ação",
         diretor: "Peter Jackson",
-        sinopse: "Um grupo faz um cardio épico para devolver uma joia roubada. Depois dessa, eles ainda vão ter que fazer mais dois cardios para devolver a joia de novo.",
+        sinopse: "Um hobbit e seus companheiros partem em uma jornada para destruir um anel extremamente poderoso.",
         ano_lancamento: "2001"
     },
     {
@@ -303,7 +303,7 @@ let Lista_filmes = [
         imagem: "../imagens/Avatar3.jpg",
         genero: "Ação",
         diretor: "James Cameron",
-        sinopse: "Mais dez anos de espera para ver Smurfs gigantes de 3 metros agora em versão churrasco. brigando por uma floresta que nem existe",
+        sinopse: "A continuação da saga em Pandora, explorando novas culturas e desafios ambientais.",
         ano_lancamento: "2025"
     },
     {
@@ -312,7 +312,7 @@ let Lista_filmes = [
         imagem: "../imagens/Gladiador.jpg",
         genero: "Ação",
         diretor: "Ridley Scott",
-        sinopse: "Ele era um general, virou escravo, virou gladiador e o imperador se deu mal.",
+        sinopse: "Um general romano traído busca vingança contra o imperador corrupto como um gladiador.",
         ano_lancamento: "2000"
     },
     {
@@ -321,7 +321,7 @@ let Lista_filmes = [
         imagem: "../imagens/Batalha.jpg",
         genero: "Ação",
         diretor: "Paul Thomas Anderson", 
-        sinopse: "Muita porradaria e diálogos densos, como toda boa briga de família.",
+        sinopse: "Um drama épico que explora as consequências de confrontos históricos e lutas pessoais.",
         ano_lancamento: "2025"
     },
     {
@@ -330,7 +330,7 @@ let Lista_filmes = [
         imagem: "../imagens/Trem_Bala.jpg",
         genero: "Ação",
         diretor: "David Leitch",
-        sinopse: "A prova de que é melhor ir de Uber",
+        sinopse: "Cinco assassinos a bordo de um trem em movimento descobrem que suas missões estão conectadas.",
         ano_lancamento: "2022"
     },
     {
@@ -339,7 +339,7 @@ let Lista_filmes = [
         imagem: "../imagens/Akira.jpg",
         genero: "Ação",
         diretor: "Katsuhiro Otomo",
-        sinopse: "Motos legais, explosões psíquicas e um final que ninguém explica direito.",
+        sinopse: "Em uma Neo-Tóquio futurista, um jovem adquire poderes telecinéticos perigosos.",
         ano_lancamento: "1988"
     },
     {
@@ -348,7 +348,7 @@ let Lista_filmes = [
         imagem: "../imagens/Auto.jpg",
         genero: "Comédia",
         diretor: "Guel Arraes",
-        sinopse: "Não sei, só sei que foi assim. Chicó e João Grilo enganando até o diabo.",
+        sinopse: "As aventuras de Chicó e João Grilo, dois sertanejos que vivem de golpes para sobreviver.",
         ano_lancamento: "2000"
     },
     {
@@ -357,7 +357,7 @@ let Lista_filmes = [
         imagem: "../imagens/Esqueceram.jpg",
         genero: "Comédia",
         diretor: "Chris Columbus",
-        sinopse: "Pais negligentes deixam filho em casa e ele tortura dois bandidos.",
+        sinopse: "Um menino de oito anos é esquecido em casa no Natal e precisa defendê-la de ladrões.",
         ano_lancamento: "1990"
     },
     {
@@ -366,7 +366,7 @@ let Lista_filmes = [
         imagem: "../imagens/Mamma_Mia.jpg",
         genero: "Comédia",
         diretor: "Phyllida Lloyd",
-        sinopse: "Três pais em potencial, muita música do ABBA e ninguém sabe quem é o dono do DNA. Pode pedir música no fantástico.",
+        sinopse: "Uma noiva convida três ex-namorados de sua mãe para o casamento na Grécia.",
         ano_lancamento: "2008"
     },
     {
@@ -375,7 +375,7 @@ let Lista_filmes = [
         imagem: "../imagens/Estagiario.jpg",
         genero: "Comédia",
         diretor: "Nancy Meyers",
-        sinopse: "O estagiário é mais velho que o CEO e muito mais eficiente também.",
+        sinopse: "Um viúvo de 70 anos aproveita a oportunidade de se tornar estagiário sênior em um site de moda.",
         ano_lancamento: "2015"
     },
     {
@@ -384,7 +384,7 @@ let Lista_filmes = [
         imagem: "../imagens/Simplimente.jpg",
         genero: "Comédia",
         diretor: "Richard Curtis",
-        sinopse: "Várias pessoas se apaixonando no Natal para você se sentir mais solteiro ainda. Além ",
+        sinopse: "Várias histórias de amor e vida se entrelaçam em Londres durante a época de Natal.",
         ano_lancamento: "2003"
     },
     {
@@ -393,7 +393,7 @@ let Lista_filmes = [
         imagem: "../imagens/Ferias.jpg",
         genero: "Comédia",
         diretor: "Nancy Meyers",
-        sinopse: "Duas ricas frustradas trocam de mansão para chorar em um código postal diferente.",
+        sinopse: "Duas mulheres de países diferentes trocam de casas para fugir de seus problemas amorosos.",
         ano_lancamento: "2006"
     },
     {
@@ -402,7 +402,7 @@ let Lista_filmes = [
         imagem: "../imagens/Scooby_Doo.png",
         genero: "Comédia",
         diretor: "James Gunn",
-        sinopse: "Adultos que andam numa van suspeita com um cachorro falante e todo mundo acha normal.",
+        sinopse: "A Mistério S.A. se reúne para investigar acontecimentos estranhos em um resort assombrado.",
         ano_lancamento: "2002"
     }
 ];
