@@ -19,10 +19,22 @@ window.cadastrar = function() {
     return;
   }
 
-  let dadosUsuario = { nome: nome, senha: senha };
-  localStorage.setItem("usuario_cadastrado", JSON.stringify(dadosUsuario));
-  mostrarNotificacao("Conta criada com sucesso!", "sucesso");
-  setTimeout(() => {
-    window.location.href = "../index.html";
-  }, 2000);
+  fetch('/api/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nome, senha, senhaConfirma })
+  })
+    .then(async (res) => {
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Erro ao cadastrar');
+      }
+      mostrarNotificacao(data.message, 'sucesso');
+      setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 1500);
+    })
+    .catch((err) => {
+      mostrarNotificacao(err.message, 'erro');
+    });
 };

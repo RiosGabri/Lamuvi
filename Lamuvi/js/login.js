@@ -3,16 +3,25 @@ window.entrar = function() {
   let senha_conta = document.getElementById("senha_conta").value;
   let extra = JSON.parse(localStorage.getItem("usuario_cadastrado"));
 
-  if ((usuario_nome === "admin" && senha_conta === "123") ||
-    (extra && usuario_nome === extra.nome && senha_conta === extra.senha)) {
-    localStorage.setItem("Loginok", usuario_nome);
-    mostrarNotificacao("Login realizado com sucesso!", "sucesso");
-    setTimeout(() => {
-      window.location.href = "Lamuvi/filmes.html";
-    }, 1500);
-  } else {
-    mostrarNotificacao("Usuário e/ou senha incorreto(s)!", "erro");
-  }
+  fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nome: usuario_nome, senha: senha_conta })
+  })
+    .then(async (res) => {
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Usuário e/ou senha incorreto(s)!');
+      }
+      localStorage.setItem('Loginok', data.user.nome);
+      mostrarNotificacao(data.message, 'sucesso');
+      setTimeout(() => {
+        window.location.href = 'Lamuvi/filmes.html';
+      }, 1500);
+    })
+    .catch((err) => {
+      mostrarNotificacao(err.message, 'erro');
+    });
 };
 
 //window.entrar = function () {
