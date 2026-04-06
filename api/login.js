@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Banco de dados em memória (compartilhado entre as funções via módulo)
 // Nota: Em serverless, cada instância terá sua própria cópia
@@ -9,8 +9,8 @@ const users = global.users || [
   {
     id: 1,
     nome: 'demo',
-    // Hash de 'demo123' com bcrypt
-    senha_hash: '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.VTtYF.vqvS/Kuy',
+    // Hash de 'demo123' com bcryptjs
+    senha_hash: '$2b$12$pG5xrrzVRV8FIhslZ7kIl.pvNngqCegLgK.Agdc8jsMAJVEuNyZ0e',
     criado_em: new Date().toISOString()
   }
 ];

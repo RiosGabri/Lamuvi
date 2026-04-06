@@ -1,0 +1,8 @@
+{
+  "name": "lamuvi-api",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  }
+}
