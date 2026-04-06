@@ -1,17 +1,5 @@
 const bcrypt = require('bcryptjs');
 
-// Banco de dados em memória (compartilhado via global)
-const users = global.users || [
-  {
-    id: 1,
-    nome: 'demo',
-    // Hash de 'demo123' com bcryptjs
-    senha_hash: '$2b$12$pG5xrrzVRV8FIhslZ7kIl.pvNngqCegLgK.Agdc8jsMAJVEuNyZ0e',
-    criado_em: new Date().toISOString()
-  }
-];
-global.users = users;
-
 module.exports = async (req, res) => {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,28 +24,18 @@ module.exports = async (req, res) => {
     return res.status(400).json({ message: 'As senhas não coincidem.' });
   }
 
-  // Verificar se usuário já existe
-  const existingUser = users.find(u => u.nome === nome);
-  if (existingUser) {
-    return res.status(409).json({ message: 'Usuário já existe.' });
-  }
-
   try {
+    // Gera o hash da senha
     const senhaHash = await bcrypt.hash(senha, 12);
-    const novoId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
     
-    const novoUsuario = {
-      id: novoId,
-      nome: nome,
-      senha_hash: senhaHash,
-      criado_em: new Date().toISOString()
-    };
-
-    users.push(novoUsuario);
-
+    // Retorna o hash para o frontend salvar no localStorage
     return res.status(201).json({ 
-      message: 'Usuário cadastrado com sucesso.', 
-      id: novoId 
+      message: 'Usuário cadastrado com sucesso.',
+      user: {
+        nome: nome,
+        senha_hash: senhaHash,
+        criado_em: new Date().toISOString()
+      }
     });
   } catch (err) {
     console.error('Erro no registro:', err);
