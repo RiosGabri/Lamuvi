@@ -1,4 +1,3 @@
-//import { Lista_filmes } from './lista.js';
 window.onload = function() {
   const usuarioLogado = localStorage.getItem("Loginok");
   if (!usuarioLogado) {
@@ -6,7 +5,14 @@ window.onload = function() {
     return;
   }
   exibirPerfil(usuarioLogado);
-  exibirMinhasAvaliacoes(usuarioLogado);
+  exibirMinhasAvaliacoes();
+
+  const filtro = document.getElementById("filtro-avaliacoes");
+  if (filtro) {
+    filtro.addEventListener("change", function() {
+      exibirMinhasAvaliacoes();
+    });
+  }
 };
 function exibirPerfil(nomeUsuario) {
   const elementoNome = document.getElementById("usuario-nome");
@@ -17,40 +23,60 @@ function exibirPerfil(nomeUsuario) {
 }
 function exibirMinhasAvaliacoes() {
   const container = document.getElementById("minhas-avaliacoes");
-  const usuarioLogado = localStorage.getItem("Loginok"); //
+  const usuarioLogado = localStorage.getItem("Loginok");
   const todasAvaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+  const filtro = document.getElementById("filtro-avaliacoes");
+  const filtroValor = filtro ? filtro.value : "todas";
 
   if (!container) return;
-  let html = "";
-  let encontrouAvaliacao = false;
-  let totalAvaliacoes = 0;
-  let somaNotas = 0;
 
+  let avaliacoesArray = [];
   for (let filmeId in todasAvaliacoes) {
     const avaliacao = todasAvaliacoes[filmeId];
-
     if (avaliacao.autor === usuarioLogado) {
-      encontrouAvaliacao = true;
-      totalAvaliacoes++;
-      somaNotas += parseFloat(avaliacao.nota);
+      avaliacoesArray.push({ filmeId, ...avaliacao });
+    }
+  }
 
-      const filmeDados = Lista_filmes.find(f => f.id == filmeId);
-      if (filmeDados) {
-        html += `
-                    <div class="card-avaliacao">
-                        <div class="info-filme">
-                            <img src="${filmeDados.imagem}" width="80">
-                            <h4>${filmeDados.nome}</h4>
-                        </div>
-                        <div class="conteudo-voto">
-                            <span>Nota: ${avaliacao.nota}</span>
-                            <p>"${avaliacao.comentario}"</p>
-                            <small>Postado em: ${avaliacao.data || 'Recém postado'}</small>
-                        </div>
-                        <button class="btn-excluir" onclick="removerAvaliacao('${filmeId}')">Excluir</button>
-                    </div>
-                `;
-      }
+  switch(filtroValor) {
+    case "recentes":
+      avaliacoesArray.sort((a, b) => new Date(b.data) - new Date(a.data));
+      break;
+    case "antigas":
+      avaliacoesArray.sort((a, b) => new Date(a.data) - new Date(b.data));
+      break;
+    case "maior-nota":
+      avaliacoesArray.sort((a, b) => parseFloat(b.nota) - parseFloat(a.nota));
+      break;
+    case "menor-nota":
+      avaliacoesArray.sort((a, b) => parseFloat(a.nota) - parseFloat(b.nota));
+      break;
+  }
+
+  let html = "";
+  let totalAvaliacoes = avaliacoesArray.length;
+  let somaNotas = 0;
+
+  for (let i = 0; i < avaliacoesArray.length; i++) {
+    const avaliacao = avaliacoesArray[i];
+    somaNotas += parseFloat(avaliacao.nota);
+
+    const filmeDados = Lista_filmes.find(f => f.id == avaliacao.filmeId);
+    if (filmeDados) {
+      html += `
+        <div class="card-avaliacao">
+          <div class="info-filme">
+            <img src="${filmeDados.imagem}" width="80">
+            <h4>${filmeDados.nome}</h4>
+          </div>
+          <div class="conteudo-voto">
+            <span>Nota: ${avaliacao.nota}</span>
+            <p>"${avaliacao.comentario}"</p>
+            <small>Postado em: ${avaliacao.data || 'Recém postado'}</small>
+          </div>
+          <button class="btn-excluir" onclick="removerAvaliacao('${avaliacao.filmeId}')">Excluir</button>
+        </div>
+      `;
     }
   }
 
@@ -66,7 +92,7 @@ function exibirMinhasAvaliacoes() {
     elementoMediaNotas.innerText = media;
   }
 
-  if (!encontrouAvaliacao) {
+  if (totalAvaliacoes === 0) {
     html = "<p>Você ainda não avaliou nenhum filme.</p>";
   }
   container.innerHTML = html;
