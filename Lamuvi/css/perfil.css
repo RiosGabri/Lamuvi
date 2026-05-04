@@ -1,18 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #0d1117;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-}
-
 .container-perfil {
   max-width: 1200px;
   margin: 0 auto;
@@ -20,7 +5,7 @@ body {
 }
 
 .secao-info-usuario {
-  background: linear-gradient(135deg, #1a2332 0%, #0a192f 100%);
+  background: linear-gradient(135deg, var(--bg-terciario) 0%, var(--bg-header) 100%);
   border-radius: 15px;
   padding: 40px;
   margin-bottom: 40px;
@@ -38,7 +23,7 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 4px solid #64ffda;
+  border: 4px solid var(--cor-destaque);
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
 }
@@ -50,15 +35,15 @@ body {
 .dados-usuario h1 {
   font-size: 32px;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: var(--texto-claro);
 }
 
 .dados-usuario h1 span {
-  color: #64ffda;
+  color: var(--cor-destaque);
 }
 
 .email-usuario {
-  color: #8892b0;
+  color: var(--texto-cinza);
   font-size: 16px;
   margin-bottom: 20px;
 }
@@ -82,17 +67,17 @@ body {
 .stat-numero {
   font-size: 28px;
   font-weight: bold;
-  color: #64ffda;
+  color: var(--cor-destaque);
 }
 
 .stat-label {
   font-size: 14px;
-  color: #8892b0;
+  color: var(--texto-cinza);
   margin-top: 5px;
 }
 
 .secao-avaliacoes {
-  background: #161b22;
+  background: var(--bg-secundario);
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -104,18 +89,18 @@ body {
   align-items: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #30363d;
+  border-bottom: 2px solid var(--borda-padrao);
 }
 
 .header-avaliacoes h2 {
   font-size: 24px;
-  color: #ffffff;
+  color: var(--texto-claro);
 }
 
 .filtro-select {
-  background: #0d1117;
-  color: #ffffff;
-  border: 1px solid #30363d;
+  background: var(--bg-terciario);
+  color: var(--texto-claro);
+  border: 1px solid var(--borda-padrao);
   padding: 8px 15px;
   border-radius: 6px;
   font-size: 14px;
@@ -124,12 +109,9 @@ body {
   transition: border-color 0.3s ease;
 }
 
-.filtro-select:hover {
-  border-color: #64ffda;
-}
-
+.filtro-select:hover,
 .filtro-select:focus {
-  border-color: #64ffda;
+  border-color: var(--cor-destaque);
 }
 
 .lista-avaliacoes {
@@ -139,13 +121,13 @@ body {
 }
 
 .card-avaliacao {
-  background: #0d1117;
+  background: var(--bg-terciario);
   padding: 20px;
   border-radius: 10px;
   display: flex;
   gap: 20px;
   align-items: center;
-  border-left: 5px solid #ffd700;
+  border-left: 5px solid var(--cor-ouro);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -176,7 +158,7 @@ body {
 .info-filme h4 {
   margin-top: 10px;
   font-size: 14px;
-  color: #8892b0;
+  color: var(--texto-escuro);
 }
 
 .conteudo-avaliacao {
@@ -193,24 +175,24 @@ body {
 }
 
 .nota-avaliacao .estrelas {
-  color: #ffd700;
+  color: var(--cor-ouro);
   font-size: 20px;
 }
 
 .nota-avaliacao .numero-nota {
   font-size: 18px;
   font-weight: bold;
-  color: #64ffda;
+  color: var(--cor-destaque);
 }
 
 .texto-avaliacao {
-  color: #c9d1d9;
+  color: var(--texto-cinza);
   line-height: 1.6;
   font-size: 15px;
 }
 
 .data-avaliacao {
-  color: #8892b0;
+  color: var(--texto-escuro);
   font-size: 13px;
 }
 
@@ -221,19 +203,19 @@ body {
 }
 
 .btn-excluir {
-  background: #da3633;
-  color: #ffffff;
+  background: var(--cor-erro);
+  color: var(--texto-claro);
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
   font-size: 14px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: filter 0.3s ease, transform 0.2s ease;
 }
 
 .btn-excluir:hover {
-  background: #f85149;
+  filter: brightness(1.2);
   transform: scale(1.05);
 }
 
@@ -247,25 +229,25 @@ body {
 }
 
 .mensagem-vazia p {
-  color: #8892b0;
+  color: var(--texto-cinza);
   font-size: 18px;
   margin-bottom: 25px;
 }
 
 .btn-catalogo {
   display: inline-block;
-  background: #64ffda;
-  color: #0a192f;
+  background: var(--cor-destaque);
+  color: var(--bg-header);
   text-decoration: none;
   padding: 12px 30px;
   border-radius: 6px;
   font-weight: bold;
   font-size: 16px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: filter 0.3s ease, transform 0.2s ease;
 }
 
 .btn-catalogo:hover {
-  background: #52d4b8;
+  filter: brightness(0.9);
   transform: translateY(-2px);
 }
 

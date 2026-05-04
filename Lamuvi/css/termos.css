@@ -1,0 +1,63 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px 0;
+  gap: 15px;
+}
+
+body>img.logo {
+  width: 150px;
+  margin-bottom: 25px;
+}
+
+.termos-box {
+  background-color: var(--bg-secundario);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+}
+
+.termos-box h1 {
+  color: var(--texto-claro);
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.termos-box h2 {
+  color: var(--cor-destaque);
+  font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.termos-box p {
+  color: var(--texto-cinza);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.termos-box .voltar {
+  display: block;
+  margin-top: 30px;
+  background-color: var(--bg-header);
+  color: var(--texto-claro);
+  padding: 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.termos-box .voltar:hover {
+  background-color: var(--bg-header-hover);
+}   

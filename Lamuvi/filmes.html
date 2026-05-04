@@ -1,43 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo</title>
-  <style>
-    body {
-      background-color: #111;
-      font-family: sans-serif;
-      color: white;
-      margin: 0;
-    }
 
-    div::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Ajuste do Título e Lista no Mobile */
-    .titulo-catalogo {
-      padding: 20px;
-    }
-
-    #lista-filmes {
-      padding: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .titulo-catalogo {
-        padding: 10px 15px;
-        font-size: 24px;
-        text-align: center;
-      }
-
-      #lista-filmes {
-        padding: 10px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/global.css"> 
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/filmes.css">
   <link rel="stylesheet" href="css/notificacao.css">
@@ -59,9 +28,9 @@
 
 
 
-  <h1 style="color: white; padding: 20px;">Lista de Filmes</h1>
+<h1 class="titulo-catalogo">Lista de Filmes</h1>
 
-  <div id="lista-filmes" style="padding: 20px;"></div>
+  <div id="lista-filmes" class="container-filmes"></div>
 
   <script src="js/notificacao.js"></script>
   <script src="js/lista.js"></script>

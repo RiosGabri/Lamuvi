@@ -1,3 +1,11 @@
+.titulo-catalogo {
+  padding: 20px;
+}
+
+.container-filmes {
+  padding: 20px;
+}
+
 .card-filme {
   transition: transform 0.3s ease;
 }
@@ -10,7 +18,14 @@
   display: block;
 }
 
-.logo{
-  width: 10%;
-  height: 10%;
+@media (max-width: 768px) {
+  .titulo-catalogo {
+    padding: 10px 15px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .container-filmes {
+    padding: 10px;
+  }
 }

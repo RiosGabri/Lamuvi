@@ -1,0 +1,44 @@
+:root {
+  /* Cores de Fundo */
+  --bg-principal: #111111;
+  --bg-secundario: #222222;
+  --bg-terciario: #333333;
+  --bg-header: #0a192f;
+  --bg-header-hover: #0d1942;
+  --bg-perfil: #0d1117;
+
+  /* Cores de Texto */
+  --texto-claro: #ffffff;
+  --texto-cinza: #cccccc;
+  --texto-escuro: #888888;
+  --borda-padrao: #444444;
+  
+  /* Cores de Destaque / Ações */
+  --cor-destaque: #64ffda;
+  --cor-erro: #ff4d4d;
+  --cor-ouro: gold;
+  
+  /* Fontes */
+  --fonte-padrao: sans-serif;
+}
+
+/* 2. RESET GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 3. ESTILOS BASE */
+body {
+  background-color: var(--bg-principal);
+  color: var(--texto-claro);
+  font-family: var(--fonte-padrao);
+  min-height: 100vh;
+}
+
+
+/* Remove a barra de rolagem onde foi solicitado globalmente */
+::-webkit-scrollbar {
+  display: none;
+}

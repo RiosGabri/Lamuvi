@@ -9,12 +9,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: sans-serif;
+  font-family: var(--fonte-padrao);
   font-size: 15px;
   font-weight: bold;
-  color: white;
+  color: var(--texto-claro);
   z-index: 10000;
-  transform: translateX(-50%) translateY(-100px);
   opacity: 0;
   transition: all 0.3s ease;
   min-width: 280px;
@@ -32,13 +31,13 @@
 }
 
 .notificacao-erro {
-  background-color: #ef4444;
+  background-color: var(--cor-erro);
   border-left: 4px solid #dc2626;
 }
 
 .notificacao-info {
-  background-color: #0a192f;
-  border-left: 4px solid #64ffda;
+  background-color: var(--bg-header);
+  border-left: 4px solid var(--cor-destaque);
 }
 
 .notificacao-aviso {
@@ -84,7 +83,7 @@
 
 .modal-box {
   position: relative;
-  background-color: #222;
+  background-color: var(--bg-secundario);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -100,12 +99,12 @@
 }
 
 .modal-mensagem {
-  color: white;
+  color: var(--texto-claro);
   font-size: 16px;
   margin-bottom: 25px;
   text-align: center;
   line-height: 1.5;
-  font-family: sans-serif;
+  font-family: var(--fonte-padrao);
 }
 
 .modal-botoes {
@@ -122,25 +121,25 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: sans-serif;
+  font-family: var(--fonte-padrao);
 }
 
 .btn-cancelar {
-  background-color: #444;
-  color: white;
+  background-color: var(--borda-padrao);
+  color: var(--texto-claro);
 }
 
 .btn-cancelar:hover {
-  background-color: #555;
+  filter: brightness(1.2);
 }
 
 .btn-confirmar {
-  background-color: #0a192f;
-  color: white;
+  background-color: var(--bg-header);
+  color: var(--texto-claro);
 }
 
 .btn-confirmar:hover {
-  background-color: #0d2342;
+  background-color: var(--bg-header-hover);
 }
 
 @media (max-width: 768px) {
