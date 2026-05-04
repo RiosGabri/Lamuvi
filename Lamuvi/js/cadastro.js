@@ -29,6 +29,16 @@ window.cadastrar = function() {
       if (!res.ok) {
         throw new Error(data.message || 'Erro ao cadastrar');
       }
+      
+      // Salva as credenciais no localStorage para login posterior
+      let usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
+      usuarios[data.user.nome] = {
+        nome: data.user.nome,
+        senha_hash: data.user.senha_hash,
+        criado_em: data.user.criado_em
+      };
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      
       mostrarNotificacao(data.message, 'sucesso');
       setTimeout(() => {
         window.location.href = '../index.html';

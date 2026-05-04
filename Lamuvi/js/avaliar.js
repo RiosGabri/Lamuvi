@@ -37,6 +37,13 @@ window.salvaAvaliacao = function() {
     return;
   }
 
+  // Validação do limite da nota (0 a 10)
+  let notaNum = parseFloat(nota);
+  if (isNaN(notaNum) || notaNum < 0 || notaNum > 10) {
+    mostrarNotificacao("A nota deve ser um número entre 0 e 10!", "erro");
+    return;
+  }
+
   let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
 
   // Salva a avaliação (substitui a anterior se já existir)
@@ -65,6 +72,19 @@ window.voltarPagina = function() {
 document.addEventListener("DOMContentLoaded", function() {
   const txt = document.getElementById("comentario");
   const count = document.getElementById("contador");
+  const notaInput = document.getElementById("nota");
+
+  // Validação em tempo real da nota (limite 0 a 10)
+  if (notaInput) {
+    notaInput.addEventListener("input", function() {
+      let valor = parseFloat(this.value);
+      if (valor > 10) {
+        this.value = 10;
+      } else if (valor < 0) {
+        this.value = 0;
+      }
+    });
+  }
 
   if (txt && count) {
     txt.addEventListener("input", function() {
