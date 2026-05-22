@@ -1,31 +1,122 @@
 .titulo-catalogo {
-  padding: 20px;
+    padding: 20px;
 }
 
 .container-filmes {
-  padding: 20px;
+    padding: 20px;
+}
+
+.secao-genero {
+    margin-bottom: 32px;
+}
+
+.secao-genero h2 {
+    color: var(--texto-claro);
+    margin: 0 0 10px 10px;
+}
+
+.carrossel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.fileira-filmes {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 52px;
 }
 
 .card-filme {
-  transition: transform 0.3s ease;
+    min-width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .card-filme:hover {
-  transform: scale(1.08);
+    transform: scale(1.08);
 }
 
 .card-filme img {
-  display: block;
+    display: block;
+}
+
+.seta-carrossel {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 40px;
+    height: 64px;
+    border: 1px solid var(--borda-padrao);
+    border-radius: 6px;
+    background-color: var(--bg-header);
+    color: var(--texto-claro);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.seta-carrossel:hover {
+    background-color: var(--bg-header-hover);
+    border-color: var(--cor-destaque);
+}
+
+.seta-carrossel:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.seta-carrossel:disabled:hover {
+    background-color: var(--bg-header);
+    border-color: var(--borda-padrao);
+}
+
+.seta-carrossel:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+.seta-esquerda {
+    left: 4px;
+}
+
+.seta-direita {
+    right: 4px;
 }
 
 @media (max-width: 768px) {
-  .titulo-catalogo {
-    padding: 10px 15px;
-    font-size: 24px;
-    text-align: center;
-  }
+    .titulo-catalogo {
+        padding: 10px 15px;
+        font-size: 24px;
+        text-align: center;
+    }
 
-  .container-filmes {
-    padding: 10px;
-  }
+    .container-filmes {
+        padding: 10px;
+    }
+
+    .secao-genero {
+        margin-bottom: 24px;
+    }
+
+    .fileira-filmes {
+        gap: 14px;
+        padding: 10px 44px;
+    }
+
+    .seta-carrossel {
+        width: 34px;
+        height: 54px;
+        font-size: 24px;
+    }
 }
