@@ -41,12 +41,15 @@
     min-width: 150px;
     text-align: center;
     cursor: pointer;
-    transition: none;
+    transform-origin: center top;
+    transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .card-filme:hover,
 .card-filme:focus-within {
     z-index: 20;
+    transform: scale(1.08);
 }
 
 .card-filme:focus-visible {
@@ -185,32 +188,52 @@
         0 14px 30px rgba(var(--color-shadow-blue), 0.15),
         0 4px 4px rgba(var(--color-shadow-blue), 0.05);
     transition:
-        transform 0.2s ease,
-        opacity 0.2s ease,
+        opacity 0.26s ease-in-out,
+        transform 0.2s ease-in-out,
         visibility 0.2s ease;
     pointer-events: none;
     z-index: 10;
     overflow-y: auto;
-    transform: translateY(4px);
+    transform: scale(0.92);
+    transform-origin: left top;
+    will-change: opacity, transform;
 }
 
 .sinopse-preview--left {
     left: auto;
     right: calc(100% + 12px);
+    transform-origin: right top;
 }
 
 .card-filme:hover .sinopse-preview {
     display: flex;
+    animation: sinopse-preview-in 0.22s ease-out;
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: none;
 }
 
 .card-filme:focus-within .sinopse-preview {
     display: flex;
+    animation: sinopse-preview-in 0.22s ease-out;
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: none;
+}
+
+@keyframes sinopse-preview-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: none;
+    }
 }
 
 .sinopse-preview__titulo {
@@ -288,8 +311,23 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .card-filme,
     .seta-carrossel {
         transition: none;
+    }
+
+    .card-filme:hover,
+    .card-filme:focus-within {
+        transform: none;
+    }
+
+    .sinopse-preview {
+        transition: none;
+    }
+
+    .card-filme:hover .sinopse-preview,
+    .card-filme:focus-within .sinopse-preview {
+        animation: none;
     }
 
     .seta-carrossel:hover,
