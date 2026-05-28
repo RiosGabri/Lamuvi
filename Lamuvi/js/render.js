@@ -29,6 +29,56 @@ function renderFilmes(lista) {
     const wrapper = document.createElement("div");
     wrapper.className = "carrossel-wrapper";
 
+    let cardPreviewAtiva = null;
+
+    const ajustarLadoPreview = (cardAtual) => {
+      if (!cardAtual) return;
+
+      const preview = cardAtual.querySelector(".sinopse-preview");
+      if (!preview) return;
+
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const cardRect = cardAtual.getBoundingClientRect();
+      const larguraPreview = Math.max(290, preview.offsetWidth || 0);
+      const margem = 12;
+      const espacoDireita = wrapperRect.right - cardRect.right;
+      const espacoEsquerda = cardRect.left - wrapperRect.left;
+      const abrirEsquerda =
+        espacoDireita < larguraPreview + margem &&
+        espacoEsquerda > espacoDireita;
+
+      preview.classList.toggle("sinopse-preview--left", abrirEsquerda);
+    };
+
+    const atualizarPreviewAtiva = () => {
+      if (cardPreviewAtiva) {
+        ajustarLadoPreview(cardPreviewAtiva);
+      }
+    };
+
+    const ativarPreview = (cardAtual) => {
+      if (cardPreviewAtiva && cardPreviewAtiva !== cardAtual) {
+        const previewAnterior = cardPreviewAtiva.querySelector(".sinopse-preview");
+        if (previewAnterior) {
+          previewAnterior.classList.remove("sinopse-preview--left");
+        }
+      }
+
+      cardPreviewAtiva = cardAtual;
+      ajustarLadoPreview(cardAtual);
+    };
+
+    const desativarPreview = (cardAtual) => {
+      const preview = cardAtual.querySelector(".sinopse-preview");
+      if (preview) {
+        preview.classList.remove("sinopse-preview--left");
+      }
+
+      if (cardPreviewAtiva === cardAtual) {
+        cardPreviewAtiva = null;
+      }
+    };
+
     const botaoEsquerda = document.createElement("button");
     botaoEsquerda.className = "seta-carrossel seta-esquerda";
     botaoEsquerda.type = "button";
@@ -86,13 +136,33 @@ function renderFilmes(lista) {
       card.style.textAlign = "center";
       card.style.cursor = "pointer";
       card.style.minWidth = "150px";
+      card.tabIndex = 0;
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-label", `Abrir detalhes de ${f.nome}`);
       card.onclick = () => window.abrirFilme(f.id);
+      card.addEventListener("mouseenter", () => ativarPreview(card));
+      card.addEventListener("focusin", () => ativarPreview(card));
+      card.addEventListener("mouseleave", () => desativarPreview(card));
+      card.addEventListener("focusout", (event) => {
+        if (!card.contains(event.relatedTarget)) {
+          desativarPreview(card);
+        }
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          window.abrirFilme(f.id);
+        }
+      });
 
       card.innerHTML = `
                 <div class="card-imagem-wrapper">
                   <img src="${f.imagem}" alt="${f.nome}" style="width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background-color: #333;">
                   ${badgeHtml}
-                  <div class="sinopse-preview">${f.sinopse}</div>
+                </div>
+                <div class="sinopse-preview" aria-hidden="true">
+                  <h3 class="sinopse-preview__titulo">${f.nome}</h3>
+                  <p class="sinopse-preview__texto">${f.sinopse}</p>
                 </div>
                 <p style="color: white; font-size: 14px; margin-top: 8px; width: 150px; white-space: normal;">
                     ${f.nome}
@@ -114,24 +184,29 @@ function renderFilmes(lista) {
         fileira.scrollLeft + fileira.clientWidth >= fileira.scrollWidth - 1;
     }
 
-    fileira.addEventListener("scroll", atualizarSetas);
+    const atualizarEstadoCarrossel = () => {
+      atualizarSetas();
+      atualizarPreviewAtiva();
+    };
+
+    fileira.addEventListener("scroll", atualizarEstadoCarrossel);
 
     if ("ResizeObserver" in window) {
-      const resizeObserver = new ResizeObserver(atualizarSetas);
+      const resizeObserver = new ResizeObserver(atualizarEstadoCarrossel);
       resizeObserver.observe(fileira);
       window.lamuviCarrosselCleanup.push(() => {
         resizeObserver.disconnect();
-        fileira.removeEventListener("scroll", atualizarSetas);
+        fileira.removeEventListener("scroll", atualizarEstadoCarrossel);
       });
     } else {
-      window.addEventListener("resize", atualizarSetas);
+      window.addEventListener("resize", atualizarEstadoCarrossel);
       window.lamuviCarrosselCleanup.push(() => {
-        window.removeEventListener("resize", atualizarSetas);
-        fileira.removeEventListener("scroll", atualizarSetas);
+        window.removeEventListener("resize", atualizarEstadoCarrossel);
+        fileira.removeEventListener("scroll", atualizarEstadoCarrossel);
       });
     }
 
-    requestAnimationFrame(atualizarSetas);
+    requestAnimationFrame(atualizarEstadoCarrossel);
   }
 }
 
