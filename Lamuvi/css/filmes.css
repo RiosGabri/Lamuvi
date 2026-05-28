@@ -32,8 +32,14 @@
     width: 100%;
     min-width: 0;
     overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     scroll-behavior: smooth;
     padding: 10px 12px;
+}
+
+.fileira-filmes::-webkit-scrollbar {
+    display: none;
 }
 
 .card-filme {
