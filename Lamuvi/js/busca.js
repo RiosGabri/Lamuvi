@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     inputBusca.parentNode.appendChild(historicoContainer);
 
     function obterHistorico() {
-        return JSON.parse(sessionStorage.getItem(historicoKey)) || [];
+        return JSON.parse(localStorage.getItem(historicoKey)) || [];
     }
 
     function salvarHistorico(termo) {
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const historico = obterHistorico().filter(item => item.toLowerCase() !== termo.toLowerCase());
         historico.unshift(termo);
         if (historico.length > 6) historico.length = 6;
-        sessionStorage.setItem(historicoKey, JSON.stringify(historico));
+        localStorage.setItem(historicoKey, JSON.stringify(historico));
         renderizarHistorico();
     }
 
@@ -30,17 +30,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function renderizarHistorico() {
-        const historico = obterHistorico().filter(item => item.toLowerCase().includes(inputBusca.value.toLowerCase()));
-        if (historico.length === 0) {
-            historicoContainer.innerHTML = '';
-            historicoContainer.classList.remove('visible');
+        const historicoCompleto = obterHistorico();
+        const valorInput = inputBusca.value.trim().toLowerCase();
+
+        if (historicoCompleto.length === 0) {
+            historicoContainer.innerHTML = '<div class="historico-vazio">Nenhuma pesquisa recente</div>';
+            historicoContainer.classList.add('visible');
             return;
         }
 
-        historicoContainer.innerHTML = historico
+        const historicoFiltrado = historicoCompleto.filter(item => 
+            item.toLowerCase().includes(valorInput)
+        );
+
+        if (historicoFiltrado.length === 0) {
+            historicoContainer.innerHTML = '<div class="historico-vazio">Nenhum resultado correspondente</div>';
+            historicoContainer.classList.add('visible');
+            return;
+        }
+
+        historicoContainer.innerHTML = historicoFiltrado
             .map(item => `<button type="button" class="historico-item" data-termo="${item}">🔎 ${item}</button>`)
             .join('') +
             `<div class="historico-footer"><button type="button" class="historico-limpar">Limpar histórico</button></div>`;
+        
         historicoContainer.classList.add('visible');
     }
 
@@ -63,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const botaoLimpar = event.target.closest('.historico-limpar');
         if (botaoLimpar) {
-            sessionStorage.removeItem(historicoKey);
+            localStorage.removeItem(historicoKey);
             renderizarHistorico();
             inputBusca.focus();
             return;
@@ -78,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     inputBusca.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-            e.preventDefault(); // Evita recarregar se estiver num form
+            e.preventDefault(); 
             const termo = e.target.value.trim();
             salvarHistorico(termo);
             navegarParaBusca(termo);
