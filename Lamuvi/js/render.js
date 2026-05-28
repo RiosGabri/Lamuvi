@@ -132,6 +132,7 @@ function renderFilmes(lista) {
       const badgeHtml = minhaAvaliacao ? `<span class="avaliado-badge">Avaliado · ${minhaAvaliacao.nota}/10</span>` : "";
 
       const card = document.createElement("div");
+      const previewId = `sinopse-preview-${f.id}`;
       card.className = "card-filme";
       card.style.textAlign = "center";
       card.style.cursor = "pointer";
@@ -139,6 +140,7 @@ function renderFilmes(lista) {
       card.tabIndex = 0;
       card.setAttribute("role", "button");
       card.setAttribute("aria-label", `Abrir detalhes de ${f.nome}`);
+      card.setAttribute("aria-describedby", previewId);
       card.onclick = () => window.abrirFilme(f.id);
       card.addEventListener("mouseenter", () => ativarPreview(card));
       card.addEventListener("focusin", () => ativarPreview(card));
@@ -160,7 +162,7 @@ function renderFilmes(lista) {
                   <img src="${f.imagem}" alt="${f.nome}" style="width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background-color: #333;">
                   ${badgeHtml}
                 </div>
-                <div class="sinopse-preview" aria-hidden="true">
+                <div id="${previewId}" class="sinopse-preview">
                   <h3 class="sinopse-preview__titulo">${f.nome}</h3>
                   <p class="sinopse-preview__texto">${f.sinopse}</p>
                 </div>

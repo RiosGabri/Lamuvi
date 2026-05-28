@@ -174,7 +174,7 @@
     padding: 24px;
     border-radius: 6px;
     box-sizing: border-box;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
@@ -200,12 +200,14 @@
 }
 
 .card-filme:hover .sinopse-preview {
+    display: flex;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
 .card-filme:focus-within .sinopse-preview {
+    display: flex;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
