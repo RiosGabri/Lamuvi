@@ -61,6 +61,50 @@ document.addEventListener("DOMContentLoaded", function() {
         historicoContainer.classList.remove('visible');
     }
 
+    function abrirModalConfirmacao(onConfirmar) {
+        let overlay = document.querySelector('.modal-confirmacao-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'modal-confirmacao-overlay';
+            overlay.innerHTML = `
+                <div class="modal-confirmacao-box">
+                    <h3>Limpar Histórico?</h3>
+                    <p>Tem certeza de que deseja apagar todas as suas pesquisas recentes? Esta ação não pode ser desfeita.</p>
+                    <div class="modal-botoes-wrapper">
+                        <button class="btn-modal btn-modal-cancelar" id="btn-cancelar-historico">Cancelar</button>
+                        <button class="btn-modal btn-modal-confirmar" id="btn-confirmar-historico">Sim, apagar</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        setTimeout(() => overlay.classList.add('active'), 10);
+
+        const btnCancelar = overlay.querySelector('#btn-cancelar-historico');
+        const btnConfirmar = overlay.querySelector('#btn-confirmar-historico');
+
+        const fecharModal = () => {
+            overlay.classList.remove('active');
+        };
+
+        btnCancelar.onclick = function() {
+            fecharModal();
+            inputBusca.focus();
+        };
+
+        btnConfirmar.onclick = function() {
+            fecharModal();
+            onConfirmar();
+        };
+
+        overlay.onclick = function(e) {
+            if (e.target === overlay) {
+                fecharModal();
+            }
+        };
+    }
+
     inputBusca.addEventListener('focus', renderizarHistorico);
     inputBusca.addEventListener('input', renderizarHistorico);
 
@@ -76,9 +120,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const botaoLimpar = event.target.closest('.historico-limpar');
         if (botaoLimpar) {
-            localStorage.removeItem(historicoKey);
-            renderizarHistorico();
-            inputBusca.focus();
+            fecharHistorico();
+            
+            // Abre o mini modal customizado passando a ação de exclusão
+            abrirModalConfirmacao(() => {
+                localStorage.removeItem(historicoKey);
+                renderizarHistorico();
+                inputBusca.focus();
+            });
             return;
         }
     });

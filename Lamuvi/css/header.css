@@ -173,3 +173,98 @@
   }
 }
 
+.modal-confirmacao-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75); /* Tela de fundo opaca */
+  backdrop-filter: blur(4px); /* Leve desfoque premium no fundo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; /* Fica acima de absolutamente tudo */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* Estado ativo do modal */
+.modal-confirmacao-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-confirmacao-box {
+  background: #1e293b; /* Fundo escuro elegante */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 360px; /* Caixinha compacta no centro */
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transform: scale(0.85);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-confirmacao-overlay.active .modal-confirmacao-box {
+  transform: scale(1);
+}
+
+.modal-confirmacao-box h3 {
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+.modal-confirmacao-box p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+/* Botões de Ação do Modal */
+.modal-botoes-wrapper {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-modal {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-modal:active {
+  transform: scale(0.98);
+}
+
+/* Botão Cancelar */
+.btn-modal-cancelar {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-modal-cancelar:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Botão Confirmar (Apagar) */
+.btn-modal-confirmar {
+  background: #ef4444; /* Vermelho Alerta */
+  color: #ffffff;
+}
+
+.btn-modal-confirmar:hover {
+  background: #dc2626;
+}
