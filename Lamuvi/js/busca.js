@@ -3,147 +3,171 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!inputBusca) return;
 
     const historicoKey = 'historicoBuscas';
-    const historicoContainer = document.createElement('div');
-    historicoContainer.className = 'historico-busca';
-    inputBusca.parentNode.style.position = 'relative';
-    inputBusca.parentNode.appendChild(historicoContainer);
+    let overlayBusca = null;
 
     function obterHistorico() {
         return JSON.parse(localStorage.getItem(historicoKey)) || [];
     }
 
     function salvarHistorico(termo) {
-        if (!termo) return;
-        termo = termo.trim();
-        if (termo === '') return;
+        if (!termo || termo.trim() === '') return;
+        termo = termo.trim().toLowerCase();
 
-        const historico = obterHistorico().filter(item => item.toLowerCase() !== termo.toLowerCase());
+        let historico = obterHistorico().filter(item => item !== termo);
         historico.unshift(termo);
-        if (historico.length > 6) historico.length = 6;
+        if (historico.length > 4) historico.length = 4; // Limita a 4 itens
         localStorage.setItem(historicoKey, JSON.stringify(historico));
-        renderizarHistorico();
     }
 
-    function navegarParaBusca(termo) {
-        const destino = termo.trim() !== '' ? `filmes.html?busca=${encodeURIComponent(termo.trim())}` : 'filmes.html';
-        window.location.href = destino;
-    }
+    function criarModalBusca() {
+        if (overlayBusca) return;
 
-    function renderizarHistorico() {
-        const historicoCompleto = obterHistorico();
-        const valorInput = inputBusca.value.trim().toLowerCase();
-
-        if (historicoCompleto.length === 0) {
-            historicoContainer.innerHTML = '<div class="historico-vazio">Nenhuma pesquisa recente</div>';
-            historicoContainer.classList.add('visible');
-            return;
-        }
-
-        const historicoFiltrado = historicoCompleto.filter(item => 
-            item.toLowerCase().includes(valorInput)
-        );
-
-        if (historicoFiltrado.length === 0) {
-            historicoContainer.innerHTML = '<div class="historico-vazio">Nenhum resultado correspondente</div>';
-            historicoContainer.classList.add('visible');
-            return;
-        }
-
-        historicoContainer.innerHTML = historicoFiltrado
-            .map(item => `<button type="button" class="historico-item" data-termo="${item}">🔎 ${item}</button>`)
-            .join('') +
-            `<div class="historico-footer"><button type="button" class="historico-limpar">Limpar histórico</button></div>`;
+        overlayBusca = document.createElement('div');
+        overlayBusca.className = 'busca-overlay';
         
-        historicoContainer.classList.add('visible');
-    }
-
-    function fecharHistorico() {
-        historicoContainer.classList.remove('visible');
-    }
-
-    function abrirModalConfirmacao(onConfirmar) {
-        let overlay = document.querySelector('.modal-confirmacao-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'modal-confirmacao-overlay';
-            overlay.innerHTML = `
-                <div class="modal-confirmacao-box">
-                    <h3>Limpar Histórico?</h3>
-                    <p>Tem certeza de que deseja apagar todas as suas pesquisas recentes? Esta ação não pode ser desfeita.</p>
-                    <div class="modal-botoes-wrapper">
-                        <button class="btn-modal btn-modal-cancelar" id="btn-cancelar-historico">Cancelar</button>
-                        <button class="btn-modal btn-modal-confirmar" id="btn-confirmar-historico">Sim, apagar</button>
-                    </div>
+        overlayBusca.innerHTML = `
+            <div class="busca-janela">
+                <div class="busca-header">
+                    <span>Resultados da Busca</span>
+                    <button type="button" class="busca-btn-fechar">&times;</button>
                 </div>
-            `;
-            document.body.appendChild(overlay);
-        }
+                
+                <div class="busca-corpo">
+                    <div class="busca-secao-titulo">RESULTADOS</div>
+                    <div id="busca-resultados-lista" class="busca-grid-resultados"></div>
+                    
+                    <div class="busca-secao-titulo" style="margin-top: 20px;">HISTÓRICO DE BUSCAS</div>
+                    <div id="busca-historico-lista" class="busca-lista-historico"></div>
+                </div>
 
-        setTimeout(() => overlay.classList.add('active'), 10);
+                <button type="button" class="busca-btn-limpar" id="btn-limpar-historico">
+                    🗑️ Limpar histórico
+                </button>
+            </div>
+        `;
+        document.body.appendChild(overlayBusca);
 
-        const btnCancelar = overlay.querySelector('#btn-cancelar-historico');
-        const btnConfirmar = overlay.querySelector('#btn-confirmar-historico');
-
-        const fecharModal = () => {
-            overlay.classList.remove('active');
+        overlayBusca.querySelector('.busca-btn-fechar').onclick = fecharModal;
+        overlayBusca.onclick = function(e) {
+            if (e.target === overlayBusca) fecharModal();
         };
 
-        btnCancelar.onclick = function() {
-            fecharModal();
-            inputBusca.focus();
-        };
-
-        btnConfirmar.onclick = function() {
-            fecharModal();
-            onConfirmar();
-        };
-
-        overlay.onclick = function(e) {
-            if (e.target === overlay) {
-                fecharModal();
+        overlayBusca.querySelector('#btn-limpar-historico').onclick = function() {
+            fecharModal(); 
+            
+            if (typeof abrirModalConfirmacao === 'function') {
+                abrirModalConfirmacao(() => {
+                    localStorage.removeItem(historicoKey);
+                    inputBusca.value = '';
+                });
+            } else if (typeof confirmarAcao === 'function') {
+                confirmarAcao("Tem certeza que deseja apagar o histórico de pesquisas?", function(confirmado) {
+                    if (confirmado) {
+                        localStorage.removeItem(historicoKey);
+                        inputBusca.value = '';
+                    }
+                });
+            } else {
+                localStorage.removeItem(historicoKey);
+                inputBusca.value = '';
             }
         };
     }
 
-    inputBusca.addEventListener('focus', renderizarHistorico);
-    inputBusca.addEventListener('input', renderizarHistorico);
+    function abrirModal() {
+        criarModalBusca();
+        document.body.style.overflow = 'hidden';
+        overlayBusca.classList.add('active');
+        renderizarConteudo();
+    }
 
-    historicoContainer.addEventListener('click', function(event) {
-        const botaoBusca = event.target.closest('.historico-item');
-        if (botaoBusca) {
-            const termo = botaoBusca.dataset.termo || '';
-            inputBusca.value = termo;
-            salvarHistorico(termo);
-            navegarParaBusca(termo);
-            return;
+    function fecharModal() {
+        if (overlayBusca) {
+            overlayBusca.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function renderizarConteudo() {
+        if (!overlayBusca) return;
+
+        const termo = inputBusca.value.trim().toLowerCase();
+        const divResultados = overlayBusca.querySelector('#busca-resultados-lista');
+        const divHistorico = overlayBusca.querySelector('#busca-historico-lista');
+
+        let CollegeFiltrados = [];
+        if (typeof Lista_filmes !== 'undefined' && termo !== '') {
+            CollegeFiltrados = Lista_filmes.filter(filme => 
+                filme.nome.toLowerCase().includes(termo) || 
+                filme.genero.toLowerCase().includes(termo)
+            );
         }
 
-        const botaoLimpar = event.target.closest('.historico-limpar');
-        if (botaoLimpar) {
-            fecharHistorico();
-            
-            // Abre o mini modal customizado passando a ação de exclusão
-            abrirModalConfirmacao(() => {
-                localStorage.removeItem(historicoKey);
-                renderizarHistorico();
-                inputBusca.focus();
+        if (termo === '') {
+            divResultados.innerHTML = `<div class="busca-vazio">Digite algo para pesquisar...</div>`;
+        } else if (CollegeFiltrados.length === 0) {
+            divResultados.innerHTML = `<div class="busca-vazio">❌ Filme não encontrado</div>`;
+        } else {
+            divResultados.innerHTML = CollegeFiltrados.map(filme => `
+                <div class="busca-card-filme" data-id="${filme.id}">
+                    <img src="${filme.imagem}" alt="${filme.nome}" class="busca-capa-filme">
+                    <div class="busca-meta-filme">
+                        <h4>${filme.nome}</h4>
+                        <span>${filme.ano_lancamento || filme.genero || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            divResultados.querySelectorAll('.busca-card-filme').forEach(item => {
+                item.onclick = function() {
+                    salvarHistorico(inputBusca.value);
+                    localStorage.setItem("Oescolhidoehvc", this.dataset.id);
+                    fecharModal();
+                    window.location.href = "pagina_filme.html";
+                };
             });
-            return;
+        }
+
+        const historico = obterHistorico();
+        if (historico.length === 0) {
+            divHistorico.innerHTML = `<div class="busca-vazio">Nenhuma busca recente</div>`;
+        } else {
+            divHistorico.innerHTML = historico.map(item => `
+                <div class="busca-item-historico" data-termo="${item}">
+                    <span class="busca-icone-relogio">🕒</span> ${item}
+                </div>
+            `).join('');
+
+            divHistorico.querySelectorAll('.busca-item-historico').forEach(item => {
+                item.onclick = function() {
+                    inputBusca.value = this.dataset.termo;
+                    renderizarConteudo();
+                };
+            });
+        }
+    }
+
+    inputBusca.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            abrirModal();
+        } else {
+            renderizarConteudo();
         }
     });
 
-    document.addEventListener('click', function(event) {
-        if (!inputBusca.contains(event.target) && !historicoContainer.contains(event.target)) {
-            fecharHistorico();
+    inputBusca.addEventListener('focus', function() {
+        if (this.value.trim() !== '') {
+            abrirModal();
         }
     });
 
     inputBusca.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-            e.preventDefault(); 
-            const termo = e.target.value.trim();
-            salvarHistorico(termo);
-            navegarParaBusca(termo);
+            e.preventDefault();
+            if (this.value.trim() !== '') {
+                salvarHistorico(this.value);
+                abrirModal();
+            }
         }
     });
 });
