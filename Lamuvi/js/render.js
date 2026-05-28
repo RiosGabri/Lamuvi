@@ -2,6 +2,9 @@ function renderFilmes(lista) {
   const container = document.getElementById("lista-filmes");
   if (!container) return;
 
+  const usuarioLogado = localStorage.getItem("Loginok");
+  const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+
   if (window.lamuviCarrosselCleanup) {
     window.lamuviCarrosselCleanup.forEach((cleanup) => cleanup());
   }
@@ -65,6 +68,9 @@ function renderFilmes(lista) {
     container.appendChild(secao);
 
     generos[g].forEach((f) => {
+      const minhaAvaliacao = avaliacoes[f.id] && avaliacoes[f.id].autor === usuarioLogado ? avaliacoes[f.id] : null;
+      const badgeHtml = minhaAvaliacao ? `<span class="avaliado-badge">Avaliado · ${minhaAvaliacao.nota}/10</span>` : "";
+
       const card = document.createElement("div");
       card.className = "card-filme";
       card.style.textAlign = "center";
@@ -73,9 +79,12 @@ function renderFilmes(lista) {
       card.onclick = () => window.abrirFilme(f.id);
 
       card.innerHTML = `
-                <img src="${f.imagem}" alt="${f.nome}"
-                     style="width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background-color: #333;">
-                <p style="color: white; font-size: 14px; margin-top: 5px; width: 150px; white-space: normal;">
+                <div class="card-imagem-wrapper">
+                  <img src="${f.imagem}" alt="${f.nome}" style="width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background-color: #333;">
+                  ${badgeHtml}
+                  <div class="sinopse-preview">${f.sinopse}</div>
+                </div>
+                <p style="color: white; font-size: 14px; margin-top: 8px; width: 150px; white-space: normal;">
                     ${f.nome}
                 </p>
             `;

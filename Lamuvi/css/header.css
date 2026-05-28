@@ -25,11 +25,67 @@
 }
 
 .main-header .busca-container {
+  position: relative;
   display: flex;
   align-items: center;
   background: var(--texto-claro);
   border-radius: 20px;
   padding: 5px 15px;
+}
+
+.main-header .historico-busca {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(10, 18, 36, 0.98);
+  border: 1px solid var(--borda-padrao);
+  border-radius: 12px;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+  padding: 6px 0;
+  display: none;
+  z-index: 20;
+}
+
+.main-header .historico-busca.visible {
+  display: block;
+}
+
+.main-header .historico-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--bg-terciario);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.main-header .historico-item:hover,
+.main-header .historico-item:focus {
+  background: rgba(100, 255, 218, 0.08);
+}
+
+.main-header .historico-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 10px 10px;
+}
+
+.main-header .historico-limpar {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--texto-claro);
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.main-header .historico-limpar:hover,
+.main-header .historico-limpar:focus {
+  background: rgba(100, 255, 218, 0.12);
 }
 
 .main-header .busca-input {

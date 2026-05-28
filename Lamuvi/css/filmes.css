@@ -94,6 +94,54 @@
     right: 4px;
 }
 
+.card-filme {
+    position: relative;
+}
+
+.card-imagem-wrapper {
+    position: relative;
+}
+
+.sinopse-preview {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    max-width: 280px;
+    background: rgba(0, 0, 0, 0.92);
+    color: var(--texto-claro);
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.card-filme:hover .sinopse-preview {
+    opacity: 1;
+    visibility: visible;
+}
+
+.avaliado-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(232, 109, 30, 0.95);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
 @media (max-width: 768px) {
     .titulo-catalogo {
         padding: 10px 15px;
