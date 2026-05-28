@@ -32,7 +32,12 @@ function renderFilmes(lista) {
     const botaoEsquerda = document.createElement("button");
     botaoEsquerda.className = "seta-carrossel seta-esquerda";
     botaoEsquerda.type = "button";
-    botaoEsquerda.innerText = "<";
+    botaoEsquerda.hidden = true;
+    botaoEsquerda.innerHTML = `
+      <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <polyline points="8 4 16 12 8 20"></polyline>
+      </svg>
+    `;
     botaoEsquerda.setAttribute(
       "aria-label",
       `Rolar filmes de ${g} para a esquerda`,
@@ -41,7 +46,12 @@ function renderFilmes(lista) {
     const botaoDireita = document.createElement("button");
     botaoDireita.className = "seta-carrossel seta-direita";
     botaoDireita.type = "button";
-    botaoDireita.innerText = ">";
+    botaoDireita.hidden = true;
+    botaoDireita.innerHTML = `
+      <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <polyline points="8 4 16 12 8 20"></polyline>
+      </svg>
+    `;
     botaoDireita.setAttribute(
       "aria-label",
       `Rolar filmes de ${g} para a direita`,
@@ -92,7 +102,8 @@ function renderFilmes(lista) {
     });
 
     function atualizarSetas() {
-      const temOverflow = fileira.scrollWidth > fileira.clientWidth + 1;
+      const temOverflow = fileira.scrollWidth > wrapper.clientWidth + 1;
+      wrapper.classList.toggle("tem-overflow", temOverflow);
       botaoEsquerda.hidden = !temOverflow;
       botaoDireita.hidden = !temOverflow;
 

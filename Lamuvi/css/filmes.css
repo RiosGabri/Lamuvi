@@ -16,9 +16,14 @@
 }
 
 .carrossel-wrapper {
+    --seta-gutter: 56px;
     position: relative;
     display: flex;
     align-items: center;
+}
+
+.carrossel-wrapper.tem-overflow {
+    padding: 0 var(--seta-gutter);
 }
 
 .fileira-filmes {
@@ -28,7 +33,7 @@
     min-width: 0;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 10px 52px;
+    padding: 10px 0;
 }
 
 .card-filme {
@@ -47,43 +52,93 @@
 }
 
 .seta-carrossel {
+    --glyph-alpha: 0.92;
+    --glyph-dimension: 22px;
+    --glyph-scale: 1;
+    --glyph-stroke-color-rgb: 255, 255, 255;
+    --glyph-stroke-color-alpha: 1;
     position: absolute;
     top: 50%;
     z-index: 2;
-    width: 40px;
+    width: 48px;
     height: 64px;
-    border: 1px solid var(--borda-padrao);
-    border-radius: 6px;
-    background-color: var(--bg-header);
-    color: var(--texto-claro);
-    font-size: 28px;
-    font-weight: bold;
+    border: none;
+    background: transparent;
+    color: rgba(var(--glyph-stroke-color-rgb), var(--glyph-stroke-color-alpha));
     cursor: pointer;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
     transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        opacity 0.2s ease;
+        transform 0.22s ease,
+        opacity 0.22s ease,
+        filter 0.22s ease;
+}
+
+.seta-carrossel[hidden] {
+    display: none;
 }
 
 .seta-carrossel:hover {
-    background-color: var(--bg-header-hover);
-    border-color: var(--cor-destaque);
+    --glyph-alpha: 1;
+    --glyph-scale: 1.28;
+    background: transparent;
+    filter: brightness(1.15) drop-shadow(0 0 12px rgba(255, 255, 255, 0.42));
 }
 
 .seta-carrossel:disabled {
-    opacity: 0.35;
+    --glyph-alpha: 0.28;
+    opacity: 0.55;
     cursor: default;
 }
 
 .seta-carrossel:disabled:hover {
-    background-color: var(--bg-header);
-    border-color: var(--borda-padrao);
+    --glyph-alpha: 0.28;
+    --glyph-scale: 1;
+    background: transparent;
+    transform: translateY(-50%);
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.16));
+}
+
+.seta-carrossel .glyph {
+    display: block;
+    place-self: center;
+    margin: auto;
+    width: calc(var(--glyph-dimension) * 2);
+    height: auto;
+    opacity: var(--glyph-alpha, 0.92);
+    scale: calc(var(--glyph-scale, 1) / 2);
+    color: rgba(var(--glyph-stroke-color-rgb), var(--glyph-stroke-color-alpha, 1));
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    overflow: visible;
+    will-change: scale;
+    transition: inherit;
+    transition-property: scale, opacity;
+}
+
+.seta-carrossel .glyph * {
+    vector-effect: non-scaling-stroke;
+}
+
+.seta-esquerda .glyph {
+    transform: scaleX(-1);
 }
 
 .seta-carrossel:focus-visible {
-    outline: 3px solid var(--cor-destaque);
-    outline-offset: 3px;
+    outline: 2px solid rgba(255, 255, 255, 0.95);
+    outline-offset: 4px;
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.12),
+        0 0 18px rgba(255, 255, 255, 0.35),
+        0 0 32px rgba(255, 255, 255, 0.18),
+        inset 0 0 10px rgba(255, 255, 255, 0.06);
 }
 
 .seta-esquerda {
@@ -108,20 +163,22 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.88); 
+    background: rgba(0, 0, 0, 0.88);
     color: var(--texto-claro);
     font-size: 12px;
     line-height: 1.4;
     padding: 14px;
-    border-radius: 8px; 
-    box-sizing: border-box; 
+    border-radius: 8px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
     pointer-events: none;
     z-index: 15;
     overflow-y: auto;
@@ -161,14 +218,37 @@
         margin-bottom: 24px;
     }
 
+    .carrossel-wrapper {
+        --seta-gutter: 52px;
+    }
+
     .fileira-filmes {
         gap: 14px;
-        padding: 10px 44px;
     }
 
     .seta-carrossel {
-        width: 34px;
-        height: 54px;
-        font-size: 24px;
+        --glyph-dimension: 20px;
+        width: 44px;
+        height: 56px;
+    }
+
+    .seta-esquerda {
+        left: 4px;
+    }
+
+    .seta-direita {
+        right: 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .seta-carrossel {
+        transition: none;
+    }
+
+    .seta-carrossel:hover,
+    .seta-carrossel:focus-visible {
+        --glyph-scale: 1;
+        transform: translateY(-50%);
     }
 }
