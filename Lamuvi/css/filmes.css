@@ -244,10 +244,12 @@
 
 .sinopse-preview__titulo {
     margin: 0;
+    width: 100%;
     color: var(--texto-claro);
     font-size: 15px;
     font-weight: 700;
     line-height: 1.3;
+    text-align: center;
 }
 
 .sinopse-preview__texto {
