@@ -1,131 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Meu Perfil - Lamuvi</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Perfil - Lamuvi</title>
-  
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/perfil.css">
-  <link rel="stylesheet" href="css/notificacao.css">
-</head>
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/header.css" />
+        <link rel="stylesheet" href="css/perfil.css" />
+        <link rel="stylesheet" href="css/notificacao.css" />
+    </head>
 
-<body class="pagina-perfil">
-  <header class="main-header">
-    <a href="filmes.html" class="logo">
-      <img src="../imagens/logo.png" alt="Logo Lamuvi">
-    </a>
-    <div class="nav-direita">
-      <a href="filmes.html" class="nav-link">Catálogo</a>
-      <a href="perfil.html" class="nav-link">Perfil</a>
-      <button onclick="sair()" class="btn-sair">Sair</button>
-    </div>
-  </header>
+    <body class="pagina-perfil">
+        <header class="main-header">
+            <a href="filmes.html" class="logo">
+                <img src="../imagens/logo.png" alt="Logo Lamuvi" />
+            </a>
+            <div class="nav-direita">
+                <a href="filmes.html" class="nav-link">Catálogo</a>
+                <a href="perfil.html" class="nav-link">Perfil</a>
+                <button onclick="sair()" class="btn-sair">Sair</button>
+            </div>
+        </header>
 
-  <main class="container-perfil">
-    <section class="perfil-hero" aria-labelledby="usuario-nome">
-      <div class="perfil-hero-banner" aria-hidden="true"></div>
-      <div class="banner-acoes btn-estado-edicao">
-        <button type="button" class="btn-media btn-media-banner" id="btn-editar-banner">Alterar banner</button>
-        <input type="file" id="banner-input" class="input-midia-hidden" accept="image/png,image/jpeg,image/webp" aria-label="Selecionar novo banner para o perfil">
-      </div>
-      <div class="perfil-hero-overlay">
-        <div class="avatar-usuario">
-          <img src="../imagens/usuario.png" alt="Avatar do usuário" id="avatar-img">
-          <button type="button" class="btn-media btn-media-avatar btn-estado-edicao" id="btn-editar-avatar">Alterar foto</button>
-          <input type="file" id="avatar-input" class="input-midia-hidden" accept="image/png,image/jpeg,image/webp" aria-label="Selecionar novo avatar para o perfil">
-        </div>
+        <main class="container-perfil">
+            <section class="perfil-hero" aria-labelledby="usuario-nome">
+                <div class="perfil-hero-banner" aria-hidden="true"></div>
+                <div class="banner-acoes btn-estado-edicao">
+                    <button
+                        type="button"
+                        class="btn-media btn-media-banner"
+                        id="btn-editar-banner"
+                    >
+                        Alterar banner
+                    </button>
+                    <input
+                        type="file"
+                        id="banner-input"
+                        class="input-midia-hidden"
+                        accept="image/png,image/jpeg,image/webp"
+                        aria-label="Selecionar novo banner para o perfil"
+                    />
+                </div>
+                <div class="perfil-hero-overlay">
+                    <div class="avatar-usuario">
+                        <img
+                            src="../imagens/usuario.png"
+                            alt="Avatar do usuário"
+                            id="avatar-img"
+                        />
+                        <button
+                            type="button"
+                            class="btn-media btn-media-avatar btn-estado-edicao"
+                            id="btn-editar-avatar"
+                        >
+                            Alterar foto
+                        </button>
+                        <input
+                            type="file"
+                            id="avatar-input"
+                            class="input-midia-hidden"
+                            accept="image/png,image/jpeg,image/webp"
+                            aria-label="Selecionar novo avatar para o perfil"
+                        />
+                    </div>
 
-        <div class="dados-usuario">
-          <p class="perfil-kicker">Perfil do usuário</p>
-          <h1>Perfil de <span id="usuario-nome">Usuário</span></h1>
-          <p class="perfil-resumo" id="perfil-resumo">
-            Você avaliou <strong id="total-avaliacoes-hero">0</strong> filmes com média <strong id="media-notas-hero">0.0</strong>.
-          </p>
-        </div>
-      </div>
+                    <div class="dados-usuario">
+                        <h1>
+                            Perfil de <span id="usuario-nome">Usuário</span>
+                        </h1>
+                        <p class="perfil-resumo" id="perfil-resumo">
+                            Você avaliou
+                            <strong id="total-avaliacoes-hero">0</strong> filmes
+                            com média
+                            <strong id="media-notas-hero">0.0</strong>.
+                        </p>
+                    </div>
+                </div>
 
-      <div class="hero-metrics">
-        <div class="hero-metric-card">
-          <span class="hero-metric-label">Avaliações</span>
-          <strong class="hero-metric-value" id="total-avaliacoes">0</strong>
-        </div>
-        <div class="hero-metric-card">
-          <span class="hero-metric-label">Média</span>
-          <strong class="hero-metric-value" id="media-notas">0.0</strong>
-        </div>
-        <a href="perfil.html?editar=1" class="btn-media btn-media-reset btn-estado-visual" id="editar-perfil-link" aria-label="Editar perfil">Editar perfil</a>
-        <button type="button" class="btn-media btn-media-reset btn-estado-edicao" id="concluir-edicao" aria-label="Concluir edição do perfil">Concluir edição</button>
-      </div>
+                <div class="hero-metrics">
+                    <div class="hero-metric-card">
+                        <span class="hero-metric-label">Avaliações</span>
+                        <strong class="hero-metric-value" id="total-avaliacoes"
+                            >0</strong
+                        >
+                    </div>
+                    <div class="hero-metric-card">
+                        <span class="hero-metric-label">Média</span>
+                        <strong class="hero-metric-value" id="media-notas"
+                            >0.0</strong
+                        >
+                    </div>
+                    <a
+                        href="perfil.html?editar=1"
+                        class="btn-media btn-media-reset btn-estado-visual"
+                        id="editar-perfil-link"
+                        aria-label="Editar perfil"
+                        >Editar perfil</a
+                    >
+                    <button
+                        type="button"
+                        class="btn-media btn-media-reset btn-estado-edicao"
+                        id="concluir-edicao"
+                        aria-label="Concluir edição do perfil"
+                    >
+                        Concluir edição
+                    </button>
+                </div>
 
-      <div class="acoes-edicao btn-estado-edicao" aria-label="Controles de edição do perfil">
-        <button type="button" class="btn-media btn-media-secundario" id="restaurar-midia" aria-label="Restaurar avatar e banner padrão">Restaurar padrão</button>
-      </div>
-    </section>
+                <div
+                    class="acoes-edicao btn-estado-edicao"
+                    aria-label="Controles de edição do perfil"
+                >
+                    <button
+                        type="button"
+                        class="btn-media btn-media-secundario"
+                        id="restaurar-midia"
+                        aria-label="Restaurar avatar e banner padrão"
+                    >
+                        Restaurar padrão
+                    </button>
+                </div>
+            </section>
 
-    <nav class="perfil-tabs" aria-label="Navegação do perfil">
-      <a href="#visao-geral" class="perfil-tab-link perfil-tab-link-ativo">Visão geral</a>
-      <a href="#avaliacoes" class="perfil-tab-link">Avaliações</a>
-    </nav>
+            <nav class="perfil-tabs" aria-label="Navegação do perfil">
+                <a
+                    href="#visao-geral"
+                    class="perfil-tab-link perfil-tab-link-ativo"
+                    >Visão geral</a
+                >
+                <a href="#avaliacoes" class="perfil-tab-link">Avaliações</a>
+            </nav>
 
-    <div class="perfil-grid">
-      <aside id="visao-geral" class="painel perfil-lateral">
-        <div class="painel-cabecalho">
-          <h2>Visão geral</h2>
-          <p>Leitura rápida do seu histórico no Lamuvi.</p>
-        </div>
+            <div class="perfil-grid">
+                <aside id="visao-geral" class="painel perfil-lateral">
+                    <div class="painel-cabecalho">
+                        <h2>Visão geral</h2>
+                        <p>Leitura rápida do seu histórico no Lamuvi.</p>
+                    </div>
 
-        <div class="estatisticas">
-          <div class="stat-item">
-            <span class="stat-numero" id="total-avaliacoes-card">0</span>
-            <span class="stat-label">Avaliações</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-numero" id="media-notas-card">0.0</span>
-            <span class="stat-label">Média</span>
-          </div>
-        </div>
+                    <div class="estatisticas">
+                        <div class="stat-item">
+                            <span class="stat-numero" id="total-avaliacoes-card"
+                                >0</span
+                            >
+                            <span class="stat-label">Avaliações</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-numero" id="media-notas-card"
+                                >0.0</span
+                            >
+                            <span class="stat-label">Média</span>
+                        </div>
+                    </div>
+                </aside>
 
-        <p class="painel-nota">
-          Seu perfil reúne os filmes que você já pontuou. A lista abaixo pode ser ordenada por data ou nota.
-        </p>
-      </aside>
+                <section id="avaliacoes" class="painel secao-avaliacoes">
+                    <div class="header-avaliacoes">
+                        <div>
+                            <h2>Minhas avaliações</h2>
+                            <p>Organize e revise seu histórico de filmes.</p>
+                        </div>
 
-      <section id="avaliacoes" class="painel secao-avaliacoes">
-        <div class="header-avaliacoes">
-          <div>
-            <h2>Minhas avaliações</h2>
-            <p>Organize e revise seu histórico de filmes.</p>
-          </div>
+                        <div class="filtro-wrap">
+                            <label for="filtro-avaliacoes" class="filtro-label"
+                                >Ordenar por</label
+                            >
+                            <select
+                                id="filtro-avaliacoes"
+                                class="filtro-select"
+                                aria-label="Ordenar avaliações do perfil"
+                            >
+                                <option value="todas">Todas</option>
+                                <option value="recentes">Mais recentes</option>
+                                <option value="antigas">Mais antigas</option>
+                                <option value="maior-nota">Maior nota</option>
+                                <option value="menor-nota">Menor nota</option>
+                            </select>
+                        </div>
+                    </div>
 
-          <div class="filtro-wrap">
-            <label for="filtro-avaliacoes" class="filtro-label">Ordenar por</label>
-            <select id="filtro-avaliacoes" class="filtro-select" aria-label="Ordenar avaliações do perfil">
-              <option value="todas">Todas</option>
-              <option value="recentes">Mais recentes</option>
-              <option value="antigas">Mais antigas</option>
-              <option value="maior-nota">Maior nota</option>
-              <option value="menor-nota">Menor nota</option>
-            </select>
-          </div>
-        </div>
+                    <div
+                        id="minhas-avaliacoes"
+                        class="lista-avaliacoes"
+                        aria-live="polite"
+                    ></div>
 
-        <div id="minhas-avaliacoes" class="lista-avaliacoes" aria-live="polite"></div>
+                    <div
+                        id="sem-avaliacoes"
+                        class="mensagem-vazia"
+                        style="display: none"
+                    >
+                        <p>Você ainda não fez nenhuma avaliação.</p>
+                        <a href="filmes.html" class="btn-catalogo"
+                            >Explorar catálogo</a
+                        >
+                    </div>
+                </section>
+            </div>
+        </main>
 
-        <div id="sem-avaliacoes" class="mensagem-vazia" style="display: none;">
-          <p>Você ainda não fez nenhuma avaliação.</p>
-          <a href="filmes.html" class="btn-catalogo">Explorar catálogo</a>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <script src="js/notificacao.js"></script>
-  <script src="js/lista.js"></script>
-  <script src="js/perfil.js"></script>
-  <script src="js/sair.js"></script>
-</body>
-
+        <script src="js/notificacao.js"></script>
+        <script src="js/lista.js"></script>
+        <script src="js/perfil.js"></script>
+        <script src="js/sair.js"></script>
+    </body>
 </html>
