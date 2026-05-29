@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  align-items: flex-start; 
   padding: 40px;
   gap: 40px;
   max-width: 1200px;
@@ -11,6 +12,7 @@
   border-radius: 10px;
   max-width: 100%;
   height: auto;
+  object-fit: cover; 
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
