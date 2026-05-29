@@ -62,3 +62,157 @@
     text-align: center;
   }
 }
+
+.avaliacao-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.card-minha-avaliacao {
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.avaliacao-titulo {
+  color: gold;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.avaliacao-data {
+  color: #888;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.avaliacao-acoes {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-editar, .btn-deletar {
+  cursor: pointer;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.btn-editar {
+  background: #444;
+  color: white;
+}
+
+.btn-editar:hover {
+  background: #555;
+}
+
+.btn-deletar {
+  background: #e50914; 
+  color: white;
+}
+
+.btn-deletar:hover {
+  background: #b80710;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.ativo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.modal-overlay.ativo .modal-container {
+  transform: scale(1);
+}
+
+.modal-titulo {
+  color: #fff;
+  margin-top: 0;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.modal-texto {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.modal-botoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-secundario-modal,
+.btn-perigo-modal {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.btn-secundario-modal {
+  background-color: #444;
+  color: white;
+}
+
+.btn-secundario-modal:hover {
+  background-color: #555;
+}
+
+.btn-perigo-modal {
+  background-color: #e50914;
+  color: white;
+}
+
+.btn-perigo-modal:hover {
+  background-color: #b80710;
+}
+
+.btn-avaliar:focus-visible,
+.btn-editar:focus-visible,
+.btn-deletar:focus-visible,
+.btn-secundario-modal:focus-visible,
+.btn-perigo-modal:focus-visible {
+  outline: 3px solid var(--cor-destaque, #e86d1e);
+  outline-offset: 2px;
+}
