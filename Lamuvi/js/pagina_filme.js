@@ -43,13 +43,16 @@ function exibirMinhaAvaliacao(filmeId) {
   }
 }
 
+
 let idDelecaoPendente = null; 
+
 function inicializarModalConfirmacao() {
   const modal = document.getElementById("modal-confirmacao");
   const btnCancelar = document.getElementById("btn-cancelar-modal");
   const btnApagar = document.getElementById("btn-apagar-modal");
 
   if (!modal || !btnCancelar || !btnApagar) return;
+
   btnCancelar.onclick = fecharModalConfirmacao;
 
   modal.onclick = (e) => {
@@ -69,12 +72,11 @@ window.solicitarDelecaoAvaliacao = function(id) {
   idDelecaoPendente = id;
   const modal = document.getElementById("modal-confirmacao");
   if (modal) {
-    modal.style.display = "flex"; 
+    modal.style.display = "flex";
     requestAnimationFrame(() => {
       modal.classList.add("ativo"); 
     });
-    const btnCancelar = document.getElementById("btn-cancelar-modal");
-    if (btnCancelar) btnCancelar.focus(); 
+    document.getElementById("btn-cancelar-modal").focus();
   }
 };
 
@@ -84,7 +86,7 @@ function fecharModalConfirmacao() {
     modal.classList.remove("ativo");
     setTimeout(() => {
       modal.style.display = "none";
-    }, 300); 
+    }, 300);
   }
   idDelecaoPendente = null;
 }
@@ -107,14 +109,14 @@ function executarDelecaoAvaliacao() {
   }, 1500);
 }
 
-window.deletarMinhaAvaliacao = window.solicitarDelecaoAvaliacao;
-
 window.irParaAvaliar = function() {
   window.location.href = "avaliar.html";
 };
+
 window.voltar = function() {
   window.history.back();
 };
+
 window.irParaPerfil = function() {
   window.location.href = "perfil.html";
 };
