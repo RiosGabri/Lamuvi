@@ -26,6 +26,7 @@ function renderFilmes(lista) {
     const titulo = document.createElement("h2");
     titulo.innerText = g;
 
+    // --- Container dos indicadores de paginação (Classe unificada: carrossel-indicadores) ---
     const indicadores = document.createElement("div");
     indicadores.className = "carrossel-indicadores";
 
@@ -113,9 +114,8 @@ function renderFilmes(lista) {
     const fileira = document.createElement("div");
     fileira.className = "fileira-filmes";
     
-    fileira.tabIndex = 0;
     fileira.setAttribute("role", "region");
-    fileira.setAttribute("aria-label", `Carrossel de ${g}. Use as setas do teclado ou A/D para navegar pelas páginas.`);
+    fileira.setAttribute("aria-label", `Carrossel de ${g}. Use as setas do teclado ou A/D para rolar.`);
 
     wrapper.appendChild(botaoEsquerda);
     wrapper.appendChild(fileira);
@@ -129,7 +129,8 @@ function renderFilmes(lista) {
       fileira.scrollBy({ left: 400, behavior: "smooth" });
     });
 
-    fileira.addEventListener("keydown", (e) => {
+    // Escuta global de teclado na seção quando o mouse está sobre ela ou focada
+    const capturarTeclado = (e) => {
       const key = e.key.toLowerCase();
       if (e.key === "ArrowRight" || key === "d") {
         e.preventDefault();
@@ -138,6 +139,19 @@ function renderFilmes(lista) {
         e.preventDefault();
         fileira.scrollBy({ left: -400, behavior: "smooth" });
       }
+    };
+
+    secao.addEventListener("mouseenter", () => {
+      window.addEventListener("keydown", capturarTeclado);
+    });
+    secao.addEventListener("mouseleave", () => {
+      window.removeEventListener("keydown", capturarTeclado);
+    });
+    secao.addEventListener("focusin", () => {
+      window.addEventListener("keydown", capturarTeclado);
+    });
+    secao.addEventListener("focusout", () => {
+      window.removeEventListener("keydown", capturarTeclado);
     });
 
     secao.appendChild(titulo);
@@ -246,12 +260,14 @@ function renderFilmes(lista) {
       window.lamuviCarrosselCleanup.push(() => {
         resizeObserver.disconnect();
         fileira.removeEventListener("scroll", atualizarEstadoCarrossel);
+        window.removeEventListener("keydown", capturarTeclado);
       });
     } else {
       window.addEventListener("resize", atualizarEstadoCarrossel);
       window.lamuviCarrosselCleanup.push(() => {
         window.removeEventListener("resize", atualizarEstadoCarrossel);
         fileira.removeEventListener("scroll", atualizarEstadoCarrossel);
+        window.removeEventListener("keydown", capturarTeclado);
       });
     }
 
@@ -259,7 +275,6 @@ function renderFilmes(lista) {
   }
 }
 
-// Garante que a função de abrir o filme seja global
 window.abrirFilme = function (id) {
   localStorage.setItem("Oescolhidoehvc", id);
   window.location.href = "pagina_filme.html";
