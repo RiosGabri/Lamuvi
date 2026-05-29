@@ -216,3 +216,77 @@
   outline: 3px solid var(--cor-destaque, #e86d1e);
   outline-offset: 2px;
 }
+
+.formulario-avaliacao-inline {
+  background: #222;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-left: 4px solid var(--cor-destaque, #e86d1e);
+  margin-top: 20px;
+}
+
+.label-form {
+  display: block;
+  color: #ccc;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.seletor-nota-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.btn-nota-seletor {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-nota-seletor:hover {
+  border-color: var(--cor-destaque, #e86d1e);
+  background: rgba(232, 109, 30, 0.1);
+}
+
+.btn-nota-seletor.ativo {
+  background: var(--cor-destaque, #e86d1e);
+  border-color: var(--cor-destaque, #e86d1e);
+  color: #000;
+  box-shadow: 0 0 10px var(--cor-destaque, #e86d1e);
+}
+
+.btn-nota-seletor:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.textarea-form {
+  width: 100%;
+  padding: 12px;
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.textarea-form:focus {
+  outline: none;
+  border-color: var(--cor-destaque, #e86d1e);
+}
