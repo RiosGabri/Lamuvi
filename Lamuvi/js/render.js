@@ -26,6 +26,9 @@ function renderFilmes(lista) {
     const titulo = document.createElement("h2");
     titulo.innerText = g;
 
+    const indicadores = document.createElement("div");
+    indicadores.className = "carrossel-indicadores";
+
     const wrapper = document.createElement("div");
     wrapper.className = "carrossel-wrapper";
 
@@ -123,6 +126,7 @@ function renderFilmes(lista) {
     });
 
     secao.appendChild(titulo);
+    secao.appendChild(indicadores);
     secao.appendChild(wrapper);
 
     container.appendChild(secao);
@@ -186,9 +190,32 @@ function renderFilmes(lista) {
         fileira.scrollLeft + fileira.clientWidth >= fileira.scrollWidth - 1;
     }
 
+    const atualizarIndicadores = () => {
+      if (fileira.scrollWidth <= wrapper.clientWidth + 1) {
+        indicadores.innerHTML = "";
+        return;
+      }
+      
+      const numPaginas = Math.ceil(fileira.scrollWidth / fileira.clientWidth);
+      const paginaAtual = Math.round(fileira.scrollLeft / fileira.clientWidth);
+
+      indicadores.innerHTML = "";
+      
+      for (let i = 0; i < numPaginas; i++) {
+        const dot = document.createElement("div");
+        dot.className = `indicador ${i === paginaAtual ? "ativo" : ""}`;
+        
+        dot.onclick = () => {
+          fileira.scrollTo({ left: i * fileira.clientWidth, behavior: "smooth" });
+        };
+        indicadores.appendChild(dot);
+      }
+    };
+
     const atualizarEstadoCarrossel = () => {
       atualizarSetas();
       atualizarPreviewAtiva();
+      atualizarIndicadores();
     };
 
     fileira.addEventListener("scroll", atualizarEstadoCarrossel);

@@ -344,3 +344,53 @@
         transform: translateY(-50%);
     }
 }
+
+.secao-genero {
+    position: relative;
+}
+
+.carrossel-indicadores {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+.carrossel-indicadores .indicador {
+    width: 12px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    transition: background 0.3s ease, width 0.3s ease;
+    cursor: pointer;
+}
+
+.carrossel-indicadores .indicador.ativo {
+    background: #ffffff;
+    width: 24px;
+}
+
+@media (max-width: 768px) {
+    .secao-genero {
+        margin-bottom: 42px;
+    }
+
+    .carrossel-indicadores {
+        top: auto;
+        bottom: -15px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .sinopse-preview {
+        display: none !important;
+    }
+
+    .card-filme:hover,
+    .card-filme:focus-within {
+        transform: none !important;
+        z-index: 1 !important;
+    }
+}
