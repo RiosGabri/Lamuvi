@@ -156,13 +156,28 @@
 }
 
 .btn-media-secundario {
+  min-height: 39px;
   padding-inline: 18px;
 }
 
 .acoes-edicao {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 14px;
+  justify-content: flex-start;
+  margin-top: 22px;
+}
+
+.perfil-modo-edicao .acoes-edicao {
+  margin-top: 8px;
+}
+
+.perfil-modo-edicao .btn-media-reset {
+  margin-left: auto;
+  transform: translateY(66px);
+}
+
+.perfil-modo-edicao .btn-media-reset:hover,
+.perfil-modo-edicao .btn-media-reset:focus-visible {
+  transform: translateY(65px);
 }
 
 .perfil-modo-visual .btn-estado-edicao,
