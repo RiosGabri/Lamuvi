@@ -381,7 +381,7 @@
 
 .filtro-wrap {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 10px;
   flex-shrink: 0;
 }
@@ -394,6 +394,7 @@
 
 .filtro-select {
   min-width: 180px;
+  min-height: 42px;
   padding: 11px 14px;
   border-radius: 14px;
   border: 1px solid rgba(165, 184, 204, 0.14);
@@ -672,7 +673,7 @@
 
   .filtro-wrap {
     width: 100%;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
   }
 
