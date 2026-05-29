@@ -345,11 +345,16 @@
     }
 }
 
+
+/* ==========================================================================
+   MELHORIAS DE ACESSIBILIDADE E UX V2 (NAVEGAÇÃO POR SETAS/WASD E PAGINAÇÃO)
+   ========================================================================== */
+
 .secao-genero {
     position: relative;
 }
 
-.carrossel-indicadores {
+.carrossel-indicators {
     position: absolute;
     top: 25px;
     right: 20px;
@@ -358,18 +363,33 @@
     z-index: 10;
 }
 
-.carrossel-indicadores .indicador {
+.carrossel-indicators .indicador {
     width: 12px;
     height: 4px;
     background: rgba(255, 255, 255, 0.25);
+    border: none;
+    padding: 0;
     border-radius: 2px;
     transition: background 0.3s ease, width 0.3s ease;
     cursor: pointer;
 }
 
-.carrossel-indicadores .indicador.ativo {
+.carrossel-indicators .indicador.ativo {
     background: #ffffff;
     width: 24px;
+}
+
+
+.fileira-filmes:focus-visible {
+    outline: 2px solid var(--cor-primaria, #e86d1e);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.card-filme:focus-visible {
+    outline: 3px solid var(--cor-primaria, #e86d1e);
+    outline-offset: 2px;
+    border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -377,7 +397,7 @@
         margin-bottom: 42px;
     }
 
-    .carrossel-indicadores {
+    .carrossel-indicators {
         top: auto;
         bottom: -15px;
         right: 50%;

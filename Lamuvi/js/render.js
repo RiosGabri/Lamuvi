@@ -112,6 +112,10 @@ function renderFilmes(lista) {
 
     const fileira = document.createElement("div");
     fileira.className = "fileira-filmes";
+    
+    fileira.tabIndex = 0;
+    fileira.setAttribute("role", "region");
+    fileira.setAttribute("aria-label", `Carrossel de ${g}. Use as setas do teclado ou A/D para navegar pelas páginas.`);
 
     wrapper.appendChild(botaoEsquerda);
     wrapper.appendChild(fileira);
@@ -123,6 +127,17 @@ function renderFilmes(lista) {
 
     botaoDireita.addEventListener("click", () => {
       fileira.scrollBy({ left: 400, behavior: "smooth" });
+    });
+
+    fileira.addEventListener("keydown", (e) => {
+      const key = e.key.toLowerCase();
+      if (e.key === "ArrowRight" || key === "d") {
+        e.preventDefault();
+        fileira.scrollBy({ left: 400, behavior: "smooth" });
+      } else if (e.key === "ArrowLeft" || key === "a") {
+        e.preventDefault();
+        fileira.scrollBy({ left: -400, behavior: "smooth" });
+      }
     });
 
     secao.appendChild(titulo);
@@ -141,10 +156,12 @@ function renderFilmes(lista) {
       card.style.textAlign = "center";
       card.style.cursor = "pointer";
       card.style.minWidth = "150px";
+      
       card.tabIndex = 0;
       card.setAttribute("role", "button");
       card.setAttribute("aria-label", `Abrir detalhes de ${f.nome}`);
       card.setAttribute("aria-describedby", previewId);
+      
       card.onclick = () => window.abrirFilme(f.id);
       card.addEventListener("mouseenter", () => ativarPreview(card));
       card.addEventListener("focusin", () => ativarPreview(card));
@@ -202,8 +219,11 @@ function renderFilmes(lista) {
       indicadores.innerHTML = "";
       
       for (let i = 0; i < numPaginas; i++) {
-        const dot = document.createElement("div");
+        const dot = document.createElement("button");
+        dot.type = "button";
         dot.className = `indicador ${i === paginaAtual ? "ativo" : ""}`;
+        dot.setAttribute("aria-label", `Ir para a página ${i + 1} de filmes de ${g}`);
+        dot.setAttribute("aria-current", i === paginaAtual ? "true" : "false");
         
         dot.onclick = () => {
           fileira.scrollTo({ left: i * fileira.clientWidth, behavior: "smooth" });
