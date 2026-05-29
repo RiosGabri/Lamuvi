@@ -7,6 +7,8 @@ window.onload = function() {
   }
 
   exibirPerfil(usuarioLogado);
+  configurarModoPerfil();
+  configurarMidiasPerfil(usuarioLogado);
   exibirMinhasAvaliacoes();
 
   const filtro = document.getElementById("filtro-avaliacoes");
@@ -16,6 +18,24 @@ window.onload = function() {
     });
   }
 };
+
+function emModoEdicao() {
+  return window.location.search.indexOf("editar=1") !== -1 || window.location.hash === "#editar";
+}
+
+function configurarModoPerfil() {
+  const corpo = document.body;
+  if (!corpo) return;
+  corpo.classList.toggle("perfil-modo-edicao", emModoEdicao());
+  corpo.classList.toggle("perfil-modo-visual", !emModoEdicao());
+
+  const concluir = document.getElementById("concluir-edicao");
+  if (concluir) {
+    concluir.addEventListener("click", function() {
+      window.location.href = "perfil.html";
+    });
+  }
+}
 
 function exibirPerfil(nomeUsuario) {
   const elementoNome = document.getElementById("usuario-nome");
@@ -36,6 +56,180 @@ function escapeHtml(valor) {
 
 function escapeAtributo(valor) {
   return String(valor || "").replace(/'/g, "\\'");
+}
+
+function notificarPerfil(mensagem, tipo) {
+  if (typeof mostrarNotificacao === "function") {
+    mostrarNotificacao(mensagem, tipo);
+    return;
+  }
+
+  if (typeof alert === "function") {
+    alert(mensagem);
+    return;
+  }
+
+  console.log(mensagem);
+}
+
+function obterChaveMidia(usuario) {
+  return "lamuvi:perfilMidia:" + usuario;
+}
+
+function lerMidiasPerfil(usuario) {
+  try {
+    const bruto = localStorage.getItem(obterChaveMidia(usuario));
+    if (!bruto) return {};
+    const dados = JSON.parse(bruto);
+    return dados && typeof dados === "object" ? dados : {};
+  } catch (erro) {
+    return {};
+  }
+}
+
+function salvarMidiasPerfil(usuario, dados) {
+  try {
+    localStorage.setItem(obterChaveMidia(usuario), JSON.stringify(dados));
+    return true;
+  } catch (erro) {
+    notificarPerfil("Não foi possível salvar a imagem no navegador.", "erro");
+    return false;
+  }
+}
+
+function aplicarAvatarMidia(dataUrl) {
+  const avatar = document.getElementById("avatar-img");
+  if (avatar && dataUrl) {
+    avatar.src = dataUrl;
+  }
+}
+
+function aplicarBannerMidia(dataUrl) {
+  const banner = document.querySelector(".perfil-hero-banner");
+  if (banner) {
+    banner.style.backgroundImage = dataUrl ? "linear-gradient(180deg, rgba(7, 11, 17, 0.18), rgba(7, 11, 17, 0.74)), url(" + JSON.stringify(dataUrl) + ")" : "";
+  }
+}
+
+function restaurarMidiasPadrao(usuario) {
+  try {
+    localStorage.removeItem(obterChaveMidia(usuario));
+  } catch (erro) {
+    // ignore
+  }
+
+  const avatar = document.getElementById("avatar-img");
+  if (avatar) {
+    avatar.src = "../imagens/usuario.png";
+  }
+
+  const banner = document.querySelector(".perfil-hero-banner");
+  if (banner) {
+    banner.style.backgroundImage = "";
+  }
+}
+
+function configurarMidiasPerfil(usuario) {
+  const midias = lerMidiasPerfil(usuario);
+  if (midias.avatar) {
+    aplicarAvatarMidia(midias.avatar);
+  }
+  if (midias.banner) {
+    aplicarBannerMidia(midias.banner);
+  }
+
+  const avatarInput = document.getElementById("avatar-input");
+  const bannerInput = document.getElementById("banner-input");
+  const avatarBtn = document.getElementById("btn-editar-avatar");
+  const bannerBtn = document.getElementById("btn-editar-banner");
+  const restaurarBtn = document.getElementById("restaurar-midia");
+
+  if (avatarBtn && avatarInput) {
+    avatarBtn.addEventListener("click", function() {
+      avatarInput.click();
+    });
+  }
+
+  if (bannerBtn && bannerInput) {
+    bannerBtn.addEventListener("click", function() {
+      bannerInput.click();
+    });
+  }
+
+  if (avatarInput) {
+    avatarInput.addEventListener("change", function() {
+      processarArquivoMidia(this, "avatar", usuario);
+    });
+  }
+
+  if (bannerInput) {
+    bannerInput.addEventListener("change", function() {
+      processarArquivoMidia(this, "banner", usuario);
+    });
+  }
+
+  if (restaurarBtn) {
+    restaurarBtn.addEventListener("click", function() {
+      const executarRestauro = function(confirmado) {
+        if (!confirmado) return;
+        restaurarMidiasPadrao(usuario);
+        notificarPerfil("Imagem do perfil restaurada para o padrão.", "sucesso");
+      };
+
+      if (typeof confirmarAcao === "function") {
+        confirmarAcao("Deseja restaurar a foto e o banner para o padrão?", executarRestauro);
+      } else {
+        executarRestauro(typeof confirm === "function" ? confirm("Deseja restaurar a foto e o banner para o padrão?") : true);
+      }
+    });
+  }
+}
+
+function processarArquivoMidia(input, tipo, usuario) {
+  const arquivo = input && input.files ? input.files[0] : null;
+  const limite = tipo === "avatar" ? 700 * 1024 : 1.2 * 1024 * 1024;
+  const formatosValidos = ["image/jpeg", "image/png", "image/webp"];
+
+  if (!arquivo) return;
+
+  try {
+    if (formatosValidos.indexOf(arquivo.type) === -1) {
+      notificarPerfil("Formato inválido. Use PNG, JPG/JPEG ou WEBP.", "erro");
+      return;
+    }
+
+    if (arquivo.size > limite) {
+      notificarPerfil(tipo === "avatar" ? "Avatar acima de 700KB." : "Banner acima de 1.2MB.", "erro");
+      return;
+    }
+
+    const leitor = new FileReader();
+    leitor.onload = function(evento) {
+      const dataUrl = evento && evento.target ? evento.target.result : "";
+      if (typeof dataUrl !== "string" || !dataUrl) return;
+
+      const midias = lerMidiasPerfil(usuario);
+      midias[tipo] = dataUrl;
+      if (salvarMidiasPerfil(usuario, midias)) {
+        if (tipo === "avatar") {
+          aplicarAvatarMidia(dataUrl);
+        } else {
+          aplicarBannerMidia(dataUrl);
+        }
+        notificarPerfil(tipo === "avatar" ? "Avatar atualizado com sucesso." : "Banner atualizado com sucesso.", "sucesso");
+      }
+    };
+
+    leitor.onerror = function() {
+      notificarPerfil("Não foi possível ler a imagem selecionada.", "erro");
+    };
+
+    leitor.readAsDataURL(arquivo);
+  } catch (erro) {
+    notificarPerfil("Falha ao processar a imagem selecionada.", "erro");
+  } finally {
+    input.value = "";
+  }
 }
 
 function atualizarResumoPerfil(totalAvaliacoes, mediaNotas) {
@@ -61,7 +255,12 @@ function exibirMinhasAvaliacoes() {
   const container = document.getElementById("minhas-avaliacoes");
   const emptyState = document.getElementById("sem-avaliacoes");
   const usuarioLogado = localStorage.getItem("Loginok");
-  const todasAvaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+  let todasAvaliacoes = {};
+  try {
+    todasAvaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+  } catch (erro) {
+    todasAvaliacoes = {};
+  }
   const filtro = document.getElementById("filtro-avaliacoes");
   const filtroValor = filtro ? filtro.value : "todas";
 
@@ -156,10 +355,20 @@ function exibirMinhasAvaliacoes() {
 window.removerAvaliacao = function(id) {
   confirmarAcao("Deseja realmente apagar sua avaliação?", function(confirmado) {
     if (confirmado) {
-      let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+      let avaliacoes = {};
+      try {
+        avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+      } catch (erro) {
+        avaliacoes = {};
+      }
       delete avaliacoes[id];
-      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-      mostrarNotificacao("Avaliação excluída!", "sucesso");
+      try {
+        localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+      } catch (erro) {
+        notificarPerfil("Não foi possível atualizar as avaliações.", "erro");
+        return;
+      }
+      notificarPerfil("Avaliação excluída!", "sucesso");
       exibirMinhasAvaliacoes();
     }
   });

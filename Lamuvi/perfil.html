@@ -27,9 +27,15 @@
   <main class="container-perfil">
     <section class="perfil-hero" aria-labelledby="usuario-nome">
       <div class="perfil-hero-banner" aria-hidden="true"></div>
+      <div class="banner-acoes btn-estado-edicao">
+        <button type="button" class="btn-media btn-media-banner" id="btn-editar-banner">Alterar banner</button>
+        <input type="file" id="banner-input" class="input-midia-hidden" accept="image/png,image/jpeg,image/webp" aria-label="Selecionar novo banner para o perfil">
+      </div>
       <div class="perfil-hero-overlay">
         <div class="avatar-usuario">
           <img src="../imagens/usuario.png" alt="Avatar do usuário" id="avatar-img">
+          <button type="button" class="btn-media btn-media-avatar btn-estado-edicao" id="btn-editar-avatar">Alterar foto</button>
+          <input type="file" id="avatar-input" class="input-midia-hidden" accept="image/png,image/jpeg,image/webp" aria-label="Selecionar novo avatar para o perfil">
         </div>
 
         <div class="dados-usuario">
@@ -50,6 +56,12 @@
           <span class="hero-metric-label">Média</span>
           <strong class="hero-metric-value" id="media-notas">0.0</strong>
         </div>
+        <a href="perfil.html?editar=1" class="btn-media btn-media-reset btn-estado-visual" id="editar-perfil-link" aria-label="Editar perfil">Editar perfil</a>
+        <button type="button" class="btn-media btn-media-reset btn-estado-edicao" id="concluir-edicao" aria-label="Concluir edição do perfil">Concluir edição</button>
+      </div>
+
+      <div class="acoes-edicao btn-estado-edicao" aria-label="Controles de edição do perfil">
+        <button type="button" class="btn-media btn-media-secundario" id="restaurar-midia" aria-label="Restaurar avatar e banner padrão">Restaurar padrão</button>
       </div>
     </section>
 

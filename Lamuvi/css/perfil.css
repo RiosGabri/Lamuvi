@@ -31,6 +31,15 @@
     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 26%),
     linear-gradient(135deg, #0b1018 0%, #162235 52%, #0d121a 100%);
   border-bottom: 1px solid rgba(165, 184, 204, 0.08);
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-acoes {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
 }
 
 .perfil-hero-banner::before,
@@ -70,6 +79,7 @@
 
 .avatar-usuario {
   flex-shrink: 0;
+  position: relative;
 }
 
 .avatar-usuario img {
@@ -80,6 +90,98 @@
   border: 4px solid rgba(9, 14, 21, 0.92);
   box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35);
   background: #1a2433;
+}
+
+.input-midia-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.btn-media {
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(165, 184, 204, 0.16);
+  background: rgba(8, 13, 20, 0.58);
+  color: #eef4fb;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-media:hover,
+.btn-media:focus-visible {
+  background: rgba(14, 20, 30, 0.82);
+  border-color: rgba(232, 90, 95, 0.34);
+  color: #f6fbff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.btn-media:active {
+  transform: translateY(0);
+}
+
+.btn-media-banner {
+  position: relative;
+}
+
+.btn-media-avatar {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+}
+
+.btn-media-reset {
+  margin-left: auto;
+  align-self: center;
+}
+
+.btn-media-secundario {
+  padding-inline: 18px;
+}
+
+.acoes-edicao {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.perfil-modo-visual .btn-estado-edicao,
+.perfil-modo-visual .acoes-edicao,
+.perfil-modo-edicao .btn-estado-visual {
+  display: none !important;
+}
+
+.perfil-modo-edicao .btn-estado-edicao:not(.banner-acoes),
+.perfil-modo-edicao .acoes-edicao {
+  display: inline-flex;
+}
+
+.perfil-modo-edicao .banner-acoes.btn-estado-edicao {
+  display: block;
+}
+
+.perfil-modo-visual .btn-estado-visual {
+  display: inline-flex;
 }
 
 .dados-usuario {
@@ -501,6 +603,11 @@
     margin: 0 -18px;
   }
 
+  .banner-acoes {
+    top: 14px;
+    right: 14px;
+  }
+
   .perfil-hero-overlay {
     align-items: flex-start;
     margin-top: -42px;
@@ -514,13 +621,34 @@
     border-radius: 20px;
   }
 
+  .btn-media-avatar {
+    left: 10px;
+    bottom: 10px;
+  }
+
   .hero-metrics {
     width: 100%;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .hero-metric-card {
     min-width: 0;
     flex: 1 1 0;
+  }
+
+  .btn-media-reset {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .acoes-edicao {
+    justify-content: stretch;
+  }
+
+  .acoes-edicao .btn-media {
+    width: 100%;
   }
 
   .perfil-tabs {
@@ -576,6 +704,10 @@
 @media (max-width: 480px) {
   .dados-usuario h1 {
     font-size: 1.7rem;
+  }
+
+  .btn-media {
+    padding: 9px 12px;
   }
 
   .perfil-resumo {
