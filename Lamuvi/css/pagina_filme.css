@@ -258,7 +258,7 @@
 
 .btn-nota-seletor:hover {
   border-color: var(--cor-destaque, #e86d1e);
-  background: rgba(232, 109, 30, 0.1);
+  background: rgba(143, 163, 184, 0.14);
 }
 
 .btn-nota-seletor.ativo {
