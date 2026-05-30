@@ -275,12 +275,22 @@ function exibirMinhasAvaliacoes() {
     }
   }
 
+  function parsearData(str) {
+    if (!str) return 0;
+    const partesBR = str.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (partesBR) {
+      return new Date(partesBR[3] + "-" + partesBR[2] + "-" + partesBR[1]).getTime();
+    }
+    const t = new Date(str).getTime();
+    return isNaN(t) ? 0 : t;
+  }
+
   switch (filtroValor) {
     case "recentes":
-      avaliacoesArray.sort((a, b) => new Date(b.data) - new Date(a.data));
+      avaliacoesArray.sort((a, b) => parsearData(b.data) - parsearData(a.data));
       break;
     case "antigas":
-      avaliacoesArray.sort((a, b) => new Date(a.data) - new Date(b.data));
+      avaliacoesArray.sort((a, b) => parsearData(a.data) - parsearData(b.data));
       break;
     case "maior-nota":
       avaliacoesArray.sort((a, b) => parseFloat(b.nota) - parseFloat(a.nota));
