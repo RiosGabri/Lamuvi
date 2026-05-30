@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  align-items: flex-start;
   padding: 40px;
   gap: 40px;
   max-width: 1200px;
@@ -8,6 +9,8 @@
 
 #img {
   width: 300px;
+  height: auto;      
+  object-fit: cover;
   border-radius: 10px;
   max-width: 100%;
   height: auto;
