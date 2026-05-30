@@ -306,25 +306,29 @@ function exibirMinhasAvaliacoes() {
       const idFilmeSeguro = escapeAtributo(avaliacao.filmeId);
 
       html += `
-        <article class="avaliacao-card">
-          <div class="avaliacao-poster">
-            <img src="${filmeDados.imagem}" alt="Pôster de ${nomeFilme}">
-          </div>
-          <div class="avaliacao-body">
-            <div class="avaliacao-topline">
-              <div>
-                <h3 class="avaliacao-titulo">${nomeFilme}</h3>
-                <p class="avaliacao-data">Postado em ${dataExibicao}</p>
-              </div>
-              <div class="avaliacao-nota" aria-label="Nota ${notaExibicao} para ${nomeFilme}">
-                <span>Nota</span>
-                <strong>${notaExibicao}</strong>
-              </div>
+        <article class="avaliacao-card" tabindex="0">
+          <div class="avaliacao-topo">
+            <div class="avaliacao-poster" aria-hidden="true">
+              <img src="${filmeDados.imagem}" alt="">
             </div>
+            <div class="avaliacao-meta">
+              <h3 class="avaliacao-titulo">${nomeFilme}</h3>
+              <p class="avaliacao-data">
+                <span class="sr-only">Postado em</span>${dataExibicao}
+              </p>
+            </div>
+            <div class="avaliacao-nota" role="img" aria-label="Nota ${notaExibicao} de 10">
+              <span aria-hidden="true">Nota</span>
+              <strong>${notaExibicao}</strong>
+            </div>
+          </div>
+          <div class="avaliacao-sep" role="separator" aria-hidden="true"></div>
+          <div class="avaliacao-comentario-wrap">
+            <span class="avaliacao-comentario-label" aria-hidden="true">Comentário</span>
             <p class="avaliacao-comentario">${comentario}</p>
           </div>
-          <div class="avaliacao-actions">
-            <button class="btn-excluir" type="button" aria-label="Excluir avaliação de ${nomeFilme}" onclick="removerAvaliacao('${idFilmeSeguro}')">Excluir</button>
+          <div class="avaliacao-rodape">
+            <button class="btn-excluir" type="button" aria-label="Excluir avaliação de ${nomeFilme}" onclick="removerAvaliacao('${idFilmeSeguro}')">Excluir avaliação</button>
           </div>
         </article>
       `;

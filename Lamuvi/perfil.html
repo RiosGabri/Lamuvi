@@ -169,13 +169,13 @@
                             <select
                                 id="filtro-avaliacoes"
                                 class="filtro-select"
-                                aria-label="Ordenar avaliações do perfil"
+                                aria-label="Ordenar avaliações por critério"
                             >
-                                <option value="todas">Todas</option>
-                                <option value="recentes">Mais recentes</option>
-                                <option value="antigas">Mais antigas</option>
-                                <option value="maior-nota">Maior nota</option>
-                                <option value="menor-nota">Menor nota</option>
+                                <option value="todas">Todas (padrão)</option>
+                                <option value="recentes">Mais recentes primeiro</option>
+                                <option value="antigas">Mais antigas primeiro</option>
+                                <option value="maior-nota">Maior nota primeiro</option>
+                                <option value="menor-nota">Menor nota primeiro</option>
                             </select>
                         </div>
                     </div>
@@ -184,6 +184,8 @@
                         id="minhas-avaliacoes"
                         class="lista-avaliacoes"
                         aria-live="polite"
+                        aria-label="Lista de avaliações"
+                        role="list"
                     ></div>
 
                     <div
@@ -200,6 +202,12 @@
             </div>
         </main>
 
+        <script src="js/notificacao.js"></script>
+        <script src="js/lista.js"></script>
+        <script src="js/perfil.js"></script>
+        <script src="js/sair.js"></script>
+    </body>
+</html>
         <script src="js/notificacao.js"></script>
         <script src="js/lista.js"></script>
         <script src="js/perfil.js"></script>
