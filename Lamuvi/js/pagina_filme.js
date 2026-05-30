@@ -1,5 +1,4 @@
 // Lógica para a tela de cada filme
-//import { Lista_filmes } from "./lista.js"; 
 window.onload = function() {
   let id = localStorage.getItem("Oescolhidoehvc");
   let filme = Lista_filmes.find(f => f.id == id);
@@ -21,100 +20,118 @@ window.onload = function() {
 function exibirMinhaAvaliacao(filmeId) {
   const container = document.getElementById("minha-avaliacao-container");
   const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-  const minhaAvaliacao = avaliacoes[filmeId];
+  const usuarioLogado = localStorage.getItem("Loginok");
+  
+  const minhaAvaliacao = avaliacoes[filmeId] && avaliacoes[filmeId].autor === usuarioLogado ? avaliacoes[filmeId] : null;
 
   if (minhaAvaliacao) {
     container.innerHTML = `
-            <div class="card-minha-avaliacao">
-                <h3 class="avaliacao-titulo">Minha Avaliação</h3>
-                <p><strong>Nota:</strong> <span style="color: gold; font-weight: bold; font-size: 18px;">★ ${minhaAvaliacao.nota}/10</span></p>
-                <p><strong>Comentário:</strong> "${minhaAvaliacao.comentario}"</p>
-                <small class="avaliacao-data">Avaliado em: ${minhaAvaliacao.data}</small>
-                <div class="avaliacao-acoes">
-                    <button onclick="abrirFormularioAvaliacao('${filmeId}')" class="btn-editar">Editar</button>
-                    <button onclick="solicitarDelecaoAvaliacao('${filmeId}')" class="btn-deletar">Deletar</button>
-                </div>
-            </div>
-        `;
+      <div class="card-minha-avaliacao">
+          <h3 class="avaliacao-titulo">Minha Avaliação</h3>
+          <p><strong>Nota:</strong> <span style="color: gold; font-weight: bold;">${minhaAvaliacao.nota}/10</span></p>
+          <p><strong>Comentário:</strong> ${minhaAvaliacao.comentario || "<em>Sem comentário.</em>"}</p>
+          <button onclick="solicitarDelecaoAvaliacao('${filmeId}')" class="btn-excluir-avaliacao" aria-label="Excluir minha avaliação do filme">
+            Excluir Avaliação
+          </button>
+      </div>
+    `;
   } else {
-    container.innerHTML = `<button class="btn-avaliar" onclick="abrirFormularioAvaliacao('${filmeId}')">Adicionar Avaliação</button>`;
+    container.innerHTML = `
+      <div class="formulario-avaliacao-inline" role="form" aria-labelledby="titulo-form-inline">
+        <h3 id="titulo-form-inline" class="avaliacao-titulo">Avaliar Filme</h3>
+        
+        <label class="label-form">Nota (0 a 10):</label>
+        <div class="seletor-nota-container" role="group" aria-label="Selecione uma nota de 0 a 10">
+          ${Array.from({ length: 11 }, (_, i) => `
+            <button type="button" class="btn-nota-seletor" data-nota="${i}">${i}</button>
+          `).join('')}
+        </div>
+        
+        <label for="comentario-inline" class="label-form">O que achou do filme? (Opcional)</label>
+        <textarea id="comentario-inline" maxlength="200" placeholder="Escreva sua avaliação sobre o longa..."></textarea>
+        
+        <p id="contador-inline" class="contador-caracteres" aria-live="polite">0 / 200</p>
+        
+        <button id="btn-salvar-inline" class="btn-salvar-avaliacao" disabled>Salvar Avaliação</button>
+      </div>
+    `;
+
+    inicializarFormularioInline(filmeId);
   }
 }
 
-window.abrirFormularioAvaliacao = function(filmeId) {
-  const container = document.getElementById("minha-avaliacao-container");
-  const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-  const minhaAvaliacao = avaliacoes[filmeId] || { nota: '', comentario: '' };
-
-  let botoesNotaHtml = '';
-  for (let i = 1; i <= 10; i++) {
-    const ativo = minhaAvaliacao.nota == i ? 'ativo' : '';
-    botoesNotaHtml += `<button type="button" class="btn-nota-seletor ${ativo}" onclick="selecionarNota(this, ${i})">${i}</button>`;
-  }
-
-  container.innerHTML = `
-    <div class="formulario-avaliacao-inline">
-      <h3 class="avaliacao-titulo">${minhaAvaliacao.nota ? 'Editar Sua Avaliação' : 'Adicionar Avaliação'}</h3>
-      
-      <label class="label-form">Sua Nota (1 a 10):</label>
-      <div class="seletor-nota-container">${botoesNotaHtml}</div>
-      <input type="hidden" id="nota-input-inline" value="${minhaAvaliacao.nota}">
-
-      <label class="label-form" for="comentario-inline">O que achou do filme?</label>
-      <textarea id="comentario-inline" class="textarea-form" maxlength="200" placeholder="Escreva sua avaliação...">${minhaAvaliacao.comentario}</textarea>
-      
-      <div class="avaliacao-acoes">
-        <button onclick="exibirMinhaAvaliacao('${filmeId}')" class="btn-secundario-modal">Cancelar</button>
-        <button onclick="salvarAvaliacaoInline('${filmeId}')" class="btn-avaliar" style="margin-top:0;">Salvar</button>
-      </div>
-    </div>
-  `;
-};
-
-window.selecionarNota = function(botao, valor) {
-  document.querySelectorAll('.btn-nota-seletor').forEach(b => b.classList.remove('ativo'));
-  botao.classList.add('ativo');
-  document.getElementById('nota-input-inline').value = valor;
-};
-
-window.salvarAvaliacaoInline = function(filmeId) {
-  const nota = document.getElementById('nota-input-inline').value;
-  const comentario = document.getElementById('comentario-inline').value;
-
-  if (!nota) {
-    if (typeof mostrarNotificacao === "function") mostrarNotificacao("Por favor, selecione uma nota!", "erro");
-    return;
-  }
-
-  let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-  avaliacoes[filmeId] = {
-    nota: nota,
-    comentario: comentario,
-    autor: localStorage.getItem("Loginok") || "Usuário",
-    data: new Date().toLocaleDateString('pt-BR')
-  };
-
-  localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-  if (typeof mostrarNotificacao === "function") mostrarNotificacao("Avaliação salva com sucesso!", "sucesso");
+function inicializarFormularioInline(filmeId) {
+  const botoesNota = document.querySelectorAll(".btn-nota-seletor");
+  const textarea = document.getElementById("comentario-inline");
+  const contador = document.getElementById("contador-inline");
+  const btnSalvar = document.getElementById("btn-salvar-inline");
   
-  exibirMinhaAvaliacao(filmeId);
-};
+  let notaSelecionada = null;
+
+  if (botoesNota.length > 0) {
+    botoesNota[0].focus();
+  }
+
+  botoesNota.forEach(botao => {
+    botao.addEventListener("click", () => {
+      botoesNota.forEach(b => b.classList.remove("ativo"));
+      botao.classList.add("ativo");
+      
+      notaSelecionada = parseInt(botao.getAttribute("data-nota"));
+      btnSalvar.disabled = false; // Habilita o envio
+    });
+  });
+
+  textarea.addEventListener("input", () => {
+    const comprimento = textarea.value.length;
+    contador.innerText = `${comprimento} / 200`;
+    
+    if (comprimento >= 200) {
+      contador.style.color = "var(--cor-erro, #ff4d4d)";
+    } else {
+      contador.style.color = "var(--texto-cinza, #cccccc)";
+    }
+  });
+
+  btnSalvar.addEventListener("click", () => {
+    if (notaSelecionada === null) return;
+
+    const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+    const usuarioLogado = localStorage.getItem("Loginok") || "Anônimo";
+
+    avaliacoes[filmeId] = {
+      id: filmeId,
+      nota: notaSelecionada,
+      comentario: textarea.value.trim(),
+      autor: usuarioLogado,
+      data: new Date().toLocaleDateString("pt-BR")
+    };
+
+    localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+
+    if (typeof mostrarNotificacao === "function") {
+      mostrarNotificacao("Avaliação registrada com sucesso!", "sucesso");
+    }
+
+    exibirMinhaAvaliacao(filmeId);
+    
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  });
+}
 
 let idDelecaoPendente = null;
 
 function inicializarModalConfirmacao() {
   const modal = document.getElementById("modal-confirmacao");
+  if (!modal) return;
+
   const btnCancelar = document.getElementById("btn-cancelar-modal");
   const btnApagar = document.getElementById("btn-apagar-modal");
 
-  if (!modal || !btnCancelar || !btnApagar) return;
-
   btnCancelar.onclick = fecharModalConfirmacao;
-
-  modal.onclick = (e) => {
-    if (e.target === modal) fecharModalConfirmacao();
-  };
-
+  
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('ativo')) {
       fecharModalConfirmacao();
@@ -155,13 +172,11 @@ function executarDelecaoAvaliacao() {
   localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
   
   if (typeof mostrarNotificacao === "function") {
-    mostrarNotificacao("Avaliação excluída!", "sucesso");
+    mostrarNotificacao("Avaliação excluída com sucesso!", "sucesso");
   }
 
   fecharModalConfirmacao();
-  exibirMinhaAvaliacao(idDelecaoPendente); // Atualiza instantaneamente sem recarregar!
+  setTimeout(() => {
+    window.location.reload();
+  }, 1000);
 }
-
-
-window.voltar = function() { window.history.back(); };
-window.irParaPerfil = function() { window.location.href = "perfil.html"; };

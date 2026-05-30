@@ -292,3 +292,97 @@
   outline: none;
   border-color: var(--cor-destaque, #e86d1e);
 }
+
+.formulario-avaliacao-inline {
+  background: var(--bg-secundario, #222);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-left: 4px solid var(--cor-destaque, #64ffda);
+  margin-top: 25px;
+}
+
+.label-form {
+  display: block;
+  color: var(--texto-claro, #fff);
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.seletor-nota-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.btn-nota-seletor {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--borda-padrao, #444);
+  background: transparent;
+  color: var(--texto-claro, #fff);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-nota-seletor:hover {
+  border-color: var(--cor-destaque, #64ffda);
+  background: rgba(100, 255, 218, 0.1);
+}
+
+.btn-nota-seletor.ativo {
+  background: var(--cor-destaque, #64ffda);
+  border-color: var(--cor-destaque, #64ffda);
+  color: #000;
+}
+
+.btn-nota-seletor:focus-visible,
+#comentario-inline:focus-visible,
+.btn-salvar-avaliacao:focus-visible {
+  outline: 2px solid var(--cor-destaque, #64ffda);
+  outline-offset: 3px;
+}
+
+#comentario-inline {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  background-color: var(--bg-terciario, #333);
+  border: 1px solid var(--borda-padrao, #444);
+  border-radius: 6px;
+  color: var(--texto-claro, #fff);
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 5px;
+}
+
+.contador-caracteres {
+  font-size: 12px;
+  color: var(--texto-cinza, #ccc);
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.btn-salvar-avaliacao {
+  background: var(--cor-destaque, #64ffda);
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
+}
+
+.btn-salvar-avaliacao:disabled {
+  background: #444;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
