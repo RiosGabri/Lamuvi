@@ -116,8 +116,7 @@
                         type="button"
                         class="btn-media btn-media-secundario"
                         id="restaurar-midia"
-                        aria-label="Restaurar avatar e banner para o padrão"
-                        onclick="confirmarRestaurarMidia()"
+                        aria-label="Restaurar avatar e banner padrão"
                     >
                         Restaurar padrão
                     </button>
@@ -202,17 +201,14 @@
                 </section>
             </div>
         </main>
-        
-        <div id="modal-restaurar" class="modal" role="alertdialog" aria-labelledby="modal-titulo-restaurar" aria-hidden="true">
-          <div class="modal-backdrop" onclick="cancelarRestaurarMidia()"></div>
-          <div class="modal-conteudo">
-            <h3 id="modal-titulo-restaurar">Restaurar mídia padrão?</h3>
-            <p>Seu avatar e banner customizados serão perdidos permanentemente. Esta ação não pode ser desfeita.</p>
-            <div class="modal-botoes">
-              <button onclick="executarRestaurarMidia()" class="btn-perigo">Restaurar padrão</button>
-              <button onclick="cancelarRestaurarMidia()" class="btn-secundario">Cancelar</button>
+
+        <div id="avatar-preview" class="upload-preview" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
+            <h3 style="margin-top: 0; color: #fff;">Pré-visualização</h3>
+            <img id="preview-img" src="" alt="Pré-visualização do novo avatar" />
+            <div class="preview-botoes" style="margin-top: 15px; display: flex; gap: 10px;">
+                <button type="button" onclick="confirmarUploadAvatar()" class="btn-media" style="background-color: #64ffda; color: #0a192f; border: none; padding: 8px 16px; cursor: pointer; border-radius: 4px; font-weight: bold;">Confirmar</button>
+                <button type="button" onclick="cancelarUploadAvatar()" class="btn-media" style="background-color: #ff4a4a; color: #fff; border: none; padding: 8px 16px; cursor: pointer; border-radius: 4px; font-weight: bold;">Cancelar</button>
             </div>
-          </div>
         </div>
 
         <script src="js/notificacao.js"></script>

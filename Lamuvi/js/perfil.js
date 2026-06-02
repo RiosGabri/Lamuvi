@@ -16,7 +16,6 @@ window.onload = function() {
   if (filtro) {
     filtro.addEventListener("change", function() {
       exibirMinhasAvaliacoes();
-  setupAbasTeclado();
     });
   }
 };
@@ -140,21 +139,15 @@ function configurarMidiasPerfil(usuario) {
     aplicarBannerMidia(midias.banner);
   }
 
-  const avatarInput = document.getElementById("avatar-input");
   const bannerInput = document.getElementById("banner-input");
-  const avatarBtn = document.getElementById("btn-editar-avatar");
   const bannerBtn = document.getElementById("btn-editar-banner");
   const restaurarBtn = document.getElementById("restaurar-midia");
-
-  
 
   if (bannerBtn && bannerInput) {
     bannerBtn.addEventListener("click", function() {
       bannerInput.click();
     });
   }
-
-  
 
   if (bannerInput) {
     bannerInput.addEventListener("change", function() {
@@ -168,6 +161,7 @@ function configurarMidiasPerfil(usuario) {
         if (!confirmado) return;
         restaurarMidiasPadrao(usuario);
         notificarPerfil("Imagem do perfil restaurada para o padrão.", "sucesso");
+        announceToScreenReader("Imagem do perfil restaurada para o padrão.");
       };
 
       if (typeof confirmarAcao === "function") {
@@ -177,6 +171,8 @@ function configurarMidiasPerfil(usuario) {
       }
     });
   }
+
+  inicializarEventosAvatar();
 }
 
 function processarArquivoMidia(input, tipo, usuario) {
@@ -210,7 +206,7 @@ function processarArquivoMidia(input, tipo, usuario) {
         } else {
           aplicarBannerMidia(dataUrl);
         }
-        notificarPerfil(tipo === "avatar" ? "Avatar atualizado com sucesso." : "Banner atualizado com sucesso.", "sucesso");
+        notificarPerfil(tipo === "avatar" ? "Avatar updated successfully." : "Banner updated successfully.", "sucesso");
       }
     };
 
@@ -310,7 +306,7 @@ function exibirMinhasAvaliacoes() {
       const idFilmeSeguro = escapeAtributo(avaliacao.filmeId);
 
       html += `
-        <article class="avaliacao-card" tabindex="0" role="listitem">
+        <article class="avaliacao-card" tabindex="0">
           <div class="avaliacao-topo">
             <div class="avaliacao-poster" aria-hidden="true">
               <img src="${filmeDados.imagem}" alt="">
@@ -397,124 +393,107 @@ window.voltarPagina = function() {
   }
 };
 
-function announceToScreenReader(mensagem) {
-    let ariaLive = document.getElementById('aria-live-announcer');
-    if (!ariaLive) {
-        ariaLive = document.createElement('div');
-        ariaLive.id = 'aria-live-announcer';
-        ariaLive.className = 'sr-only';
-        ariaLive.setAttribute('aria-live', 'polite');
-        document.body.appendChild(ariaLive);
-    }
-    ariaLive.textContent = '';
-    setTimeout(() => { ariaLive.textContent = mensagem; }, 100);
+function announceToScreenReader(message) {
+  let ariaLog = document.getElementById("perfil-aria-log");
+  if (!ariaLog) {
+    ariaLog = document.createElement("div");
+    ariaLog.id = "perfil-aria-log";
+    ariaLog.setAttribute("aria-live", "polite");
+    ariaLog.setAttribute("aria-atomic", "true");
+    ariaLog.classList.add("sr-only");
+    document.body.appendChild(ariaLog);
+  }
+  ariaLog.textContent = "";
+  setTimeout(() => {
+    ariaLog.textContent = message;
+  }, 100);
 }
 
 function setupAbasTeclado() {
-  const tabs = document.querySelectorAll('[role="tab"]');
-  
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('keydown', (e) => {
-      let targetIndex = index;
+  const tabs = document.querySelectorAll(".perfil-tab-link");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", function(e) {
+      e.preventDefault();
+      tabs.forEach(t => t.classList.remove("perfil-tab-link-ativo"));
+      this.classList.add("perfil-tab-link-ativo");
       
-      if (e.key === 'ArrowRight' || e.key === 'End') {
-        targetIndex = (index + 1) % tabs.length;
-        e.preventDefault();
-      } else if (e.key === 'ArrowLeft' || e.key === 'Home') {
-        targetIndex = (index - 1 + tabs.length) % tabs.length;
-        e.preventDefault();
-      } else {
-        return;
-      }
+      const targetId = this.getAttribute("href").substring(1);
+      const visaoGeral = document.getElementById("visao-geral");
+      const avaliacoes = document.getElementById("avaliacoes");
       
-      tabs[targetIndex].click();
-      tabs[targetIndex].focus();
-      
-      announceToScreenReader(`Aberto: ${tabs[targetIndex].textContent}`);
-    });
-    
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        t.setAttribute('aria-selected', 'false');
-        t.classList.remove('perfil-tab-link-ativo');
-      });
-      tab.setAttribute('aria-selected', 'true');
-      tab.classList.add('perfil-tab-link-ativo');
-      
-      const panelId = tab.getAttribute('aria-controls');
-      const vGeral = document.getElementById('visao-geral');
-      const avaliacoes = document.getElementById('avaliacoes');
-      if(vGeral) vGeral.style.display = panelId === 'visao-geral' ? 'block' : 'none';
-      if(avaliacoes) avaliacoes.style.display = panelId === 'avaliacoes' ? 'block' : 'none';
+      if (visaoGeral) visaoGeral.style.display = targetId === "visao-geral" ? "block" : "none";
+      if (avaliacoes) avaliacoes.style.display = targetId === "avaliacoes" ? "block" : "none";
     });
   });
 }
 
-window.confirmarRestaurarMidia = function() {
-  const modal = document.getElementById('modal-restaurar');
-  if(modal) modal.setAttribute('aria-hidden', 'false');
-  const primeiroBotao = modal?.querySelector('button');
-  if(primeiroBotao) primeiroBotao.focus();
-};
-
-window.cancelarRestaurarMidia = function() {
-  const modal = document.getElementById('modal-restaurar');
-  if(modal) modal.setAttribute('aria-hidden', 'true');
-  const btnRestaurar = document.getElementById('restaurar-midia');
-  if(btnRestaurar) btnRestaurar.focus();
-};
-
-window.executarRestaurarMidia = function() {
-  const usuario = localStorage.getItem('Loginok');
-  if(typeof restaurarMidiasPadrao === 'function') restaurarMidiasPadrao(usuario);
-  cancelarRestaurarMidia();
-  
-  announceToScreenReader('Avatar e banner restaurados para o padrão.');
-  notificarPerfil('Mídia restaurada com sucesso!', 'sucesso');
-};
-
 let arquivoPendente = null;
-document.addEventListener('DOMContentLoaded', () => {
-    const inputAvatar = document.getElementById('avatar-input');
-    
-    if (inputAvatar) {
-        inputAvatar.addEventListener('change', (e) => {
-            const arquivo = e.target.files?.[0];
-            if (!arquivo) return;
-            
-            arquivoPendente = arquivo;
-            
-            const reader = new FileReader();
-            reader.onload = (evt) => {
-                const preview = document.getElementById('avatar-preview');
-                const previewImg = document.getElementById('preview-img');
-                
-                if (previewImg) previewImg.src = evt.target.result;
-                if (preview) preview.style.display = 'flex'; 
-                
-                announceToScreenReader('Imagem carregada. Clique em Confirmar para guardar.');
-            };
-            reader.readAsDataURL(arquivo);
-        });
-    }
-});
+
+function inicializarEventosAvatar() {
+  const inputAvatar = document.getElementById('avatar-input');
+  const btnAvatar = document.getElementById('btn-editar-avatar');
+  
+  if (btnAvatar && inputAvatar) {
+    btnAvatar.onclick = function(e) {
+      e.preventDefault();
+      inputAvatar.click();
+    };
+  }
+  
+  if (inputAvatar) {
+    inputAvatar.onchange = function(e) {
+      const arquivo = e.target.files?.[0];
+      if (!arquivo) return;
+      
+      const limite = 700 * 1024;
+      const formatosValidos = ["image/jpeg", "image/png", "image/webp"];
+
+      if (formatosValidos.indexOf(arquivo.type) === -1) {
+        notificarPerfil("Formato inválido. Use PNG, JPG/JPEG ou WEBP.", "erro");
+        return;
+      }
+
+      if (arquivo.size > limite) {
+        notificarPerfil("Avatar acima de 700KB.", "erro");
+        return;
+      }
+      
+      arquivoPendente = arquivo;
+      
+      const leitor = new FileReader();
+      leitor.onload = (evt) => {
+        const preview = document.getElementById('avatar-preview');
+        const previewImg = document.getElementById('preview-img');
+        
+        if (previewImg) previewImg.src = evt.target.result;
+        if (preview) preview.style.display = 'flex';
+        
+        announceToScreenReader('Imagem carregada. Clique em Confirmar para guardar.');
+      };
+      leitor.readAsDataURL(arquivo);
+    };
+  }
+}
 
 window.confirmarUploadAvatar = function() {
-    const usuario = localStorage.getItem('Loginok');
-    const inputSimulado = { files: [arquivoPendente] };
-    
-    if (typeof processarArquivoMidia === 'function') {
-        processarArquivoMidia(inputSimulado, 'avatar', usuario);
-    }
-    cancelarUploadAvatar();
+  const usuario = localStorage.getItem('Loginok');
+  const inputSimulado = { 
+    files: [arquivoPendente],
+    value: '' 
+  };
+  
+  if (typeof processarArquivoMidia === 'function' && arquivoPendente) {
+    processarArquivoMidia(inputSimulado, 'avatar', usuario);
+  }
+  cancelarUploadAvatar();
 };
 
 window.cancelarUploadAvatar = function() {
-    const preview = document.getElementById('avatar-preview');
-    if (preview) preview.style.display = 'none';
-    
-    const input = document.getElementById('avatar-input');
-    if (input) input.value = "";
-    
-    arquivoPendente = null;
+  const preview = document.getElementById('avatar-preview');
+  if (preview) preview.style.display = 'none';
+  
+  const input = document.getElementById('avatar-input');
+  if (input) input.value = "";
+  
+  arquivoPendente = null;
 };
