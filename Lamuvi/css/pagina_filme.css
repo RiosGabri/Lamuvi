@@ -1,3 +1,13 @@
+html, body {
+  min-height: 100vh !important; 
+  height: auto !important;
+  background-color: var(--bg-principal, #111111);
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   display: flex;
   align-items: flex-start;
