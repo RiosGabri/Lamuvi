@@ -1,5 +1,4 @@
 // Lógica para a tela de cada filme
-//import { Lista_filmes } from "./lista.js"; 
 window.onload = function() {
   let id = localStorage.getItem("Oescolhidoehvc");
   let filme = Lista_filmes.find(f => f.id == id);
@@ -28,7 +27,7 @@ function exibirMinhaAvaliacao(filmeId) {
             <div class="card-minha-avaliacao">
                 <h3 class="avaliacao-titulo">Minha Avaliação</h3>
                 <p><strong>Nota:</strong> <span style="color: gold; font-weight: bold; font-size: 18px;">★ ${minhaAvaliacao.nota}/10</span></p>
-                <p><strong>Comentário:</strong> "${minhaAvaliacao.comentario}"</p>
+                <p><strong>Comentário:</strong> "${minhaAvaliacao.comentario || 'Sem comentário.'}"</p>
                 <small class="avaliacao-data">Avaliado em: ${minhaAvaliacao.data}</small>
                 <div class="avaliacao-acoes">
                     <button onclick="abrirFormularioAvaliacao('${filmeId}')" class="btn-editar">Editar</button>
@@ -44,61 +43,199 @@ function exibirMinhaAvaliacao(filmeId) {
 window.abrirFormularioAvaliacao = function(filmeId) {
   const container = document.getElementById("minha-avaliacao-container");
   const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-  const minhaAvaliacao = avaliacoes[filmeId] || { nota: '', comentario: '' };
-
-  let botoesNotaHtml = '';
-  for (let i = 1; i <= 10; i++) {
-    const ativo = minhaAvaliacao.nota == i ? 'ativo' : '';
-    botoesNotaHtml += `<button type="button" class="btn-nota-seletor ${ativo}" onclick="selecionarNota(this, ${i})">${i}</button>`;
-  }
+  const minhaAvaliacao = avaliacoes[filmeId] || { nota: '5', comentario: '' };
 
   container.innerHTML = `
-    <div class="formulario-avaliacao-inline">
-      <h3 class="avaliacao-titulo">${minhaAvaliacao.nota ? 'Editar Sua Avaliação' : 'Adicionar Avaliação'}</h3>
+    <form id="form-avaliacao" class="formulario-avaliacao-inline" aria-labelledby="titulo-avaliar">
+      <h3 id="titulo-avaliar" class="avaliacao-titulo">${minhaAvaliacao.comentario || minhaAvaliacao.nota !== '5' ? 'Editar Sua Avaliação' : 'Adicionar Avaliação'}</h3>
       
-      <label class="label-form">Sua Nota (1 a 10):</label>
-      <div class="seletor-nota-container">${botoesNotaHtml}</div>
-      <input type="hidden" id="nota-input-inline" value="${minhaAvaliacao.nota}">
-
-      <label class="label-form" for="comentario-inline">O que achou do filme?</label>
-      <textarea id="comentario-inline" class="textarea-form" maxlength="200" placeholder="Escreva sua avaliação...">${minhaAvaliacao.comentario}</textarea>
+      <fieldset style="border: none; padding: 0; margin: 0;">
+        <legend style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Sua avaliação do filme</legend>
+        
+        <!-- Campo de Nota com Feedback Visual e Acessível -->
+        <div class="form-group">
+          <label for="nota-input" class="label-form">
+            Sua nota (1-10) <span class="campo-obrigatorio" aria-label="obrigatório" style="color: var(--cor-erro);">*</span>
+          </label>
+          <div class="nota-input-container">
+            <input
+              id="nota-input"
+              type="range"
+              min="1"
+              max="10"
+              value="${minhaAvaliacao.nota}"
+              required
+              aria-required="true"
+              aria-describedby="nota-help"
+              aria-valuetext="${minhaAvaliacao.nota}"
+            />
+            <output id="nota-display" class="nota-output" aria-live="polite" aria-atomic="true">
+              <div class="nota-numero">${minhaAvaliacao.nota}</div>
+              <div class="nota-descricao">Mediano</div>
+              <div class="nota-estrelas" aria-hidden="true"></div>
+            </output>
+          </div>
+          <small id="nota-help" style="color: #888; display: block; margin-bottom: 15px;">
+            Deslize ou clique para selecionar uma nota de 1 a 10
+          </small>
+        </div>
+        
+        <!-- Campo de Comentário com Contador Visual Real-time -->
+        <div class="form-group">
+          <label for="comentario-input" class="label-form">Comentário (opcional)</label>
+          <textarea
+            id="comentario-input"
+            class="textarea-form"
+            placeholder="Compartilhe sua opinião..."
+            maxlength="500"
+            rows="4"
+            aria-describedby="comentario-count"
+          >${minhaAvaliacao.comentario}</textarea>
+          <div id="comentario-count" class="char-counter" aria-live="polite">
+            <span id="char-atual">${minhaAvaliacao.comentario.length}</span>/<span id="char-max">500</span> caracteres
+          </div>
+        </div>
+      </fieldset>
       
-      <div class="avaliacao-acoes">
-        <button onclick="exibirMinhaAvaliacao('${filmeId}')" class="btn-secundario-modal">Cancelar</button>
-        <button onclick="salvarAvaliacaoInline('${filmeId}')" class="btn-avaliar" style="margin-top:0;">Salvar</button>
+      <div class="avaliacao-acoes" style="margin-top: 20px;">
+        <button type="button" onclick="exibirMinhaAvaliacao('${filmeId}')" class="btn-secundario-modal">Cancelar</button>
+        <button type="submit" id="btn-salvar" class="btn-avaliar" style="margin-top:0;" aria-busy="false">Salvar avaliação</button>
       </div>
-    </div>
+    </form>
   `;
+
+  inicializarComponentesFormulario(filmeId);
 };
 
-window.selecionarNota = function(botao, valor) {
-  document.querySelectorAll('.btn-nota-seletor').forEach(b => b.classList.remove('ativo'));
-  botao.classList.add('ativo');
-  document.getElementById('nota-input-inline').value = valor;
-};
+function inicializarComponentesFormulario(filmeId) {
+  const notaInput = document.getElementById('nota-input');
+  const notaDisplay = document.getElementById('nota-display');
+  const comentarioInput = document.getElementById('comentario-input');
+  const charAtual = document.getElementById('char-atual');
+  const form = document.getElementById('form-avaliacao');
 
-window.salvarAvaliacaoInline = function(filmeId) {
-  const nota = document.getElementById('nota-input-inline').value;
-  const comentario = document.getElementById('comentario-inline').value;
-
-  if (!nota) {
-    if (typeof mostrarNotificacao === "function") mostrarNotificacao("Por favor, selecione uma nota!", "erro");
-    return;
-  }
-
-  let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-  avaliacoes[filmeId] = {
-    nota: nota,
-    comentario: comentario,
-    autor: localStorage.getItem("Loginok") || "Usuário",
-    data: new Date().toLocaleDateString('pt-BR')
+  const descricoes = {
+    1: 'Horrível', 2: 'Péssimo', 3: 'Ruim', 4: 'Fraco', 5: 'Mediano',
+    6: 'Bom', 7: 'Muito bom', 8: 'Excelente', 9: 'Excepcional', 10: 'Perfeito'
   };
 
-  localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-  if (typeof mostrarNotificacao === "function") mostrarNotificacao("Avaliação salva com sucesso!", "sucesso");
+  const sincronizarNota = (valor) => {
+    const nota = parseInt(valor);
+    const descricao = descricoes[nota];
+    
+    notaDisplay.querySelector('.nota-numero').textContent = nota;
+    notaDisplay.querySelector('.nota-descricao').textContent = descricao;
+    notaDisplay.querySelector('.nota-estrelas').textContent = '★'.repeat(nota) + '☆'.repeat(10 - nota);
+    
+    notaInput.setAttribute('aria-valuetext', `${nota} - ${descricao}`);
+  };
+
+  if (notaInput) {
+    sincronizarNota(notaInput.value);
+    notaInput.addEventListener('input', (e) => sincronizarNota(e.target.value));
+  }
+
+  if (comentarioInput) {
+    comentarioInput.addEventListener('input', (e) => {
+      const count = e.target.value.length;
+      charAtual.textContent = count;
+      
+      if (count > 450) {
+        charAtual.parentElement.classList.add('warning');
+      } else {
+        charAtual.parentElement.classList.remove('warning');
+      }
+    });
+  }
+
+  if (form) {
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      verificarAntesDeSalvar(filmeId);
+    };
+  }
+}
+
+function anunciarParaLeitorDeTela(mensagem) {
+  const announcer = document.getElementById('sr-announcer');
+  if (announcer) {
+    announcer.textContent = mensagem;
+  }
+}
+
+function verificarAntesDeSalvar(filmeId) {
+  const avaliacoes = JSON.parse(localStorage.getItem('avaliacoes')) || {};
+  const avaliacaoExistente = avaliacoes[filmeId];
   
-  exibirMinhaAvaliacao(filmeId);
-};
+  if (avaliacaoExistente) {
+    document.getElementById('nota-anterior').textContent = avaliacaoExistente.nota;
+    document.getElementById('data-anterior').textContent = avaliacaoExistente.data;
+    
+    const modal = document.getElementById('modal-sobrescrever');
+    if (modal) {
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => modal.classList.add('ativo'));
+      
+      document.getElementById('btn-confirmar-sobrescrever').onclick = function() {
+        fecharModalSobrescrever();
+        executarSalvarAvaliacao(filmeId);
+      };
+      
+      document.getElementById('btn-cancelar-sobrescrever').onclick = fecharModalSobrescrever;
+    }
+    return;
+  }
+  
+  executarSalvarAvaliacao(filmeId);
+}
+
+function fecharModalSobrescrever() {
+  const modal = document.getElementById('modal-sobrescrever');
+  if (modal) {
+    modal.classList.remove('ativo');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+  }
+}
+
+function executarSalvarAvaliacao(filmeId) {
+  const btn = document.getElementById('btn-salvar');
+  const nota = document.getElementById('nota-input').value;
+  const comentario = document.getElementById('comentario-input').value;
+  
+  if (btn) {
+    btn.setAttribute('aria-busy', 'true');
+    btn.disabled = true;
+  }
+  
+  try {
+    let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
+    avaliacoes[filmeId] = {
+      nota: nota,
+      comentario: comentario,
+      autor: localStorage.getItem("Loginok") || "Usuário",
+      data: new Date().toLocaleDateString('pt-BR')
+    };
+
+    localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+    
+    anunciarParaLeitorDeTela(`Avaliação salva com sucesso! Nota ${nota} de 10.`);
+    if (typeof mostrarNotificacao === "function") {
+      mostrarNotificacao("Avaliação salva com sucesso!", "sucesso");
+    }
+    
+    exibirMinhaAvaliacao(filmeId);
+  } catch (err) {
+    anunciarParaLeitorDeTela('Erro ao salvar avaliação. Tente novamente.');
+    if (typeof mostrarNotificacao === "function") {
+      mostrarNotificacao("Erro ao salvar avaliação", "erro");
+    }
+  } finally {
+    if (btn) {
+      btn.setAttribute('aria-busy', 'false');
+      btn.disabled = false;
+    }
+  }
+}
 
 let idDelecaoPendente = null;
 
@@ -116,8 +253,9 @@ function inicializarModalConfirmacao() {
   };
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('ativo')) {
+    if (e.key === 'Escape') {
       fecharModalConfirmacao();
+      fecharModalSobrescrever();
     }
   });
 
@@ -154,14 +292,14 @@ function executarDelecaoAvaliacao() {
   delete avaliacoes[idDelecaoPendente];
   localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
   
+  anunciarParaLeitorDeTela("Avaliação excluída com sucesso.");
   if (typeof mostrarNotificacao === "function") {
     mostrarNotificacao("Avaliação excluída!", "sucesso");
   }
 
   fecharModalConfirmacao();
-  exibirMinhaAvaliacao(idDelecaoPendente); // Atualiza instantaneamente sem recarregar!
+  exibirMinhaAvaliacao(idDelecaoPendente);
 }
-
 
 window.voltar = function() { window.history.back(); };
 window.irParaPerfil = function() { window.location.href = "perfil.html"; };

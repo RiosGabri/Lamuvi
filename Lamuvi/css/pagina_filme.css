@@ -293,3 +293,85 @@
   outline: none;
   border-color: var(--cor-destaque, #e86d1e);
 }
+
+.nota-input-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+
+#nota-input {
+  flex: 1;
+  height: 8px;
+  background: linear-gradient(to right, #e50914, #f59e0b, #10b981);
+  border-radius: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  margin-top: 14px;
+}
+
+#nota-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cor-destaque, #64ffda);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#nota-input::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cor-destaque, #64ffda);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nota-output {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 130px;
+  text-align: left;
+  background: #1a1a1a;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+.nota-numero {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--cor-destaque, #64ffda);
+}
+
+.nota-descricao {
+  font-size: 13px;
+  color: #ccc;
+  font-weight: 600;
+}
+
+.nota-estrelas {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: gold;
+}
+
+.char-counter {
+  font-size: 12px;
+  color: #888;
+  margin-top: 6px;
+  text-align: right;
+  transition: color 0.2s ease;
+}
+
+.char-counter.warning {
+  color: #f59e0b;
+  font-weight: bold;
+}

@@ -47,6 +47,19 @@
     </div>
   </div>
 
+  <div id="modal-sobrescrever" class="modal-overlay" style="display: none;" role="alertdialog" aria-modal="true" aria-labelledby="modal-sobrescrever-titulo">
+    <div class="modal-container">
+      <h3 id="modal-sobrescrever-titulo" class="modal-titulo">Substituir avaliação anterior?</h3>
+      <p class="modal-texto">Você já avaliou este filme com nota <strong id="nota-anterior" style="color: gold;"></strong>/10 em <strong id="data-anterior"></strong>. Deseja aplicar as novas alterações?</p>
+      <div class="modal-botoes">
+        <button id="btn-cancelar-sobrescrever" class="btn-secundario-modal">Manter original</button>
+        <button id="btn-confirmar-sobrescrever" class="btn-perigo-modal" style="background-color: var(--cor-destaque, #64ffda); color: #000;">Substituir</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-announcer" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;" aria-live="polite" aria-atomic="true"></div>
+
   <script src="js/notificacao.js"></script>
   <script src="js/lista.js"></script>
   <script src="js/pagina_filme.js"></script>
