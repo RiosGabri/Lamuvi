@@ -10,12 +10,13 @@ window.onload = function() {
   configurarModoPerfil();
   configurarMidiasPerfil(usuarioLogado);
   exibirMinhasAvaliacoes();
-  setupAbasTeclado(); 
+  setupAbasTeclado();
 
   const filtro = document.getElementById("filtro-avaliacoes");
   if (filtro) {
     filtro.addEventListener("change", function() {
       exibirMinhasAvaliacoes();
+  setupAbasTeclado();
     });
   }
 };
@@ -145,17 +146,15 @@ function configurarMidiasPerfil(usuario) {
   const bannerBtn = document.getElementById("btn-editar-banner");
   const restaurarBtn = document.getElementById("restaurar-midia");
 
-  if (avatarBtn && avatarInput) {
-    avatarBtn.addEventListener("click", function() {
-      avatarInput.click();
-    });
-  }
+  
 
   if (bannerBtn && bannerInput) {
     bannerBtn.addEventListener("click", function() {
       bannerInput.click();
     });
   }
+
+  
 
   if (bannerInput) {
     bannerInput.addEventListener("change", function() {
@@ -439,14 +438,12 @@ function setupAbasTeclado() {
         t.setAttribute('aria-selected', 'false');
         t.classList.remove('perfil-tab-link-ativo');
       });
-      
       tab.setAttribute('aria-selected', 'true');
       tab.classList.add('perfil-tab-link-ativo');
       
       const panelId = tab.getAttribute('aria-controls');
       const vGeral = document.getElementById('visao-geral');
       const avaliacoes = document.getElementById('avaliacoes');
-      
       if(vGeral) vGeral.style.display = panelId === 'visao-geral' ? 'block' : 'none';
       if(avaliacoes) avaliacoes.style.display = panelId === 'avaliacoes' ? 'block' : 'none';
     });
@@ -477,38 +474,47 @@ window.executarRestaurarMidia = function() {
 };
 
 let arquivoPendente = null;
-
-setTimeout(() => {
-    document.getElementById('avatar-input')?.addEventListener('change', (e) => {
-      const arquivo = e.target.files?.[0];
-      if (!arquivo) return;
-      
-      arquivoPendente = arquivo;
-      
-      const reader = new FileReader();
-      reader.onload = (evt) => {
-        const preview = document.getElementById('avatar-preview');
-        const previewImg = document.getElementById('preview-img');
-        if(previewImg) previewImg.src = evt.target.result;
-        if(preview) preview.style.display = 'flex';
-        
-        announceToScreenReader('Imagem carregada. Clique em Confirmar para salvar.');
-      };
-      reader.readAsDataURL(arquivo);
-    });
-}, 500);
+document.addEventListener('DOMContentLoaded', () => {
+    const inputAvatar = document.getElementById('avatar-input');
+    
+    if (inputAvatar) {
+        inputAvatar.addEventListener('change', (e) => {
+            const arquivo = e.target.files?.[0];
+            if (!arquivo) return;
+            
+            arquivoPendente = arquivo;
+            
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                const preview = document.getElementById('avatar-preview');
+                const previewImg = document.getElementById('preview-img');
+                
+                if (previewImg) previewImg.src = evt.target.result;
+                if (preview) preview.style.display = 'flex'; 
+                
+                announceToScreenReader('Imagem carregada. Clique em Confirmar para guardar.');
+            };
+            reader.readAsDataURL(arquivo);
+        });
+    }
+});
 
 window.confirmarUploadAvatar = function() {
     const usuario = localStorage.getItem('Loginok');
     const inputSimulado = { files: [arquivoPendente] };
-    if(typeof processarArquivoMidia === 'function') processarArquivoMidia(inputSimulado, 'avatar', usuario);
+    
+    if (typeof processarArquivoMidia === 'function') {
+        processarArquivoMidia(inputSimulado, 'avatar', usuario);
+    }
     cancelarUploadAvatar();
 };
 
 window.cancelarUploadAvatar = function() {
     const preview = document.getElementById('avatar-preview');
-    if(preview) preview.style.display = 'none';
+    if (preview) preview.style.display = 'none';
+    
     const input = document.getElementById('avatar-input');
-    if(input) input.value = "";
+    if (input) input.value = "";
+    
     arquivoPendente = null;
 };

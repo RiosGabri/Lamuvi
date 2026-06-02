@@ -989,3 +989,26 @@
   display: flex;
   gap: 8px;
 }
+
+/* Correção para a Pré-visualização do Avatar */
+#avatar-preview.upload-preview {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  background: var(--bg-secundario, #222222);
+  padding: 24px;
+  border-radius: 12px;
+  z-index: 99999 !important;
+  box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.7), 0 20px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--cor-destaque, #64ffda);
+  min-width: 250px;
+}
+
+#avatar-preview img {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50% !important; /* Deixa a pré-visualização redonda como a foto real */
+  margin-bottom: 10px;
+}
