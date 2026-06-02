@@ -1,8 +1,12 @@
-window.entrar = function() {
+window.entrar = function(event) {
+  // Impede o recarregamento automático da página
+  if (event) event.preventDefault();
+
   let usuario_nome = document.getElementById("usuario_nome").value;
   let senha_conta = document.getElementById("senha_conta").value;
+  let btnLogin = document.getElementById("btnLogin");
 
-  // Busca o usuário no localStorage
+  // Lógica original: Busca o usuário no localStorage
   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
   let usuario = usuarios[usuario_nome];
 
@@ -11,7 +15,13 @@ window.entrar = function() {
     return;
   }
 
-  // Envia a senha e o hash para a API verificar
+  // Feedback visual (Heurística de Nielsen)
+  if (btnLogin) {
+    btnLogin.disabled = true;
+    btnLogin.textContent = "Entrando...";
+  }
+
+  // Lógica original: Envia a senha e o hash para a API
   fetch('/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -34,18 +44,12 @@ window.entrar = function() {
     })
     .catch((err) => {
       mostrarNotificacao(err.message, 'erro');
+    })
+    .finally(() => {
+      // Restaura o botão ao fim do processo
+      if (btnLogin) {
+        btnLogin.disabled = false;
+        btnLogin.textContent = "Entrar";
+      }
     });
 };
-
-//window.entrar = function () {
-//    console.log("clicou no botão"); 
-
-//    let usuario_nome = document.getElementById("usuario_nome").value;
-//    let senha_conta = document.getElementById("senha_conta").value;
-
-//    localStorage.setItem("Loginok", usuario_nome);
-
-//    console.log("vai redirecionar"); 
-
-//    window.location.href = "filmes.html";
-//};

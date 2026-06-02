@@ -15,46 +15,22 @@
         <div class="cadastro">
             <h1>Cadastro</h1>
 
-            <form id="cadastroForm">
+            <form id="cadastroForm" onsubmit="cadastrar(event)">
                 <label for="nome">Nome</label>
-                <input
-                    type="text"
-                    placeholder="Digite seu nome"
-                    id="nome"
-                    required
-                />
+                <input type="text" placeholder="Digite seu nome" id="nome" required />
 
                 <label for="senha">Senha</label>
-                <input
-                    type="password"
-                    placeholder="Digite sua senha"
-                    id="senha"
-                    required
-                />
+                <input type="password" placeholder="Digite sua senha" id="senha" required />
 
                 <label for="senhaConfirma">Confirmar senha</label>
-                <input
-                    type="password"
-                    placeholder="Repita a senha"
-                    id="senhaConfirma"
-                    required
-                />
+                <input type="password" placeholder="Repita a senha" id="senhaConfirma" required />
 
                 <label class="cadastroCheckbox">
                     <input type="checkbox" id="termos" required />
-                    <p>
-                        Eu concordo com os
-                        <a href="termos.html"> Termos de Serviço</a>
-                    </p>
+                    <p>Eu concordo com os <a href="termos.html"> Termos de Serviço</a></p>
                 </label>
 
-                <button
-                    type="button"
-                    class="botaoCadastro"
-                    onclick="cadastrar()"
-                >
-                    Cadastrar
-                </button>
+                <button type="submit" class="botaoCadastro">Cadastrar</button>
             </form>
         </div>
 
