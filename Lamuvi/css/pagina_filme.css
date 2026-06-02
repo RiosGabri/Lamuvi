@@ -1,9 +1,12 @@
-html, body {
-  min-height: 100vh !important; 
+html {
+  background-color: var(--bg-principal, #111111) !important;
+}
+
+body {
+  min-height: 100vh !important;
   height: auto !important;
-  background-color: var(--bg-principal, #111111);
-  background-attachment: fixed;
-  background-size: cover;
+  background-color: var(--bg-principal, #111111) !important;
+  color: var(--texto-claro);
   margin: 0;
   padding: 0;
 }
