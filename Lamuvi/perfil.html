@@ -116,7 +116,8 @@
                         type="button"
                         class="btn-media btn-media-secundario"
                         id="restaurar-midia"
-                        aria-label="Restaurar avatar e banner padrão"
+                        aria-label="Restaurar avatar e banner para o padrão"
+                        onclick="confirmarRestaurarMidia()"
                     >
                         Restaurar padrão
                     </button>
@@ -201,13 +202,19 @@
                 </section>
             </div>
         </main>
+        
+        <div id="modal-restaurar" class="modal" role="alertdialog" aria-labelledby="modal-titulo-restaurar" aria-hidden="true">
+          <div class="modal-backdrop" onclick="cancelarRestaurarMidia()"></div>
+          <div class="modal-conteudo">
+            <h3 id="modal-titulo-restaurar">Restaurar mídia padrão?</h3>
+            <p>Seu avatar e banner customizados serão perdidos permanentemente. Esta ação não pode ser desfeita.</p>
+            <div class="modal-botoes">
+              <button onclick="executarRestaurarMidia()" class="btn-perigo">Restaurar padrão</button>
+              <button onclick="cancelarRestaurarMidia()" class="btn-secundario">Cancelar</button>
+            </div>
+          </div>
+        </div>
 
-        <script src="js/notificacao.js"></script>
-        <script src="js/lista.js"></script>
-        <script src="js/perfil.js"></script>
-        <script src="js/sair.js"></script>
-    </body>
-</html>
         <script src="js/notificacao.js"></script>
         <script src="js/lista.js"></script>
         <script src="js/perfil.js"></script>

@@ -10,6 +10,7 @@ window.onload = function() {
   configurarModoPerfil();
   configurarMidiasPerfil(usuarioLogado);
   exibirMinhasAvaliacoes();
+  setupAbasTeclado(); 
 
   const filtro = document.getElementById("filtro-avaliacoes");
   if (filtro) {
@@ -153,12 +154,6 @@ function configurarMidiasPerfil(usuario) {
   if (bannerBtn && bannerInput) {
     bannerBtn.addEventListener("click", function() {
       bannerInput.click();
-    });
-  }
-
-  if (avatarInput) {
-    avatarInput.addEventListener("change", function() {
-      processarArquivoMidia(this, "avatar", usuario);
     });
   }
 
@@ -316,7 +311,7 @@ function exibirMinhasAvaliacoes() {
       const idFilmeSeguro = escapeAtributo(avaliacao.filmeId);
 
       html += `
-        <article class="avaliacao-card" tabindex="0">
+        <article class="avaliacao-card" tabindex="0" role="listitem">
           <div class="avaliacao-topo">
             <div class="avaliacao-poster" aria-hidden="true">
               <img src="${filmeDados.imagem}" alt="">
@@ -367,25 +362,32 @@ function exibirMinhasAvaliacoes() {
 }
 
 window.removerAvaliacao = function(id) {
-  confirmarAcao("Deseja realmente apagar sua avaliação?", function(confirmado) {
+  const executarRemocao = (confirmado) => {
     if (confirmado) {
-      let avaliacoes = {};
       try {
-        avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
-      } catch (erro) {
-        avaliacoes = {};
+        let avaliacoes = JSON.parse(localStorage.getItem('avaliacoes')) || {};
+        const filme = (typeof Lista_filmes !== 'undefined') ? Lista_filmes.find(f => f.id == id) : null;
+        
+        delete avaliacoes[id];
+        localStorage.setItem('avaliacoes', JSON.stringify(avaliacoes));
+        
+        const msg = `Avaliação de ${filme?.nome || 'filme'} removida com sucesso.`;
+        announceToScreenReader(msg);
+        notificarPerfil(msg, 'sucesso');
+        
+        exibirMinhasAvaliacoes();
+      } catch (err) {
+        announceToScreenReader('Erro ao remover avaliação.');
+        notificarPerfil('Erro ao remover avaliação', 'erro');
       }
-      delete avaliacoes[id];
-      try {
-        localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-      } catch (erro) {
-        notificarPerfil("Não foi possível atualizar as avaliações.", "erro");
-        return;
-      }
-      notificarPerfil("Avaliação excluída!", "sucesso");
-      exibirMinhasAvaliacoes();
     }
-  });
+  };
+
+  if (typeof confirmarAcao === 'function') {
+    confirmarAcao('Deseja realmente apagar sua avaliação?', executarRemocao);
+  } else {
+    executarRemocao(confirm('Deseja realmente apagar sua avaliação?'));
+  }
 };
 
 window.voltarPagina = function() {
@@ -394,4 +396,119 @@ window.voltarPagina = function() {
   } else {
     window.location.href = "filmes.html";
   }
+};
+
+function announceToScreenReader(mensagem) {
+    let ariaLive = document.getElementById('aria-live-announcer');
+    if (!ariaLive) {
+        ariaLive = document.createElement('div');
+        ariaLive.id = 'aria-live-announcer';
+        ariaLive.className = 'sr-only';
+        ariaLive.setAttribute('aria-live', 'polite');
+        document.body.appendChild(ariaLive);
+    }
+    ariaLive.textContent = '';
+    setTimeout(() => { ariaLive.textContent = mensagem; }, 100);
+}
+
+function setupAbasTeclado() {
+  const tabs = document.querySelectorAll('[role="tab"]');
+  
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('keydown', (e) => {
+      let targetIndex = index;
+      
+      if (e.key === 'ArrowRight' || e.key === 'End') {
+        targetIndex = (index + 1) % tabs.length;
+        e.preventDefault();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Home') {
+        targetIndex = (index - 1 + tabs.length) % tabs.length;
+        e.preventDefault();
+      } else {
+        return;
+      }
+      
+      tabs[targetIndex].click();
+      tabs[targetIndex].focus();
+      
+      announceToScreenReader(`Aberto: ${tabs[targetIndex].textContent}`);
+    });
+    
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.setAttribute('aria-selected', 'false');
+        t.classList.remove('perfil-tab-link-ativo');
+      });
+      
+      tab.setAttribute('aria-selected', 'true');
+      tab.classList.add('perfil-tab-link-ativo');
+      
+      const panelId = tab.getAttribute('aria-controls');
+      const vGeral = document.getElementById('visao-geral');
+      const avaliacoes = document.getElementById('avaliacoes');
+      
+      if(vGeral) vGeral.style.display = panelId === 'visao-geral' ? 'block' : 'none';
+      if(avaliacoes) avaliacoes.style.display = panelId === 'avaliacoes' ? 'block' : 'none';
+    });
+  });
+}
+
+window.confirmarRestaurarMidia = function() {
+  const modal = document.getElementById('modal-restaurar');
+  if(modal) modal.setAttribute('aria-hidden', 'false');
+  const primeiroBotao = modal?.querySelector('button');
+  if(primeiroBotao) primeiroBotao.focus();
+};
+
+window.cancelarRestaurarMidia = function() {
+  const modal = document.getElementById('modal-restaurar');
+  if(modal) modal.setAttribute('aria-hidden', 'true');
+  const btnRestaurar = document.getElementById('restaurar-midia');
+  if(btnRestaurar) btnRestaurar.focus();
+};
+
+window.executarRestaurarMidia = function() {
+  const usuario = localStorage.getItem('Loginok');
+  if(typeof restaurarMidiasPadrao === 'function') restaurarMidiasPadrao(usuario);
+  cancelarRestaurarMidia();
+  
+  announceToScreenReader('Avatar e banner restaurados para o padrão.');
+  notificarPerfil('Mídia restaurada com sucesso!', 'sucesso');
+};
+
+let arquivoPendente = null;
+
+setTimeout(() => {
+    document.getElementById('avatar-input')?.addEventListener('change', (e) => {
+      const arquivo = e.target.files?.[0];
+      if (!arquivo) return;
+      
+      arquivoPendente = arquivo;
+      
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        const preview = document.getElementById('avatar-preview');
+        const previewImg = document.getElementById('preview-img');
+        if(previewImg) previewImg.src = evt.target.result;
+        if(preview) preview.style.display = 'flex';
+        
+        announceToScreenReader('Imagem carregada. Clique em Confirmar para salvar.');
+      };
+      reader.readAsDataURL(arquivo);
+    });
+}, 500);
+
+window.confirmarUploadAvatar = function() {
+    const usuario = localStorage.getItem('Loginok');
+    const inputSimulado = { files: [arquivoPendente] };
+    if(typeof processarArquivoMidia === 'function') processarArquivoMidia(inputSimulado, 'avatar', usuario);
+    cancelarUploadAvatar();
+};
+
+window.cancelarUploadAvatar = function() {
+    const preview = document.getElementById('avatar-preview');
+    if(preview) preview.style.display = 'none';
+    const input = document.getElementById('avatar-input');
+    if(input) input.value = "";
+    arquivoPendente = null;
 };
