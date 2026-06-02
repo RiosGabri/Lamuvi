@@ -77,7 +77,9 @@ body > img.logo {
   color: var(--cor-erro);
   font-weight: bold;
   min-height: 20px;
-  margin-top: 15px;
+  margin-top: -5px; 
+  margin-bottom: 15px; 
+  text-align: center;
 }
 
 .login-box a {
@@ -90,13 +92,34 @@ body > img.logo {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .login-box {
-    padding: 30px 20px;
-    margin: 20px;
-  }
+.container.login {
+  text-align: center;
+  margin-top: 20px;
+}
 
-  .login-box img.logo {
-    width: 120px;
-  }
+.container.login p {
+  color: var(--texto-cinza);
+  font-size: 14px;
+}
+
+.container.login a {
+  color: var(--cor-destaque);
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.container.login a:hover {
+  text-decoration: underline;
+}
+
+.login-box form {
+  text-align: left;
+}
+
+.login-box label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--texto-cinza);
+  font-size: 14px;
+  font-weight: bold;
 }

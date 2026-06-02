@@ -13,19 +13,25 @@
 
 <body>
   <img src="imagens/logo.png" alt="Lamuvi Logo" class="logo">
+  
   <div class="login-box">
     <h1>Login</h1>
     
     <form onsubmit="entrar(event)">
-      <input type="text" id="usuario_nome" placeholder="Usuário" required>
-      <input type="password" id="senha_conta" placeholder="Senha" required>
+      <label for="usuario_nome">Usuário</label>
+      <input type="text" id="usuario_nome" placeholder="Digite seu usuário" required>
 
-      <p id="erro" role="alert" style="color: red; min-height: 20px;"></p>
+      <label for="senha_conta">Senha</label>
+      <input type="password" id="senha_conta" placeholder="Digite sua senha" required>
+
+      <p id="erro" role="alert"></p>
 
       <button type="submit" id="btnLogin">Entrar</button>
     </form>
+  </div>
 
-    <p>Não tem conta? <a href="Lamuvi/cadastro.html">Cadastre-se aqui</a></p>
+  <div class="container login">
+    <p>Não tem conta? <a href="Lamuvi/cadastro.html">Cadastre-se aqui!</a></p>
   </div>
 
   <script src="Lamuvi/js/login.js"></script>
