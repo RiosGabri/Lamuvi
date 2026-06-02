@@ -1,4 +1,3 @@
-// Lógica para a tela de cada filme
 window.onload = function() {
   let id = localStorage.getItem("Oescolhidoehvc");
   let filme = Lista_filmes.find(f => f.id == id);
@@ -29,7 +28,7 @@ function exibirMinhaAvaliacao(filmeId) {
                 <p><strong>Nota:</strong> <span style="color: gold; font-weight: bold; font-size: 18px;">★ ${minhaAvaliacao.nota}/10</span></p>
                 <p><strong>Comentário:</strong> "${minhaAvaliacao.comentario || 'Sem comentário.'}"</p>
                 <small class="avaliacao-data">Avaliado em: ${minhaAvaliacao.data}</small>
-                <div class="avaliacao-acoes">
+                <div class="avaliacao-acoes" style="border:none; padding:0; margin-top:15px; justify-content:flex-start;">
                     <button onclick="abrirFormularioAvaliacao('${filmeId}')" class="btn-editar">Editar</button>
                     <button onclick="solicitarDelecaoAvaliacao('${filmeId}')" class="btn-deletar">Deletar</button>
                 </div>
@@ -45,6 +44,15 @@ window.abrirFormularioAvaliacao = function(filmeId) {
   const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
   const minhaAvaliacao = avaliacoes[filmeId] || { nota: '5', comentario: '' };
 
+  let botoesNotaHtml = '';
+  for (let i = 1; i <= 10; i++) {
+    const isChecked = (minhaAvaliacao.nota == i) ? 'checked' : '';
+    botoesNotaHtml += `
+      <input type="radio" name="nota" id="nota-${i}" value="${i}" class="nota-radio sr-only" required aria-required="true" ${isChecked}>
+      <label for="nota-${i}" class="nota-label" aria-label="Nota ${i}">${i}</label>
+    `;
+  }
+
   container.innerHTML = `
     <form id="form-avaliacao" class="formulario-avaliacao-inline" aria-labelledby="titulo-avaliar">
       <h3 id="titulo-avaliar" class="avaliacao-titulo">${minhaAvaliacao.comentario || minhaAvaliacao.nota !== '5' ? 'Editar Sua Avaliação' : 'Adicionar Avaliação'}</h3>
@@ -52,23 +60,14 @@ window.abrirFormularioAvaliacao = function(filmeId) {
       <fieldset style="border: none; padding: 0; margin: 0;">
         <legend style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Sua avaliação do filme</legend>
         
-        <!-- Campo de Nota com Feedback Visual e Acessível -->
         <div class="form-group">
-          <label for="nota-input" class="label-form">
+          <label id="label-nota" class="label-form">
             Sua nota (1-10) <span class="campo-obrigatorio" aria-label="obrigatório" style="color: var(--cor-erro);">*</span>
           </label>
           <div class="nota-input-container">
-            <input
-              id="nota-input"
-              type="range"
-              min="1"
-              max="10"
-              value="${minhaAvaliacao.nota}"
-              required
-              aria-required="true"
-              aria-describedby="nota-help"
-              aria-valuetext="${minhaAvaliacao.nota}"
-            />
+            <div class="nota-botoes" role="radiogroup" aria-labelledby="label-nota">
+              ${botoesNotaHtml}
+            </div>
             <output id="nota-display" class="nota-output" aria-live="polite" aria-atomic="true">
               <div class="nota-numero">${minhaAvaliacao.nota}</div>
               <div class="nota-descricao">Mediano</div>
@@ -76,11 +75,10 @@ window.abrirFormularioAvaliacao = function(filmeId) {
             </output>
           </div>
           <small id="nota-help" style="color: #888; display: block; margin-bottom: 15px;">
-            Deslize ou clique para selecionar uma nota de 1 a 10
+            Clique em um número para avaliar o filme
           </small>
         </div>
         
-        <!-- Campo de Comentário com Contador Visual Real-time -->
         <div class="form-group">
           <label for="comentario-input" class="label-form">Comentário (opcional)</label>
           <textarea
@@ -97,9 +95,9 @@ window.abrirFormularioAvaliacao = function(filmeId) {
         </div>
       </fieldset>
       
-      <div class="avaliacao-acoes" style="margin-top: 20px;">
-        <button type="button" onclick="exibirMinhaAvaliacao('${filmeId}')" class="btn-secundario-modal">Cancelar</button>
-        <button type="submit" id="btn-salvar" class="btn-avaliar" style="margin-top:0;" aria-busy="false">Salvar avaliação</button>
+      <div class="avaliacao-acoes">
+        <button type="button" onclick="exibirMinhaAvaliacao('${filmeId}')" class="btn-secundario-form">Cancelar</button>
+        <button type="submit" id="btn-salvar" class="btn-avaliar" aria-busy="false">Salvar avaliação</button>
       </div>
     </form>
   `;
@@ -108,7 +106,7 @@ window.abrirFormularioAvaliacao = function(filmeId) {
 };
 
 function inicializarComponentesFormulario(filmeId) {
-  const notaInput = document.getElementById('nota-input');
+  const radiosNota = document.querySelectorAll('input[name="nota"]');
   const notaDisplay = document.getElementById('nota-display');
   const comentarioInput = document.getElementById('comentario-input');
   const charAtual = document.getElementById('char-atual');
@@ -126,13 +124,15 @@ function inicializarComponentesFormulario(filmeId) {
     notaDisplay.querySelector('.nota-numero').textContent = nota;
     notaDisplay.querySelector('.nota-descricao').textContent = descricao;
     notaDisplay.querySelector('.nota-estrelas').textContent = '★'.repeat(nota) + '☆'.repeat(10 - nota);
-    
-    notaInput.setAttribute('aria-valuetext', `${nota} - ${descricao}`);
   };
 
-  if (notaInput) {
-    sincronizarNota(notaInput.value);
-    notaInput.addEventListener('input', (e) => sincronizarNota(e.target.value));
+  if (radiosNota.length > 0) {
+    const checkedRadio = document.querySelector('input[name="nota"]:checked');
+    if (checkedRadio) sincronizarNota(checkedRadio.value);
+
+    radiosNota.forEach(radio => {
+      radio.addEventListener('change', (e) => sincronizarNota(e.target.value));
+    });
   }
 
   if (comentarioInput) {
@@ -199,7 +199,8 @@ function fecharModalSobrescrever() {
 
 function executarSalvarAvaliacao(filmeId) {
   const btn = document.getElementById('btn-salvar');
-  const nota = document.getElementById('nota-input').value;
+  const notaSelecionada = document.querySelector('input[name="nota"]:checked');
+  const nota = notaSelecionada ? notaSelecionada.value : '5';
   const comentario = document.getElementById('comentario-input').value;
   
   if (btn) {

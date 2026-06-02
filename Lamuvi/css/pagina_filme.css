@@ -13,7 +13,6 @@
   object-fit: cover;
   border-radius: 10px;
   max-width: 100%;
-  height: auto;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
@@ -124,25 +123,25 @@
   background: #b80710;
 }
 
+/* Fundo 100% Opaco para os Modais */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); 
-  display: flex;
+  background-color: var(--bg-principal, #111111);
+  display: none;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 10000;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal-overlay.ativo {
+  display: flex;
   opacity: 1;
-  visibility: visible;
 }
 
 .modal-container {
@@ -229,49 +228,47 @@
   margin-top: 20px;
 }
 
+/* Parte Inferior do Formulário Corrigida */
+.formulario-avaliacao-inline .avaliacao-acoes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #333;
+}
+
+.btn-secundario-form {
+  background: transparent;
+  color: var(--texto-cinza, #ccc);
+  border: 1px solid #444;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-secundario-form:hover {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #666;
+}
+
+.formulario-avaliacao-inline .btn-avaliar {
+  margin-top: 0 !important;
+  padding: 10px 24px;
+  font-size: 14px;
+}
+
 .label-form {
   display: block;
   color: #ccc;
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 14px;
-}
-
-.seletor-nota-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.btn-nota-seletor {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #444;
-  background: transparent;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-nota-seletor:hover {
-  border-color: var(--cor-destaque, #e86d1e);
-  background: rgba(232, 109, 30, 0.1);
-}
-
-.btn-nota-seletor.ativo {
-  background: var(--cor-destaque, #e86d1e);
-  border-color: var(--cor-destaque, #e86d1e);
-  color: #000;
-  box-shadow: 0 0 10px var(--cor-destaque, #e86d1e);
-}
-
-.btn-nota-seletor:focus-visible {
-  outline: 3px solid #fff;
-  outline-offset: 2px;
 }
 
 .textarea-form {
@@ -285,7 +282,6 @@
   font-size: 14px;
   resize: vertical;
   min-height: 80px;
-  margin-bottom: 20px;
   box-sizing: border-box;
 }
 
@@ -294,55 +290,80 @@
   border-color: var(--cor-destaque, #e86d1e);
 }
 
+/* Novo Estilo de Botões Numéricos (Radio Acessível) */
 .nota-input-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  align-items: flex-start;
+  align-items: center;
   margin: 12px 0;
 }
 
-#nota-input {
-  flex: 1;
-  height: 8px;
-  background: linear-gradient(to right, #e50914, #f59e0b, #10b981);
-  border-radius: 4px;
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  margin-top: 14px;
+.nota-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-#nota-input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--cor-destaque, #64ffda);
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+/* Classe para esconder inputs visualmente sem perder acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
-#nota-input::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--cor-destaque, #64ffda);
+.nota-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #ccc;
+  font-weight: bold;
   cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.nota-label:hover {
+  background-color: #333;
+  border-color: #666;
+}
+
+/* Aparência quando selecionado */
+.nota-radio:checked + .nota-label {
+  background-color: var(--cor-destaque, #64ffda);
+  color: #000;
+  border-color: var(--cor-destaque, #64ffda);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+/* Aparência de foco para navegação por teclado */
+.nota-radio:focus-visible + .nota-label {
+  outline: 3px solid var(--cor-destaque, #e86d1e);
+  outline-offset: 2px;
 }
 
 .nota-output {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 130px;
+  min-width: 110px;
   text-align: left;
   background: #1a1a1a;
   padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid #333;
+  margin-left: auto;
 }
 
 .nota-numero {
