@@ -722,6 +722,48 @@ html[data-a11y-spacing="comfortable"] .a11y-choice__items {
   gap: 12px;
 }
 
+html[data-a11y-motion="reduce"],
+html[data-a11y-motion="reduce"] *,
+html[data-a11y-motion="reduce"] *::before,
+html[data-a11y-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0.01ms !important;
+  transition-delay: 0ms !important;
+}
+
+html[data-a11y-motion="reduce"] .card-filme,
+html[data-a11y-motion="reduce"] .card-filme:hover,
+html[data-a11y-motion="reduce"] .card-filme:focus-within,
+html[data-a11y-motion="reduce"] .card-filme:focus-visible,
+html[data-a11y-motion="reduce"] .btn-avaliar:hover,
+html[data-a11y-motion="reduce"] .btn-media:hover,
+html[data-a11y-motion="reduce"] .btn-media:focus-visible,
+html[data-a11y-motion="reduce"] .avaliacao-card:hover,
+html[data-a11y-motion="reduce"] .avaliacao-card:focus-within,
+html[data-a11y-motion="reduce"] .btn-excluir:hover,
+html[data-a11y-motion="reduce"] .btn-catalogo:hover,
+html[data-a11y-motion="reduce"] .btn-catalogo:focus-visible,
+html[data-a11y-motion="reduce"] .nota-radio:checked + .nota-label {
+  transform: none !important;
+}
+
+html[data-a11y-motion="reduce"] .sinopse-preview,
+html[data-a11y-motion="reduce"] .modal-container,
+html[data-a11y-motion="reduce"] .modal-confirmacao .modal-box,
+html[data-a11y-motion="reduce"] .a11y-panel,
+html[data-a11y-motion="reduce"] .a11y-panel-backdrop,
+html[data-a11y-motion="reduce"] .notificacao-custom {
+  transition: none !important;
+}
+
+html[data-a11y-motion="reduce"] .seta-carrossel:hover,
+html[data-a11y-motion="reduce"] .seta-carrossel:focus-visible {
+  --glyph-scale: 1 !important;
+  transform: translateY(-50%) !important;
+}
+
 @media (max-width: 768px) {
   .a11y-toggle {
     width: 100%;

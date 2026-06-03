@@ -6,6 +6,7 @@
     contrast: "default",
     text: "normal",
     spacing: "default",
+    motion: "system",
   };
 
   const OPTIONS = [
@@ -35,6 +36,14 @@
       description: "Aumenta respiro, altura de linha e áreas de toque para leitura com menos esforço.",
       onValue: "comfortable",
       offValue: "default",
+    },
+    {
+      type: "toggle",
+      key: "motion",
+      label: "Reduzir movimento",
+      description: "Remove animações, transições, zooms e rolagens suaves da interface.",
+      onValue: "reduce",
+      offValue: "system",
     },
   ];
 
@@ -72,6 +81,7 @@
     setDataAttribute("a11yContrast", nextPrefs.contrast, DEFAULT_PREFS.contrast);
     setDataAttribute("a11yText", nextPrefs.text, DEFAULT_PREFS.text);
     setDataAttribute("a11ySpacing", nextPrefs.spacing, DEFAULT_PREFS.spacing);
+    setDataAttribute("a11yMotion", nextPrefs.motion, DEFAULT_PREFS.motion);
   }
 
   function broadcastChange() {
@@ -96,6 +106,11 @@
     applyPrefs(prefs);
     updateControls();
     broadcastChange();
+  }
+
+  function prefersReducedMotion() {
+    if (getPrefs().motion === "reduce") return true;
+    return Boolean(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }
 
   function isEnabled(key, option) {
@@ -216,7 +231,7 @@
       panel.hidden = true;
       backdrop.hidden = true;
       trigger.focus();
-    }, 180);
+    }, prefersReducedMotion() ? 0 : 180);
   }
 
   function mountPanel() {
@@ -318,6 +333,7 @@
     getPrefs,
     setPref,
     resetPrefs,
+    prefersReducedMotion,
   };
 
   window.addEventListener("storage", (event) => {

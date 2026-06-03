@@ -16,6 +16,34 @@ window.onload = function() {
   }
 }
 
+function prefereMovimentoReduzido() {
+  return window.LamuviAcessibilidade?.prefersReducedMotion?.() === true;
+}
+
+function abrirOverlayModal(modal) {
+  if (!modal) return;
+  modal.style.display = 'flex';
+
+  if (prefereMovimentoReduzido()) {
+    modal.classList.add('ativo');
+    return;
+  }
+
+  requestAnimationFrame(() => modal.classList.add('ativo'));
+}
+
+function fecharOverlayModal(modal) {
+  if (!modal) return;
+  modal.classList.remove('ativo');
+
+  if (prefereMovimentoReduzido()) {
+    modal.style.display = 'none';
+    return;
+  }
+
+  setTimeout(() => { modal.style.display = 'none'; }, 300);
+}
+
 function exibirMinhaAvaliacao(filmeId) {
   const container = document.getElementById("minha-avaliacao-container");
   const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
@@ -173,8 +201,7 @@ function verificarAntesDeSalvar(filmeId) {
     
     const modal = document.getElementById('modal-sobrescrever');
     if (modal) {
-      modal.style.display = 'flex';
-      requestAnimationFrame(() => modal.classList.add('ativo'));
+      abrirOverlayModal(modal);
       
       document.getElementById('btn-confirmar-sobrescrever').onclick = function() {
         fecharModalSobrescrever();
@@ -191,10 +218,7 @@ function verificarAntesDeSalvar(filmeId) {
 
 function fecharModalSobrescrever() {
   const modal = document.getElementById('modal-sobrescrever');
-  if (modal) {
-    modal.classList.remove('ativo');
-    setTimeout(() => { modal.style.display = 'none'; }, 300);
-  }
+  fecharOverlayModal(modal);
 }
 
 function executarSalvarAvaliacao(filmeId) {
@@ -267,22 +291,14 @@ window.solicitarDelecaoAvaliacao = function(id) {
   idDelecaoPendente = id;
   const modal = document.getElementById("modal-confirmacao");
   if (modal) {
-    modal.style.display = "flex";
-    requestAnimationFrame(() => {
-      modal.classList.add("ativo"); 
-    });
+    abrirOverlayModal(modal);
     document.getElementById("btn-cancelar-modal").focus();
   }
 };
 
 function fecharModalConfirmacao() {
   const modal = document.getElementById("modal-confirmacao");
-  if (modal) {
-    modal.classList.remove("ativo");
-    setTimeout(() => {
-      modal.style.display = "none";
-    }, 300);
-  }
+  fecharOverlayModal(modal);
   idDelecaoPendente = null;
 }
 

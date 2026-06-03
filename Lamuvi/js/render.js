@@ -2,6 +2,9 @@ function renderFilmes(lista) {
   const container = document.getElementById("lista-filmes");
   if (!container) return;
 
+  const obterComportamentoRolagem = () =>
+    window.LamuviAcessibilidade?.prefersReducedMotion?.() ? "auto" : "smooth";
+
   const usuarioLogado = localStorage.getItem("Loginok");
   const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || {};
 
@@ -122,11 +125,11 @@ function renderFilmes(lista) {
     wrapper.appendChild(botaoDireita);
 
     botaoEsquerda.addEventListener("click", () => {
-      fileira.scrollBy({ left: -400, behavior: "smooth" });
+      fileira.scrollBy({ left: -400, behavior: obterComportamentoRolagem() });
     });
 
     botaoDireita.addEventListener("click", () => {
-      fileira.scrollBy({ left: 400, behavior: "smooth" });
+      fileira.scrollBy({ left: 400, behavior: obterComportamentoRolagem() });
     });
 
     // Escuta global de teclado na seção quando o mouse está sobre ela ou focada
@@ -134,10 +137,10 @@ function renderFilmes(lista) {
       const key = e.key.toLowerCase();
       if (e.key === "ArrowRight" || key === "d") {
         e.preventDefault();
-        fileira.scrollBy({ left: 400, behavior: "smooth" });
+        fileira.scrollBy({ left: 400, behavior: obterComportamentoRolagem() });
       } else if (e.key === "ArrowLeft" || key === "a") {
         e.preventDefault();
-        fileira.scrollBy({ left: -400, behavior: "smooth" });
+        fileira.scrollBy({ left: -400, behavior: obterComportamentoRolagem() });
       }
     };
 
@@ -240,7 +243,7 @@ function renderFilmes(lista) {
         dot.setAttribute("aria-current", i === paginaAtual ? "page" : "false");
         
         dot.onclick = () => {
-          fileira.scrollTo({ left: i * fileira.clientWidth, behavior: "smooth" });
+          fileira.scrollTo({ left: i * fileira.clientWidth, behavior: obterComportamentoRolagem() });
         };
         indicadores.appendChild(dot);
       }

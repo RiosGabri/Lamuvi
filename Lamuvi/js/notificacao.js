@@ -1,4 +1,5 @@
 window.mostrarNotificacao = function(mensagem, tipo = 'info') {
+  const reduzirMovimento = window.LamuviAcessibilidade?.prefersReducedMotion?.();
 
   const notifAnterior = document.querySelector('.notificacao-custom');
   if (notifAnterior) {
@@ -21,14 +22,23 @@ window.mostrarNotificacao = function(mensagem, tipo = 'info') {
 
   document.body.appendChild(notif);
 
-  setTimeout(() => notif.classList.add('mostrar'), 10);
+  if (reduzirMovimento) {
+    notif.classList.add('mostrar');
+  } else {
+    setTimeout(() => notif.classList.add('mostrar'), 10);
+  }
 
   setTimeout(() => {
     notif.classList.remove('mostrar');
-    setTimeout(() => notif.remove(), 300);
-  }, 2000);
+    if (reduzirMovimento) {
+      notif.remove();
+    } else {
+      setTimeout(() => notif.remove(), 300);
+    }
+  }, reduzirMovimento ? 3200 : 2000);
 };
 window.confirmarAcao = function(mensagem, callback) {
+  const reduzirMovimento = window.LamuviAcessibilidade?.prefersReducedMotion?.();
   const modalAnterior = document.querySelector('.modal-confirmacao');
   if (modalAnterior) {
     modalAnterior.remove();
@@ -49,7 +59,11 @@ window.confirmarAcao = function(mensagem, callback) {
 
   document.body.appendChild(modal);
 
-  setTimeout(() => modal.classList.add('mostrar'), 10);
+  if (reduzirMovimento) {
+    modal.classList.add('mostrar');
+  } else {
+    setTimeout(() => modal.classList.add('mostrar'), 10);
+  }
 
   modal.querySelector('.btn-confirmar').onclick = () => {
     modal.remove();
