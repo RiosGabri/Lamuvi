@@ -130,6 +130,23 @@
                     >Visão geral</a
                 >
                 <a href="#avaliacoes" class="perfil-tab-link">Avaliações</a>
+
+                <div class="filtro-wrap">
+                    <label for="filtro-avaliacoes" class="filtro-label"
+                        >Ordenar por</label
+                    >
+                    <select
+                        id="filtro-avaliacoes"
+                        class="filtro-select"
+                        aria-label="Ordenar avaliações por critério"
+                    >
+                        <option value="todas">Todas (padrão)</option>
+                        <option value="recentes">Mais recentes primeiro</option>
+                        <option value="antigas">Mais antigas primeiro</option>
+                        <option value="maior-nota">Maior nota primeiro</option>
+                        <option value="menor-nota">Menor nota primeiro</option>
+                    </select>
+                </div>
             </nav>
 
             <div class="perfil-grid">
@@ -156,30 +173,6 @@
                 </aside>
 
                 <section id="avaliacoes" class="painel secao-avaliacoes">
-                    <div class="header-avaliacoes">
-                        <div>
-                            <h2>Minhas avaliações</h2>
-                            <p>Organize e revise seu histórico de filmes.</p>
-                        </div>
-
-                        <div class="filtro-wrap">
-                            <label for="filtro-avaliacoes" class="filtro-label"
-                                >Ordenar por</label
-                            >
-                            <select
-                                id="filtro-avaliacoes"
-                                class="filtro-select"
-                                aria-label="Ordenar avaliações por critério"
-                            >
-                                <option value="todas">Todas (padrão)</option>
-                                <option value="recentes">Mais recentes primeiro</option>
-                                <option value="antigas">Mais antigas primeiro</option>
-                                <option value="maior-nota">Maior nota primeiro</option>
-                                <option value="menor-nota">Menor nota primeiro</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div
                         id="minhas-avaliacoes"
                         class="lista-avaliacoes"
