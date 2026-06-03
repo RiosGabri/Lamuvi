@@ -261,14 +261,15 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background: rgba(232, 109, 30, 0.95);
-    color: white;
+    background: #ff6b3d;
+    color: #ffffff;
     font-size: 11px;
     font-weight: 700;
     padding: 5px 10px;
     border-radius: 999px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .carrossel-indicadores {

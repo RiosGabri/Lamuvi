@@ -236,8 +236,8 @@ function renderFilmes(lista) {
         const dot = document.createElement("button");
         dot.type = "button";
         dot.className = `indicador ${i === paginaAtual ? "ativo" : ""}`;
-        dot.setAttribute("aria-label", `Ir para a página ${i + 1} de filmes de ${g}`);
-        dot.setAttribute("aria-current", i === paginaAtual ? "true" : "false");
+        dot.setAttribute("aria-label", `Ir para página ${i + 1} de ${numPaginas} - Filmes de ${g}`);
+        dot.setAttribute("aria-current", i === paginaAtual ? "page" : "false");
         
         dot.onclick = () => {
           fileira.scrollTo({ left: i * fileira.clientWidth, behavior: "smooth" });
