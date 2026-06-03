@@ -5,6 +5,7 @@
     v: 1,
     contrast: "default",
     text: "normal",
+    spacing: "default",
   };
 
   const OPTIONS = [
@@ -26,6 +27,14 @@
         { label: "Grande", value: "large" },
         { label: "Muito grande", value: "xlarge" },
       ],
+    },
+    {
+      type: "toggle",
+      key: "spacing",
+      label: "Espaçamento confortável",
+      description: "Aumenta respiro, altura de linha e áreas de toque para leitura com menos esforço.",
+      onValue: "comfortable",
+      offValue: "default",
     },
   ];
 
@@ -62,6 +71,7 @@
   function applyPrefs(nextPrefs) {
     setDataAttribute("a11yContrast", nextPrefs.contrast, DEFAULT_PREFS.contrast);
     setDataAttribute("a11yText", nextPrefs.text, DEFAULT_PREFS.text);
+    setDataAttribute("a11ySpacing", nextPrefs.spacing, DEFAULT_PREFS.spacing);
   }
 
   function broadcastChange() {

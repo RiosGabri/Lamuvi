@@ -566,6 +566,162 @@ html[data-a11y-text="xlarge"] .termos-box {
   max-width: min(92vw, 560px);
 }
 
+html[data-a11y-spacing="comfortable"] p,
+html[data-a11y-spacing="comfortable"] li,
+html[data-a11y-spacing="comfortable"] .info p,
+html[data-a11y-spacing="comfortable"] .perfil-resumo,
+html[data-a11y-spacing="comfortable"] .painel-cabecalho p,
+html[data-a11y-spacing="comfortable"] .header-avaliacoes p,
+html[data-a11y-spacing="comfortable"] .avaliacao-comentario,
+html[data-a11y-spacing="comfortable"] .modal-texto,
+html[data-a11y-spacing="comfortable"] .modal-confirmacao .modal-mensagem,
+html[data-a11y-spacing="comfortable"] .sinopse-preview__texto,
+html[data-a11y-spacing="comfortable"] .termos-box p,
+html[data-a11y-spacing="comfortable"] .a11y-panel__description,
+html[data-a11y-spacing="comfortable"] .a11y-control__text small,
+html[data-a11y-spacing="comfortable"] .a11y-choice__legend small {
+  line-height: 1.85 !important;
+}
+
+html[data-a11y-spacing="comfortable"] .main-header {
+  padding: 20px 34px;
+}
+
+html[data-a11y-spacing="comfortable"] .main-header .nav-direita {
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+html[data-a11y-spacing="comfortable"] .main-header .busca-container,
+html[data-a11y-spacing="comfortable"] .a11y-toggle,
+html[data-a11y-spacing="comfortable"] .main-header .btn-sair,
+html[data-a11y-spacing="comfortable"] .main-header .nav-link {
+  min-height: 44px;
+}
+
+html[data-a11y-spacing="comfortable"] button,
+html[data-a11y-spacing="comfortable"] input,
+html[data-a11y-spacing="comfortable"] select,
+html[data-a11y-spacing="comfortable"] textarea,
+html[data-a11y-spacing="comfortable"] .btn-media,
+html[data-a11y-spacing="comfortable"] .btn-avaliar,
+html[data-a11y-spacing="comfortable"] .btn-catalogo,
+html[data-a11y-spacing="comfortable"] .btn-editar,
+html[data-a11y-spacing="comfortable"] .btn-deletar,
+html[data-a11y-spacing="comfortable"] .btn-secundario-form,
+html[data-a11y-spacing="comfortable"] .btn-secundario-modal,
+html[data-a11y-spacing="comfortable"] .btn-perigo-modal,
+html[data-a11y-spacing="comfortable"] .btn-excluir,
+html[data-a11y-spacing="comfortable"] .termos-box .voltar {
+  min-height: 44px;
+  padding-block: 0.8rem;
+}
+
+html[data-a11y-spacing="comfortable"] .login-box,
+html[data-a11y-spacing="comfortable"] .cadastro,
+html[data-a11y-spacing="comfortable"] .termos-box,
+html[data-a11y-spacing="comfortable"] .a11y-panel {
+  padding: clamp(28px, 5vw, 48px);
+}
+
+html[data-a11y-spacing="comfortable"] .login-box input[type="text"],
+html[data-a11y-spacing="comfortable"] .login-box input[type="password"],
+html[data-a11y-spacing="comfortable"] .cadastro input[type="text"],
+html[data-a11y-spacing="comfortable"] .cadastro input[type="password"] {
+  margin-bottom: 26px;
+}
+
+html[data-a11y-spacing="comfortable"] .container:not(.login) {
+  gap: 56px;
+  padding: 52px 40px;
+}
+
+html[data-a11y-spacing="comfortable"] .info p {
+  margin-bottom: 18px;
+}
+
+html[data-a11y-spacing="comfortable"] .container-filmes {
+  padding: 30px;
+}
+
+html[data-a11y-spacing="comfortable"] .titulo-catalogo {
+  padding: 30px;
+}
+
+html[data-a11y-spacing="comfortable"] .secao-genero {
+  margin-bottom: 48px;
+}
+
+html[data-a11y-spacing="comfortable"] .fileira-filmes {
+  gap: 28px;
+  padding: 18px 16px;
+}
+
+html[data-a11y-spacing="comfortable"] .sinopse-preview {
+  padding: 30px;
+  gap: 18px;
+}
+
+html[data-a11y-spacing="comfortable"] .perfil-hero,
+html[data-a11y-spacing="comfortable"] .perfil-lateral,
+html[data-a11y-spacing="comfortable"] .secao-avaliacoes,
+html[data-a11y-spacing="comfortable"] .formulario-avaliacao-inline,
+html[data-a11y-spacing="comfortable"] .card-minha-avaliacao,
+html[data-a11y-spacing="comfortable"] .modal-container,
+html[data-a11y-spacing="comfortable"] .modal-confirmacao .modal-box,
+html[data-a11y-spacing="comfortable"] .a11y-control,
+html[data-a11y-spacing="comfortable"] .a11y-choice {
+  padding: clamp(22px, 4vw, 34px);
+}
+
+html[data-a11y-spacing="comfortable"] .pagina-perfil .container-perfil,
+html[data-a11y-spacing="comfortable"] .perfil-grid,
+html[data-a11y-spacing="comfortable"] .hero-metrics,
+html[data-a11y-spacing="comfortable"] .estatisticas,
+html[data-a11y-spacing="comfortable"] .lista-avaliacoes,
+html[data-a11y-spacing="comfortable"] .nota-input-container,
+html[data-a11y-spacing="comfortable"] .avaliacao-acoes,
+html[data-a11y-spacing="comfortable"] .modal-botoes,
+html[data-a11y-spacing="comfortable"] .modal-confirmacao .modal-botoes,
+html[data-a11y-spacing="comfortable"] .a11y-panel__controls {
+  gap: 22px;
+}
+
+html[data-a11y-spacing="comfortable"] .avaliacao-topo {
+  gap: 22px;
+  padding: 22px 22px 18px;
+}
+
+html[data-a11y-spacing="comfortable"] .avaliacao-comentario-wrap {
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+html[data-a11y-spacing="comfortable"] .avaliacao-rodape {
+  padding: 16px 22px 22px;
+}
+
+html[data-a11y-spacing="comfortable"] .nota-botoes {
+  gap: 12px;
+}
+
+html[data-a11y-spacing="comfortable"] .nota-label {
+  width: 48px;
+  height: 48px;
+}
+
+html[data-a11y-spacing="comfortable"] .busca-item {
+  padding: 14px 16px;
+}
+
+html[data-a11y-spacing="comfortable"] .busca-rodape {
+  padding: 12px;
+}
+
+html[data-a11y-spacing="comfortable"] .a11y-choice__items {
+  gap: 12px;
+}
+
 @media (max-width: 768px) {
   .a11y-toggle {
     width: 100%;
@@ -582,5 +738,16 @@ html[data-a11y-text="xlarge"] .termos-box {
 
   .a11y-choice__items {
     grid-template-columns: 1fr;
+  }
+
+  html[data-a11y-spacing="comfortable"] .main-header,
+  html[data-a11y-spacing="comfortable"] .container:not(.login),
+  html[data-a11y-spacing="comfortable"] .container-filmes,
+  html[data-a11y-spacing="comfortable"] .titulo-catalogo {
+    padding-inline: 18px;
+  }
+
+  html[data-a11y-spacing="comfortable"] .container:not(.login) {
+    gap: 32px;
   }
 }
