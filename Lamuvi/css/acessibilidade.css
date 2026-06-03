@@ -137,6 +137,7 @@
 
 .a11y-choice {
   margin: 0;
+  min-width: 0;
 }
 
 .a11y-choice__legend,
@@ -146,8 +147,14 @@
 }
 
 .a11y-choice__legend {
+  box-sizing: border-box;
+  float: left;
   width: 100%;
+  max-width: 100%;
+  margin: 0 0 14px;
   padding: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .a11y-choice__legend strong,
@@ -164,10 +171,11 @@
 }
 
 .a11y-choice__items {
+  clear: both;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .a11y-choice__item {
