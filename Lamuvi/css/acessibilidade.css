@@ -764,6 +764,77 @@ html[data-a11y-motion="reduce"] .seta-carrossel:focus-visible {
   transform: translateY(-50%) !important;
 }
 
+html[data-a11y-distraction="reduced"] .sinopse-preview,
+html[data-a11y-distraction="reduced"] .perfil-hero-banner::before,
+html[data-a11y-distraction="reduced"] .perfil-hero-banner::after,
+html[data-a11y-distraction="reduced"] .busca-item-seta,
+html[data-a11y-distraction="reduced"] .busca-icone-hist,
+html[data-a11y-distraction="reduced"] .carrossel-indicadores {
+  display: none !important;
+}
+
+html[data-a11y-distraction="reduced"] .card-filme,
+html[data-a11y-distraction="reduced"] .card-filme:hover,
+html[data-a11y-distraction="reduced"] .card-filme:focus-within,
+html[data-a11y-distraction="reduced"] .card-filme:focus-visible,
+html[data-a11y-distraction="reduced"] .btn-media:hover,
+html[data-a11y-distraction="reduced"] .btn-media:focus-visible,
+html[data-a11y-distraction="reduced"] .avaliacao-card:hover,
+html[data-a11y-distraction="reduced"] .avaliacao-card:focus-within,
+html[data-a11y-distraction="reduced"] .btn-excluir:hover,
+html[data-a11y-distraction="reduced"] .btn-catalogo:hover,
+html[data-a11y-distraction="reduced"] .btn-catalogo:focus-visible {
+  transform: none !important;
+}
+
+html[data-a11y-distraction="reduced"] .main-header,
+html[data-a11y-distraction="reduced"] .login-box,
+html[data-a11y-distraction="reduced"] .cadastro,
+html[data-a11y-distraction="reduced"] .termos-box,
+html[data-a11y-distraction="reduced"] .perfil-hero,
+html[data-a11y-distraction="reduced"] .painel,
+html[data-a11y-distraction="reduced"] .card-minha-avaliacao,
+html[data-a11y-distraction="reduced"] .formulario-avaliacao-inline,
+html[data-a11y-distraction="reduced"] .avaliacao-card,
+html[data-a11y-distraction="reduced"] .avaliacao-poster img,
+html[data-a11y-distraction="reduced"] .avatar-usuario img,
+html[data-a11y-distraction="reduced"] .btn-media,
+html[data-a11y-distraction="reduced"] .notificacao-custom,
+html[data-a11y-distraction="reduced"] .modal-container,
+html[data-a11y-distraction="reduced"] .modal-confirmacao .modal-box,
+html[data-a11y-distraction="reduced"] #avatar-preview.upload-preview,
+html[data-a11y-distraction="reduced"] .a11y-panel {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+html[data-a11y-distraction="reduced"] .pagina-perfil {
+  background: linear-gradient(180deg, #0b1118 0%, #0f1620 100%) !important;
+}
+
+html[data-a11y-distraction="reduced"] .perfil-hero-banner {
+  background: linear-gradient(180deg, rgba(7, 11, 17, 0.32), rgba(7, 11, 17, 0.86)), #111a26 !important;
+}
+
+html[data-a11y-distraction="reduced"] .card-filme {
+  will-change: auto !important;
+}
+
+html[data-a11y-distraction="reduced"] .card-imagem-wrapper img,
+html[data-a11y-distraction="reduced"] #img,
+html[data-a11y-distraction="reduced"] .avaliacao-poster img,
+html[data-a11y-distraction="reduced"] .avatar-usuario img {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+html[data-a11y-distraction="reduced"] .busca-dropdown {
+  box-shadow: none !important;
+}
+
+html[data-a11y-distraction="reduced"] .fileira-filmes {
+  gap: 24px;
+}
+
 @media (max-width: 768px) {
   .a11y-toggle {
     width: 100%;

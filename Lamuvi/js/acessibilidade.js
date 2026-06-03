@@ -7,6 +7,7 @@
     text: "normal",
     spacing: "default",
     motion: "system",
+    distraction: "default",
   };
 
   const OPTIONS = [
@@ -45,6 +46,14 @@
       onValue: "reduce",
       offValue: "system",
     },
+    {
+      type: "toggle",
+      key: "distraction",
+      label: "Interface sem distrações",
+      description: "Oculta previews automáticas e simplifica sombras, brilhos e elementos decorativos.",
+      onValue: "reduced",
+      offValue: "default",
+    },
   ];
 
   let prefs = loadPrefs();
@@ -82,6 +91,7 @@
     setDataAttribute("a11yText", nextPrefs.text, DEFAULT_PREFS.text);
     setDataAttribute("a11ySpacing", nextPrefs.spacing, DEFAULT_PREFS.spacing);
     setDataAttribute("a11yMotion", nextPrefs.motion, DEFAULT_PREFS.motion);
+    setDataAttribute("a11yDistraction", nextPrefs.distraction, DEFAULT_PREFS.distraction);
   }
 
   function broadcastChange() {
@@ -111,6 +121,10 @@
   function prefersReducedMotion() {
     if (getPrefs().motion === "reduce") return true;
     return Boolean(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  function isDistractionReduced() {
+    return getPrefs().distraction === "reduced";
   }
 
   function isEnabled(key, option) {
@@ -334,6 +348,7 @@
     setPref,
     resetPrefs,
     prefersReducedMotion,
+    isDistractionReduced,
   };
 
   window.addEventListener("storage", (event) => {
