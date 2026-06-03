@@ -72,7 +72,7 @@
   opacity: 1;
 }
 
-.modal-overlay {
+.modal-confirmacao .modal-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -81,7 +81,7 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modal-box {
+.modal-confirmacao .modal-box {
   position: relative;
   background-color: var(--bg-secundario);
   padding: 30px;
@@ -98,7 +98,7 @@
   transform: scale(1);
 }
 
-.modal-mensagem {
+.modal-confirmacao .modal-mensagem {
   color: var(--texto-claro);
   font-size: 16px;
   margin-bottom: 25px;
@@ -107,13 +107,13 @@
   font-family: var(--fonte-padrao);
 }
 
-.modal-botoes {
+.modal-confirmacao .modal-botoes {
   display: flex;
   gap: 15px;
   justify-content: center;
 }
 
-.modal-botoes button {
+.modal-confirmacao .modal-botoes button {
   padding: 10px 25px;
   border: none;
   border-radius: 6px;
@@ -124,21 +124,21 @@
   font-family: var(--fonte-padrao);
 }
 
-.btn-cancelar {
+.modal-confirmacao .btn-cancelar {
   background-color: var(--borda-padrao);
   color: var(--texto-claro);
 }
 
-.btn-cancelar:hover {
+.modal-confirmacao .btn-cancelar:hover {
   filter: brightness(1.2);
 }
 
-.btn-confirmar {
+.modal-confirmacao .btn-confirmar {
   background-color: var(--bg-header);
   color: var(--texto-claro);
 }
 
-.btn-confirmar:hover {
+.modal-confirmacao .btn-confirmar:hover {
   background-color: var(--bg-header-hover);
 }
 
@@ -152,15 +152,15 @@
     font-size: 14px;
   }
 
-  .modal-box {
+  .modal-confirmacao .modal-box {
     padding: 25px 20px;
   }
 
-  .modal-botoes {
+  .modal-confirmacao .modal-botoes {
     flex-direction: column;
   }
 
-  .modal-botoes button {
+  .modal-confirmacao .modal-botoes button {
     width: 100%;
   }
 }
