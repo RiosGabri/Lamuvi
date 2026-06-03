@@ -20,8 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const buscarContainer = inputBusca.closest(".busca-container");
 
+  const liveRegion = document.createElement("div");
+  liveRegion.setAttribute("role", "status");
+  liveRegion.setAttribute("aria-live", "polite");
+  liveRegion.setAttribute("aria-atomic", "true");
+  liveRegion.className = "sr-only";
+  document.body.appendChild(liveRegion);
+
+
   const dropdown = document.createElement("div");
   dropdown.className = "busca-dropdown";
+  dropdown.id = "busca-dropdown";
   dropdown.setAttribute("role", "listbox");
   dropdown.setAttribute("aria-label", "Resultados e histórico de busca");
   buscarContainer.appendChild(dropdown);
@@ -105,6 +114,19 @@ document.addEventListener("DOMContentLoaded", function () {
     dropdown.appendChild(rodape);
 
     atualizarIndicesNavegacao();
+
+    const totalItens = dropdown.querySelectorAll(".busca-item").length;
+    const termo = inputBusca.value.trim();
+    if (termo.length >= 1) {
+      liveRegion.textContent = totalItens > 0
+        ? `${totalItens} resultado${totalItens !== 1 ? "s" : ""} encontrado${totalItens !== 1 ? "s" : ""}`
+        : "Nenhum resultado encontrado";
+    } else {
+      const qtdHist = obterHistorico().length;
+      liveRegion.textContent = qtdHist > 0
+        ? `${qtdHist} busca${qtdHist !== 1 ? "s" : ""} recente${qtdHist !== 1 ? "s" : ""}`
+        : "";
+    }
   }
 
   function criarSecao(titulo) {
@@ -211,6 +233,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   inputBusca.setAttribute("aria-autocomplete", "list");
   inputBusca.setAttribute("aria-expanded", "false");
+  inputBusca.setAttribute("aria-owns", "busca-dropdown");
+  inputBusca.setAttribute("aria-controls", "busca-dropdown");
   inputBusca.setAttribute("autocomplete", "off");
 
   inputBusca.addEventListener("input", () => {
