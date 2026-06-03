@@ -4,15 +4,28 @@
   const DEFAULT_PREFS = {
     v: 1,
     contrast: "default",
+    text: "normal",
   };
 
   const OPTIONS = [
     {
+      type: "toggle",
       key: "contrast",
       label: "Alto contraste",
       description: "Aumenta contraste, remove cinzas apagados e reforça bordas.",
       onValue: "high",
       offValue: "default",
+    },
+    {
+      type: "choice",
+      key: "text",
+      label: "Tamanho do texto",
+      description: "Aumenta textos de navegação, cards, sinopses, formulários e botões.",
+      choices: [
+        { label: "Normal", value: "normal" },
+        { label: "Grande", value: "large" },
+        { label: "Muito grande", value: "xlarge" },
+      ],
     },
   ];
 
@@ -48,6 +61,7 @@
 
   function applyPrefs(nextPrefs) {
     setDataAttribute("a11yContrast", nextPrefs.contrast, DEFAULT_PREFS.contrast);
+    setDataAttribute("a11yText", nextPrefs.text, DEFAULT_PREFS.text);
   }
 
   function broadcastChange() {
@@ -106,11 +120,64 @@
     return label;
   }
 
+  function createChoice(option) {
+    const fieldset = document.createElement("fieldset");
+    fieldset.className = "a11y-choice";
+
+    const legend = document.createElement("legend");
+    legend.className = "a11y-choice__legend";
+    legend.innerHTML = `<strong>${option.label}</strong><small>${option.description}</small>`;
+
+    const choices = document.createElement("div");
+    choices.className = "a11y-choice__items";
+
+    option.choices.forEach((choice) => {
+      const label = document.createElement("label");
+      label.className = "a11y-choice__item";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = `a11y-${option.key}`;
+      input.value = choice.value;
+      input.dataset.a11yKey = option.key;
+      input.checked = getPrefs()[option.key] === choice.value;
+      input.addEventListener("change", () => {
+        if (input.checked) setPref(option.key, choice.value);
+      });
+
+      const text = document.createElement("span");
+      text.textContent = choice.label;
+
+      label.appendChild(input);
+      label.appendChild(text);
+      choices.appendChild(label);
+    });
+
+    fieldset.appendChild(legend);
+    fieldset.appendChild(choices);
+
+    return fieldset;
+  }
+
+  function createControl(option) {
+    if (option.type === "choice") {
+      return createChoice(option);
+    }
+
+    return createToggle(option);
+  }
+
   function updateControls() {
     const controls = document.querySelectorAll("[data-a11y-key]");
     controls.forEach((control) => {
       const option = OPTIONS.find((item) => item.key === control.dataset.a11yKey);
       if (!option) return;
+
+      if (control.type === "radio") {
+        control.checked = getPrefs()[option.key] === control.value;
+        return;
+      }
+
       control.checked = isEnabled(option.key, option);
     });
   }
@@ -194,7 +261,7 @@
 
     const controls = document.createElement("div");
     controls.className = "a11y-panel__controls";
-    OPTIONS.forEach((option) => controls.appendChild(createToggle(option)));
+    OPTIONS.forEach((option) => controls.appendChild(createControl(option)));
 
     const footer = document.createElement("div");
     footer.className = "a11y-panel__footer";

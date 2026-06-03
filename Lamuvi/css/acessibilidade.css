@@ -118,33 +118,89 @@
   gap: 12px;
 }
 
+.a11y-choice,
 .a11y-control {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: center;
   padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
+}
+
+.a11y-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
   cursor: pointer;
 }
 
+.a11y-choice {
+  margin: 0;
+}
+
+.a11y-choice__legend,
 .a11y-control__text strong,
 .a11y-control__text small {
   display: block;
 }
 
+.a11y-choice__legend {
+  width: 100%;
+  padding: 0;
+}
+
+.a11y-choice__legend strong,
 .a11y-control__text strong {
   color: #ffffff;
   font-size: 1rem;
 }
 
+.a11y-choice__legend small,
 .a11y-control__text small {
   margin-top: 6px;
   color: #b8c8d9;
   line-height: 1.45;
+}
+
+.a11y-choice__items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.a11y-choice__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  color: #e7eef7;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.a11y-choice__item input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.a11y-choice__item:has(input:checked) {
+  border-color: var(--cor-destaque, #64ffda);
+  background: rgba(100, 255, 218, 0.18);
+  color: #ffffff;
+}
+
+.a11y-choice__item:has(input:focus-visible) {
+  outline: 3px solid var(--cor-destaque, #64ffda);
+  outline-offset: 3px;
 }
 
 .a11y-control__input {
@@ -390,6 +446,126 @@ html[data-a11y-contrast="high"] .notificacao-erro {
   border-left-color: #ffff00 !important;
 }
 
+html[data-a11y-text="large"] {
+  font-size: 112.5%;
+}
+
+html[data-a11y-text="xlarge"] {
+  font-size: 125%;
+}
+
+html[data-a11y-text="large"] body,
+html[data-a11y-text="large"] button,
+html[data-a11y-text="large"] input,
+html[data-a11y-text="large"] textarea,
+html[data-a11y-text="large"] select,
+html[data-a11y-text="large"] label,
+html[data-a11y-text="large"] .nav-link,
+html[data-a11y-text="large"] .busca-item-nome,
+html[data-a11y-text="large"] .busca-item-meta,
+html[data-a11y-text="large"] .sinopse-preview,
+html[data-a11y-text="large"] .sinopse-preview__texto,
+html[data-a11y-text="large"] .card-filme p,
+html[data-a11y-text="large"] .info p,
+html[data-a11y-text="large"] .perfil-resumo,
+html[data-a11y-text="large"] .avaliacao-comentario,
+html[data-a11y-text="large"] .termos-box p,
+html[data-a11y-text="large"] .notificacao-custom,
+html[data-a11y-text="xlarge"] body,
+html[data-a11y-text="xlarge"] button,
+html[data-a11y-text="xlarge"] input,
+html[data-a11y-text="xlarge"] textarea,
+html[data-a11y-text="xlarge"] select,
+html[data-a11y-text="xlarge"] label,
+html[data-a11y-text="xlarge"] .nav-link,
+html[data-a11y-text="xlarge"] .busca-item-nome,
+html[data-a11y-text="xlarge"] .busca-item-meta,
+html[data-a11y-text="xlarge"] .sinopse-preview,
+html[data-a11y-text="xlarge"] .sinopse-preview__texto,
+html[data-a11y-text="xlarge"] .card-filme p,
+html[data-a11y-text="xlarge"] .info p,
+html[data-a11y-text="xlarge"] .perfil-resumo,
+html[data-a11y-text="xlarge"] .avaliacao-comentario,
+html[data-a11y-text="xlarge"] .termos-box p,
+html[data-a11y-text="xlarge"] .notificacao-custom {
+  font-size: 1.08rem !important;
+}
+
+html[data-a11y-text="xlarge"] body,
+html[data-a11y-text="xlarge"] button,
+html[data-a11y-text="xlarge"] input,
+html[data-a11y-text="xlarge"] textarea,
+html[data-a11y-text="xlarge"] select,
+html[data-a11y-text="xlarge"] label,
+html[data-a11y-text="xlarge"] .nav-link,
+html[data-a11y-text="xlarge"] .busca-item-nome,
+html[data-a11y-text="xlarge"] .busca-item-meta,
+html[data-a11y-text="xlarge"] .sinopse-preview,
+html[data-a11y-text="xlarge"] .sinopse-preview__texto,
+html[data-a11y-text="xlarge"] .card-filme p,
+html[data-a11y-text="xlarge"] .info p,
+html[data-a11y-text="xlarge"] .perfil-resumo,
+html[data-a11y-text="xlarge"] .avaliacao-comentario,
+html[data-a11y-text="xlarge"] .termos-box p,
+html[data-a11y-text="xlarge"] .notificacao-custom {
+  font-size: 1.18rem !important;
+}
+
+html[data-a11y-text="large"] h1,
+html[data-a11y-text="large"] .info h1,
+html[data-a11y-text="large"] .login-box h1,
+html[data-a11y-text="large"] .cadastro h1,
+html[data-a11y-text="large"] .termos-box h1,
+html[data-a11y-text="large"] .dados-usuario h1,
+html[data-a11y-text="xlarge"] h1,
+html[data-a11y-text="xlarge"] .info h1,
+html[data-a11y-text="xlarge"] .login-box h1,
+html[data-a11y-text="xlarge"] .cadastro h1,
+html[data-a11y-text="xlarge"] .termos-box h1,
+html[data-a11y-text="xlarge"] .dados-usuario h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  line-height: 1.15 !important;
+}
+
+html[data-a11y-text="large"] h2,
+html[data-a11y-text="large"] h3,
+html[data-a11y-text="xlarge"] h2,
+html[data-a11y-text="xlarge"] h3 {
+  line-height: 1.25 !important;
+}
+
+html[data-a11y-text="large"] .main-header .nav-direita,
+html[data-a11y-text="xlarge"] .main-header .nav-direita {
+  flex-wrap: wrap;
+}
+
+html[data-a11y-text="large"] .main-header .busca-input,
+html[data-a11y-text="xlarge"] .main-header .busca-input {
+  width: min(300px, 52vw);
+}
+
+html[data-a11y-text="large"] .card-filme {
+  min-width: 170px !important;
+}
+
+html[data-a11y-text="xlarge"] .card-filme {
+  min-width: 190px !important;
+}
+
+html[data-a11y-text="large"] .sinopse-preview,
+html[data-a11y-text="xlarge"] .sinopse-preview {
+  min-width: min(420px, 80vw);
+}
+
+html[data-a11y-text="large"] .login-box,
+html[data-a11y-text="large"] .cadastro,
+html[data-a11y-text="large"] .termos-box,
+html[data-a11y-text="xlarge"] .login-box,
+html[data-a11y-text="xlarge"] .cadastro,
+html[data-a11y-text="xlarge"] .termos-box {
+  max-width: min(92vw, 560px);
+}
+
 @media (max-width: 768px) {
   .a11y-toggle {
     width: 100%;
@@ -402,5 +578,9 @@ html[data-a11y-contrast="high"] .notificacao-erro {
 
   .a11y-panel {
     padding: 22px;
+  }
+
+  .a11y-choice__items {
+    grid-template-columns: 1fr;
   }
 }
