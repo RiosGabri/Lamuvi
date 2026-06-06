@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (termo.length >= 1) {
       let resultados = [];
       if (typeof Lista_filmes !== "undefined") {
-        resultados = Lista_filmes.filter(
-          (f) =>
-            f.nome.toLowerCase().includes(termo) ||
-            f.genero.toLowerCase().includes(termo)
-        ).slice(0, 6);
+        resultados = Lista_filmes.filter((f) => {
+          const nomeSeguro = String(f.nome || "").toLowerCase();
+          const generoSeguro = String(f.genero || "").toLowerCase();
+          return nomeSeguro.includes(termo) || generoSeguro.includes(termo);
+        }).slice(0, 6);
       }
 
       const secaoRes = criarSecao("Resultados da Busca");

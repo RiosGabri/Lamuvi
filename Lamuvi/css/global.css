@@ -59,3 +59,49 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
+.main-header {
+    position: relative;
+    z-index: 100;
+}
+
+.busca-container {
+    position: relative;
+}
+
+.busca-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-secundario);
+    border: 1px solid var(--borda-padrao);
+    border-radius: 8px;
+    z-index: 101; 
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.busca-dropdown.aberto {
+    display: block;
+}
+
+.busca-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.busca-item:hover, .busca-item.ativo {
+    background-color: var(--bg-terciario);
+}
+
+.busca-thumb {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
