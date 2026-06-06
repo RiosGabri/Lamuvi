@@ -116,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
     atualizarIndicesNavegacao();
 
     const totalItens = dropdown.querySelectorAll(".busca-item").length;
-    const termo = inputBusca.value.trim();
     if (termo.length >= 1) {
       liveRegion.textContent = totalItens > 0
         ? `${totalItens} resultado${totalItens !== 1 ? "s" : ""} encontrado${totalItens !== 1 ? "s" : ""}`
@@ -185,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     item.addEventListener("click", () => {
       inputBusca.value = termo;
+      salvarHistorico(termo);
       renderizar();
       inputBusca.focus();
     });
@@ -222,8 +222,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if (ativo) {
         ativo.click();
       } else {
-        salvarHistorico(inputBusca.value);
-        fecharDropdown();
+        const primeiroFilme = dropdown.querySelector(".busca-item-filme");
+        if (primeiroFilme) {
+          salvarHistorico(inputBusca.value);
+          primeiroFilme.click();
+        } else {
+          salvarHistorico(inputBusca.value);
+          fecharDropdown();
+        }
       }
     } else if (e.key === "Escape") {
       fecharDropdown();
